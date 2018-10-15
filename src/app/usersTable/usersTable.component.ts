@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { TouchSequence } from 'selenium-webdriver';
 
 
 @Component({
@@ -7,5 +8,14 @@ import {Component} from '@angular/core';
 })
 
 export class UsersTableComponent {
+    userID = 10;
+    username = 'Dosilly';
+    searchRequest = false;
 
+    searchedUsername = '';
+    searchedFirstName = '';
+
+    onSearchUser() { // Search button event
+        this.searchRequest = true;
+    }
 }

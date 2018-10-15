@@ -1,9 +1,32 @@
-<table class="table">
+
+<form name="form1">
+    <div class="row">  
+        <div class="col">
+            <input name="UsernameInput" type="text" class="form-control" placeholder="Username" [(ngModel)]="searchedUsername" >
+        </div>
+        <div>
+            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)] = "searchedFirstName" >
+        </div>
+    </div>
+</form>
+<br>
+
+<button class ="btn btn-primary btn-block" (click)="onSearchUser()" >Search</button>
+
+<p *ngIf="searchRequest">Search command sent with username: {{searchedUsername}}</p>
+
+<br>
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Username</th>
         </tr>
     </thead>
-    
+    <tbody>
+        <tr>
+            <th scope="row">{{userID}}</th>
+            <td>{{username}}</td>
+        </tr>
+    </tbody>
 </table>

@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { UsersTableComponent } from './usersTable/usersTable.component';
 
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
