@@ -1,5 +1,4 @@
 # TenderApplicationProject
-<<<<<<< HEAD
 Projekt inżynierski
 =======
 
