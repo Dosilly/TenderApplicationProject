@@ -11,22 +11,18 @@
 </form>
 <br>
 
-<button class ="btn btn-primary btn-block" (click)="onSearchUser()" >Search</button>
-
-<p *ngIf="searchRequest">Search command sent with username: {{searchedUsername}}</p>
+<button class ="btn btn-primary btn-block" (click)="getUsers()" >Search</button>
 
 <br>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Username</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">{{userID}}</th>
-            <td>{{username}}</td>
-        </tr>
-    </tbody>
+<table class="table table-sm table-striped table-hover table-responsive-sm overflow:auto">
+    <tr>
+        <th *ngFor="let col of columns">
+            {{col}}
+        </th>
+    </tr>
+    <tr *ngFor="let user of users$ | async">
+        <td *ngFor="let col of columns">
+            {{user[col]}}
+        </td>
+    </tr>
 </table>

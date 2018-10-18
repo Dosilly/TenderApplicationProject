@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import { TouchSequence } from 'selenium-webdriver';
-
+import { UsersTableService } from './users-table.service';
+import { from, Observable } from 'rxjs';
 
 @Component({
     selector: 'app-userstable',
@@ -8,14 +9,32 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 
 export class UsersTableComponent {
-    userID = 10;
-    username = 'Dosilly';
-    searchRequest = false;
 
+    constructor(private usersTableService: UsersTableService) {}
+
+    users$: Observable<Array<User>>;
     searchedUsername = '';
     searchedFirstName = '';
+    columns: string[];
 
-    onSearchUser() { // Search button event
-        this.searchRequest = true;
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngOnInit() {
+        this.columns = this.usersTableService.getColumns();
     }
+
+    getUsers() {
+       this.users$ = this.usersTableService.getUsers();
+    }
+
+    getUsersByUsername() {
+        this.usersTableService.getUsersByUsername(this.searchedUsername).subscribe(users => {
+            console.log(users);
+        });
+    }
+}
+
+export interface User {
+    id?: number;
+    name?: string;
+    username?: string;
 }
