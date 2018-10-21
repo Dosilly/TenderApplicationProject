@@ -20,6 +20,7 @@ export class UsersTableComponent {
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
         this.columns = this.usersTableService.getColumns();
+        this.users$ = this.usersTableService.getUsers();
     }
 
     getUsers() {
@@ -27,9 +28,7 @@ export class UsersTableComponent {
     }
 
     getUsersByUsername() {
-        this.usersTableService.getUsersByUsername(this.searchedUsername).subscribe(users => {
-            console.log(users);
-        });
+        this.users$ = this.usersTableService.getUsersByUsername(this.searchedUsername, this.searchedFirstName);
     }
 }
 

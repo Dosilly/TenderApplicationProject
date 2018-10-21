@@ -11,7 +11,8 @@
 </form>
 <br>
 
-<button class ="btn btn-primary btn-block" (click)="getUsers()" >Search</button>
+<button *ngIf="searchedUsername == '' && searchedFirstName == ''" class ="btn btn-primary btn-block" (click)="getUsers()" >Search</button> <!--Visible if forms are empty, method shows all users-->
+<button *ngIf="searchedUsername != ''" class ="btn btn-primary btn-block" (click)="getUsersByUsername()" >Search</button> <!--If any form is filled, get with conditions-->
 
 <br>
 <table class="table table-sm table-striped table-hover table-responsive-sm overflow:auto">
