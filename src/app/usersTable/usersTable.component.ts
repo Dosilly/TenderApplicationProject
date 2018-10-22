@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
-import { TouchSequence } from 'selenium-webdriver';
 import { UsersTableService } from './users-table.service';
 import { from, Observable } from 'rxjs';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
     selector: 'app-userstable',
-    templateUrl: './usersTable.component.html'
+    templateUrl: './usersTable.component.html',
+    styleUrls: ['./usersTable.component.css']
 })
 
 export class UsersTableComponent {
@@ -13,8 +14,10 @@ export class UsersTableComponent {
     constructor(private usersTableService: UsersTableService) {}
 
     users$: Observable<Array<User>>;
+    selectedUser: User;
     searchedUsername = '';
     searchedFirstName = '';
+    searchedLastName = '';
     columns: string[];
 
     // tslint:disable-next-line:use-life-cycle-interface
@@ -30,10 +33,24 @@ export class UsersTableComponent {
     getUsersByUsername() {
         this.users$ = this.usersTableService.getUsersByUsername(this.searchedUsername, this.searchedFirstName);
     }
+
+    onSelect(user: User): void {
+        this.selectedUser = user;
+        console.log(this.selectedUser.id);
+      }
+
+    deleteUser(user: User) {
+        console.log('delete user with id: ' + user.id);
+    }
+
+    editUser(user: User) {
+        console.log('edit user with id: ' + user.id);
+    }
 }
 
-export interface User {
+export class User {
     id?: number;
     name?: string;
     username?: string;
 }
+

@@ -6,12 +6,14 @@ import { UsersTableComponent } from './usersTable/usersTable.component';
 
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    MatDialogModule
   ],
   imports: [
     BrowserModule,

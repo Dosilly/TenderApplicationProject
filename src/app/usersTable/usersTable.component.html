@@ -4,8 +4,11 @@
         <div class="col">
             <input name="UsernameInput" type="text" class="form-control" placeholder="Username" [(ngModel)]="searchedUsername" >
         </div>
-        <div>
+        <div class="col">
             <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)] = "searchedFirstName" >
+        </div>
+        <div class="col">
+            <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" [(ngModel)] = "searchedLastName" >
         </div>
     </div>
 </form>
@@ -15,15 +18,23 @@
 <button *ngIf="searchedUsername != ''" class ="btn btn-primary btn-block" (click)="getUsersByUsername()" >Search</button> <!--If any form is filled, get with conditions-->
 
 <br>
-<table class="table table-sm table-striped table-hover table-responsive-sm overflow:auto">
+<table id="usersTable" class="table table-sm table-striped table-bordered overflow:auto">
     <tr>
         <th *ngFor="let col of columns">
             {{col}}
         </th>
     </tr>
-    <tr *ngFor="let user of users$ | async">
+    <tr *ngFor="let user of users$ | async"
+        [class.selected]="user === selectedUser"
+        (click)="onSelect(user)">   
         <td *ngFor="let col of columns">
             {{user[col]}}
         </td>
+        <td class="table-light">
+            <button type="button" class="btn btn-secondary btn-sm" (click)="editUser(user)">Edit</button>
+            &nbsp;
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(user)">X</button>
+        </td>
+
     </tr>
 </table>
