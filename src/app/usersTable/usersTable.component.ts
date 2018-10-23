@@ -1,7 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import { UsersTableService } from './users-table.service';
 import { from, Observable } from 'rxjs';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+export interface User {
+    id?: number;
+    name?: string;
+    username?: string;
+}
+
 
 @Component({
     selector: 'app-userstable',
@@ -11,7 +18,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 export class UsersTableComponent {
 
-    constructor(private usersTableService: UsersTableService) {}
+    constructor(private usersTableService: UsersTableService, public dialog: MatDialog) {}
 
     users$: Observable<Array<User>>;
     selectedUser: User;
@@ -45,12 +52,31 @@ export class UsersTableComponent {
 
     editUser(user: User) {
         console.log('edit user with id: ' + user.id);
+
+        const dialogRef = this.dialog.open(DialogOverviewComponent, {
+            width: '500px',
+            data: {user: user}
+          });
+
+          dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            this.selectedUser = result;
+          });
     }
 }
 
-export class User {
-    id?: number;
-    name?: string;
-    username?: string;
-}
+@Component({
+    selector: 'app-dialog-overview',
+    templateUrl: 'dialogView.component.html',
+  })
+  export class DialogOverviewComponent {
 
+    constructor(
+      public dialogRef: MatDialogRef<DialogOverviewComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: User) {}
+
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
+
+  }
