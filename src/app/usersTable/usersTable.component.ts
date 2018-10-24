@@ -1,12 +1,13 @@
 import {Component, Inject} from '@angular/core';
 import { UsersTableService } from './users-table.service';
 import { from, Observable } from 'rxjs';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
 
-export interface User {
+export class User {
     id?: number;
     name?: string;
     username?: string;
+    role?: string;
 }
 
 
@@ -21,7 +22,10 @@ export class UsersTableComponent {
     constructor(private usersTableService: UsersTableService, public dialog: MatDialog) {}
 
     users$: Observable<Array<User>>;
-    selectedUser: User;
+    selectedUser = new User();
+    dialogAddUser = new User();
+    dialogEditUser = new User();
+
     searchedUsername = '';
     searchedFirstName = '';
     searchedLastName = '';
@@ -50,17 +54,37 @@ export class UsersTableComponent {
         console.log('delete user with id: ' + user.id);
     }
 
-    editUser(user: User) {
-        console.log('edit user with id: ' + user.id);
-
+    addUser() {
         const dialogRef = this.dialog.open(DialogOverviewComponent, {
             width: '500px',
-            data: {user: user}
+            disableClose: true,
+            data: {userData: this.dialogAddUser,  header: 'Add user'}
           });
 
           dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            this.selectedUser = result;
+              if (result !== 'return') {
+                  console.log('addUser in component: ' + result.username);
+                this.usersTableService.addUser(result);
+              }
+          });
+    }
+
+    editUser(user: User) {
+        console.log('edit user with id: ' + user.id);
+
+        this.dialogEditUser = user;
+
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.data = {userData: this.dialogEditUser, header: 'Edit user'};
+        dialogConfig.width = '500px';
+        dialogConfig.disableClose = true;
+
+        const dialogRef = this.dialog.open(DialogOverviewComponent, dialogConfig);
+
+          dialogRef.afterClosed().subscribe(result => {
+            if (result !== 'return') {
+                this.usersTableService.editUser(result);
+            }
           });
     }
 }
@@ -73,10 +97,10 @@ export class UsersTableComponent {
 
     constructor(
       public dialogRef: MatDialogRef<DialogOverviewComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: User) {}
+      @Inject(MAT_DIALOG_DATA) public data: any) {}
 
-    onNoClick(): void {
-      this.dialogRef.close();
-    }
+      close() {
+        this.dialogRef.close('return');
+      }
 
   }

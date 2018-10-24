@@ -1,9 +1,9 @@
-<h1 mat-dialog-title>Edit user: {{data.user.username}}</h1>
+<h1 mat-dialog-title>{{data.header}}</h1>
 
-<form name="form1">
+<div mat-dialog-content *ngIf="data.userData.username; else addUserForms">
     <div class="row">  
         <div class="col">
-            <input name="UsernameInput" type="text" class="form-control" placeholder="Username" [(ngModel)]="data.user.username" >
+            <input name="UsernameInput" type="text" class="form-control" placeholder="Username" [ngModel]="data.userData.username">
         </div>
         <div class="col">
             <input name="Role" type="text" class="form-control" placeholder="Role"  ><!--Todo role binding-->
@@ -12,12 +12,41 @@
     <br>
     <div class="row">  
         <div class="col">
-            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.user.name" >
+            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [ngModel]="data.userData.name" >
         </div>
         <div class="col">
             <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" ><!--Todo last name binding-->
         </div>
     </div>
-    <br>
-    <button *ngIf="data.user.name != '' && data.user.role != ''" class ="btn btn-primary" >Apply</button>
-</form>
+</div>
+
+<ng-template #addUserForms>
+        <div mat-dialog-content>
+                <div class="row">
+                    <div class="col">   
+                        <input matInput name="UsernameInput" class="form-control" placeholder="UsernameAdd" [(ngModel)] = "data.userData.username">
+                    </div>
+                    <div class="col">
+                        <input matInput name="Role" type="text" class="form-control" placeholder="Role" ><!--Todo role binding-->
+                    </div>
+                </div>
+                <br>
+                <div class="row">  
+                    <div class="col">
+                        <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" >
+                    </div>
+                    <div class="col">
+                        <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" ><!--Todo last name binding-->
+                    </div>
+                </div>
+        </div>
+</ng-template>
+
+
+<br>
+
+<mat-dialog-actions>
+    <button mat-button class = "btn btn-sm btn-secondary" (click)="close()"> Return </button>
+    &nbsp;
+    <button mat-button [mat-dialog-close]="data.userData" class = "btn btn-sm btn-primary"> Apply </button>
+</mat-dialog-actions>
