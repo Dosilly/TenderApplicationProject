@@ -1,0 +1,15 @@
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.csproj.CoreCompileInputs.cache
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.AssemblyInfoInputs.cache
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.AssemblyInfo.cs
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\bin\Debug\netcoreapp2.1\TenderApplicationBackend.deps.json
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\bin\Debug\netcoreapp2.1\TenderApplicationBackend.runtimeconfig.json
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\bin\Debug\netcoreapp2.1\TenderApplicationBackend.runtimeconfig.dev.json
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\bin\Debug\netcoreapp2.1\TenderApplicationBackend.dll
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\bin\Debug\netcoreapp2.1\TenderApplicationBackend.pdb
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.csprojAssemblyReference.cache
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.RazorAssemblyInfo.cache
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.RazorAssemblyInfo.cs
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.RazorTargetAssemblyInfo.cache
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.dll
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\TenderApplicationBackend.pdb
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\TenderApplicationBackend\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs

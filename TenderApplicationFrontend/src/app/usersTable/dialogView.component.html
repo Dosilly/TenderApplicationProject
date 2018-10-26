@@ -3,7 +3,7 @@
 <div mat-dialog-content *ngIf="data.userData.username; else addUserForms">
     <div class="row">  
         <div class="col">
-            <input name="UsernameInput" type="text" class="form-control" placeholder="Username" [ngModel]="data.userData.username">
+            <input name="UsernameInput" type="text" class="form-control" placeholder="Username" [(ngModel)]="data.userData.username">
         </div>
         <div class="col">
             <input name="Role" type="text" class="form-control" placeholder="Role"  ><!--Todo role binding-->
@@ -12,7 +12,7 @@
     <br>
     <div class="row">  
         <div class="col">
-            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [ngModel]="data.userData.name" >
+            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.userData.name" >
         </div>
         <div class="col">
             <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" ><!--Todo last name binding-->
