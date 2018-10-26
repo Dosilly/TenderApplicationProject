@@ -1,12 +1,16 @@
 import {Component, Inject} from '@angular/core';
-import { UsersTableService } from './users-table.service';
+import { UsersTableService } from '../services/users-table.service';
 import { from, Observable } from 'rxjs';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+
 
 export class User {
     id?: number;
-    name?: string;
     username?: string;
+    name?: string;
+    firstName?: string;
+    lastName?: string;
     role?: string;
 }
 
@@ -23,6 +27,7 @@ export class UsersTableComponent {
 
     users$: Observable<Array<User>>;
     selectedUser = new User();
+    emptyUser = new User();
     dialogAddUser = new User();
     dialogEditUser = new User();
 
@@ -55,6 +60,9 @@ export class UsersTableComponent {
     }
 
     addUser() {
+
+        this.dialogAddUser = JSON.parse(JSON.stringify(this.emptyUser));
+
         const dialogRef = this.dialog.open(DialogOverviewComponent, {
             width: '500px',
             disableClose: true,
@@ -72,7 +80,7 @@ export class UsersTableComponent {
     editUser(user: User) {
         console.log('edit user with id: ' + user.id);
 
-        this.dialogEditUser = user;
+        this.dialogEditUser = JSON.parse(JSON.stringify(user));
 
         const dialogConfig = new MatDialogConfig();
         dialogConfig.data = {userData: this.dialogEditUser, header: 'Edit user'};

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { User } from './usersTable.component';
+import { User } from '../usersTable/usersTable.component';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,11 +22,11 @@ export class UsersTableService {
   }
 
   addUser(user: User) {
-    console.log('Add user service method: ' + user.username);
+    console.log(JSON.stringify( user ));
   }
 
   editUser(user: User) {
-    console.log('Edit user service method: ' + user.username);
+    console.log(JSON.stringify( user ));
   }
 
   getColumns(): string[] {

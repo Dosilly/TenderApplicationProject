@@ -1,48 +1,44 @@
 <h1 mat-dialog-title>{{data.header}}</h1>
 
-<div mat-dialog-content *ngIf="data.userData.username; else addUserForms">
+<div mat-dialog-content *ngIf="data.header === 'Edit user'"> <!--Edit user forms case-->
     <div class="row">  
         <div class="col">
-            <input name="UsernameInput" type="text" class="form-control" placeholder="Username" [(ngModel)]="data.userData.username">
+            <input name="UsernameInput" type="text" class="form-control" placeholder="Usernameedit" [(ngModel)]="data.userData.username">
         </div>
         <div class="col">
-            <input name="Role" type="text" class="form-control" placeholder="Role"  ><!--Todo role binding-->
+            <input name="Role" type="text" class="form-control" placeholder="Role" [(ngModel)]="data.userData.role" >
         </div>
     </div>
     <br>
     <div class="row">  
         <div class="col">
-            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.userData.name" >
+            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.userData.firstName" >
         </div>
         <div class="col">
-            <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" ><!--Todo last name binding-->
+            <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" [(ngModel)]="data.userData.lastName" >
         </div>
     </div>
 </div>
 
-<ng-template #addUserForms>
-        <div mat-dialog-content>
-                <div class="row">
-                    <div class="col">   
-                        <input matInput name="UsernameInput" class="form-control" placeholder="UsernameAdd" [(ngModel)] = "data.userData.username">
-                    </div>
-                    <div class="col">
-                        <input matInput name="Role" type="text" class="form-control" placeholder="Role" ><!--Todo role binding-->
-                    </div>
-                </div>
-                <br>
-                <div class="row">  
-                    <div class="col">
-                        <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" >
-                    </div>
-                    <div class="col">
-                        <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" ><!--Todo last name binding-->
-                    </div>
-                </div>
+<div mat-dialog-content *ngIf="data.header === 'Add user'"> <!--Add user forms case-->
+        <div class="row">
+            <div class="col">   
+                <input name="UsernameInput" class="form-control" placeholder="Username" [(ngModel)] = "data.userData.username">
+            </div>
+            <div class="col">
+                <input name="Role" type="text" class="form-control" placeholder="Role" [(ngModel)]="data.userData.role">
+            </div>
         </div>
-</ng-template>
-
-
+        <br>
+        <div class="row">  
+            <div class="col">
+                <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.userData.firstName">
+            </div>
+            <div class="col">
+                <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" [(ngModel)]="data.userData.lastName">
+            </div>
+        </div>
+    </div>
 <br>
 
 <mat-dialog-actions>
