@@ -3,11 +3,11 @@ using TenderApplicationBackend.Models.Entities;
 
 namespace TenderApplicationBackend.Models.Repositories
 {
-    public class TestRepository
+    public class EmployeeRepository
     {
         private readonly ConnectionFactory _connectionFactory;
 
-        public TestRepository(ConnectionFactory connectionFactory)
+        public EmployeeRepository(ConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }

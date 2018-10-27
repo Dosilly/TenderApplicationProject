@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TenderApplicationBackend.Models;
+using TenderApplicationBackend.Models.Modules;
 using TenderApplicationBackend.Models.Repositories;
 
 namespace TenderApplicationBackend
@@ -28,9 +29,11 @@ namespace TenderApplicationBackend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<TestModule>();
-            services.AddSingleton<TestRepository>();
+            services.AddSingleton<EmployeeModule>();
+            services.AddSingleton<EmployeeRepository>();
             services.AddSingleton<ConnectionFactory>();
+            services.AddSingleton<UserModule>();
+            services.AddSingleton<UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

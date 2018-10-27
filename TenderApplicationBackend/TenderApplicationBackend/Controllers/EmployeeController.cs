@@ -5,18 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TenderApplicationBackend.Models;
 using TenderApplicationBackend.Models.Dtos;
+using TenderApplicationBackend.Models.Modules;
 
 namespace TenderApplicationBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
-        private readonly TestModule _testModule;
+        private readonly EmployeeModule _employeeModule;
 
-        public ValuesController(TestModule testModule)
+        public EmployeeController(EmployeeModule employeeModule)
         {
-            _testModule = testModule;
+            _employeeModule = employeeModule;
         }
 
         // GET api/values
@@ -35,9 +36,9 @@ namespace TenderApplicationBackend.Controllers
 
         // POST api/values
         [HttpPost]
-        public TestRequest Post([FromBody] TestRequest value)
+        public EmployeeRequest Post([FromBody] EmployeeRequest value)
         {
-            return _testModule.RefactorObject(value);
+            return _employeeModule.AddEmployee(value);
         }
 
         // PUT api/values/5

@@ -6,12 +6,12 @@ import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrie
 
 
 export class User {
-    id?: number;
-    username?: string;
-    name?: string;
-    firstName?: string;
-    lastName?: string;
-    role?: string;
+    id: number;
+    username: string;
+    name: string;
+    firstName: string;
+    lastName: string;
+    role: string;
 }
 
 

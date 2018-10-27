@@ -12,6 +12,7 @@ namespace TenderApplicationBackend.Models.Entities
         [Alias("EmployeeID")]
         [AutoIncrement]
         public int Id { get; set; }
+        public  int UserID { get; set; }
         public string LName { get; set; }
         public string FName { get; set; }
     }

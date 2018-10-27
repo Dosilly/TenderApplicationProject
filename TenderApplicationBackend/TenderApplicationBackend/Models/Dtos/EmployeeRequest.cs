@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace TenderApplicationBackend.Models.Dtos
 {
-    public class TestRequest
+    public class EmployeeRequest
     {
-        public string TestStr { get; set; }
-        public int TestInt { get; set; }
+        public  string UserID { get; set; }
+        public string FName { get; set; }
+        public string LName { get; set; }
     }
 }

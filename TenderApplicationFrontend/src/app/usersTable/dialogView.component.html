@@ -42,7 +42,8 @@
 <br>
 
 <mat-dialog-actions>
-    <button mat-button class = "btn btn-sm btn-secondary" (click)="close()"> Return </button>
+    
+    <button class = "btn btn-sm btn-secondary" (click)="close()"> Return </button>
     &nbsp;
-    <button mat-button [mat-dialog-close]="data.userData" class = "btn btn-sm btn-primary"> Apply </button>
+    <button [mat-dialog-close]="data.userData" class = "btn btn-sm btn-primary"> Apply </button>
 </mat-dialog-actions>
