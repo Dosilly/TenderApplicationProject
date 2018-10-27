@@ -22,9 +22,9 @@ namespace TenderApplicationBackend.Controllers
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public List<UserEmployeeRequest> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _userModule.SelectAllUsers();
         }
 
         // GET api/users/5
@@ -36,9 +36,9 @@ namespace TenderApplicationBackend.Controllers
 
         // POST users/values
         [HttpPost]
-        public UserRequest Post([FromBody] UserRequest value)
+        public void Post([FromBody] UserEmployeeRequest userValue)
         {
-            return _userModule.AddUser(value);
+            _userModule.AddUser(userValue);
         }
 
         // PUT api/values/5

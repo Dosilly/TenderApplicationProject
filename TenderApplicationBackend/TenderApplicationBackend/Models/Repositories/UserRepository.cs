@@ -1,4 +1,6 @@
-﻿using ServiceStack.OrmLite;
+﻿using System.Collections.Generic;
+using ServiceStack.OrmLite;
+using TenderApplicationBackend.Models.Dtos;
 using TenderApplicationBackend.Models.Entities;
 
 namespace TenderApplicationBackend.Models.Repositories
@@ -19,5 +21,22 @@ namespace TenderApplicationBackend.Models.Repositories
                 connection.Save(user);
             }
         }
+
+        public List<User> SelectAllUsers()
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                return connection.Select<User>();
+            }
+        }
+
+        public User SelectUserByUsername(UserEmployeeRequest user)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                return connection.Single<User>(x => x.Username == user.Username);
+            }
+        }
+
     }
 }

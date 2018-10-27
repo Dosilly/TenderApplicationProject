@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 
 namespace TenderApplicationBackend.Models.Dtos
 {
-    public class UserRequest
+    public class UserEmployeeRequest
     {
+        public int UserId { get; set; }
         public string Username { get; set; }
         public string UserPass { get; set; }
         public string Role { get; set; }
-
+        public string FName { get; set; }
+        public string LName { get; set; }
     }
 }

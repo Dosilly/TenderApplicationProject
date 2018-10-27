@@ -34,13 +34,6 @@ namespace TenderApplicationBackend.Controllers
             return "value";
         }
 
-        // POST api/values
-        [HttpPost]
-        public EmployeeRequest Post([FromBody] EmployeeRequest value)
-        {
-            return _employeeModule.AddEmployee(value);
-        }
-
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

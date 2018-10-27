@@ -7,24 +7,13 @@ namespace TenderApplicationBackend.Models.Modules
     public class EmployeeModule
     {
         private readonly EmployeeRepository _employeeRepository;
+        private readonly UserModule _userModule;
 
-        public EmployeeModule(EmployeeRepository employeeRepository)
+        public EmployeeModule(EmployeeRepository employeeRepository, UserModule userModule)
         {
+            _userModule = userModule;
             _employeeRepository = employeeRepository;
         }
 
-        public EmployeeRequest AddEmployee(EmployeeRequest employeeRequest)
-        {
-   
-            var employee = new Employee
-            {
-                FName = employeeRequest.FName,
-                LName = employeeRequest.LName
-            };
-
-            _employeeRepository.SaveEmployee(employee);
-
-            return employeeRequest;
-        }
     }
 }

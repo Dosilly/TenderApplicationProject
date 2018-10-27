@@ -7,7 +7,7 @@ namespace TenderApplicationBackend.Models.Dtos
 {
     public class EmployeeRequest
     {
-        public  string UserID { get; set; }
+        public int UserID { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
     }
