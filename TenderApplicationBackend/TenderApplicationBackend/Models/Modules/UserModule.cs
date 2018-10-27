@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using TenderApplicationBackend.Models.Dtos;
 using TenderApplicationBackend.Models.Entities;
 using TenderApplicationBackend.Models.Repositories;
@@ -18,11 +20,11 @@ namespace TenderApplicationBackend.Models.Modules
         }
 
         public void AddUser(UserEmployeeRequest userEmployeeAddRequest)
-        {
+        {        
             var user = new User
             {
                 Username = userEmployeeAddRequest.Username,
-                UserPass = userEmployeeAddRequest.UserPass,
+                UserPass = HashPassword(userEmployeeAddRequest.UserPass),
                 Role = userEmployeeAddRequest.Role
             };
             _userRepository.SaveUser(user);
@@ -44,9 +46,6 @@ namespace TenderApplicationBackend.Models.Modules
             var empResult = _employeeRepository.SelectAllEmployees();
             var listOfUsers = new List<UserEmployeeRequest>();
 
-            Console.Write(usrResult);
-            Console.Write(empResult);
-
             for (var i = 0; i < usrResult.Count; i++)
             {
                 var userEmployeeRequest = new UserEmployeeRequest();
@@ -63,6 +62,25 @@ namespace TenderApplicationBackend.Models.Modules
             }
 
             return listOfUsers;
+        }
+
+        private string HashPassword(string password)
+        {
+            // generate a 128-bit salt using a secure PRNG
+            var salt = new byte[128 / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            var hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA1,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            return hashed;
         }
 
         //public UserEmployeeRequest SelectUserByUsername(UserEmployeeRequest userRequest)

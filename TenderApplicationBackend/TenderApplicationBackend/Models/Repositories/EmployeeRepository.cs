@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.OrmLite;
 using TenderApplicationBackend.Models.Entities;
 
@@ -17,7 +18,16 @@ namespace TenderApplicationBackend.Models.Repositories
         {
             using (var connection = _connectionFactory.GetConnection())
             {
-                connection.Save(employee);
+                
+                try
+                {
+                    connection.Save(employee);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
         }
         public List<Employee> SelectAllEmployees()
