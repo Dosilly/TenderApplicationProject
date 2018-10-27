@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TenderApplicationBackend.Models.Dtos;
 using TenderApplicationBackend.Models.Entities;
 using TenderApplicationBackend.Models.Repositories;
@@ -39,16 +40,26 @@ namespace TenderApplicationBackend.Models.Modules
 
         public List<UserEmployeeRequest> SelectAllUsers()
         {
-            var result = _userRepository.SelectAllUsers();
+            var usrResult = _userRepository.SelectAllUsers();
+            var empResult = _employeeRepository.SelectAllEmployees();
             var listOfUsers = new List<UserEmployeeRequest>();
-            var userRequest = new UserEmployeeRequest();
 
-            foreach (var t in result)
+            Console.Write(usrResult);
+            Console.Write(empResult);
+
+            for (var i = 0; i < usrResult.Count; i++)
             {
-                userRequest.UserId = t.Id;
-                userRequest.Username = t.Username;
-                userRequest.Role = t.Role;
-                listOfUsers.Add(userRequest);
+                var userEmployeeRequest = new UserEmployeeRequest();
+                var u = usrResult[i];
+                var e = empResult[i];
+
+                userEmployeeRequest.UserId = u.Id;
+                userEmployeeRequest.Username = u.Username;
+                userEmployeeRequest.Role = u.Role;
+                userEmployeeRequest.FName = e.FName;
+                userEmployeeRequest.LName = e.LName;
+
+                listOfUsers.Add(userEmployeeRequest);
             }
 
             return listOfUsers;
