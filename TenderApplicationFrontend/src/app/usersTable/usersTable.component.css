@@ -6,3 +6,9 @@
   .table{
     text-align: center; 
   }
+
+  table {
+    width: 100%;
+    text-align: center
+  }
+  

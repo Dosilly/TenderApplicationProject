@@ -17,25 +17,34 @@
 <button *ngIf="searchedUsername != ''" class ="btn btn-primary btn-block" (click)="getUsersByUsername()" >Search</button> <!--If any form is filled, get with conditions-->
 
 <br>
-<table id="usersTable" class="table table-sm table-striped table-bordered overflow:auto">
-    <tr>
-        <th *ngFor="let col of columns">
-            {{col}}
-        </th>
-    </tr>
-    <tr *ngFor="let user of users$ | async"
-        [class.selected]="user === selectedUser"
-        (click)="onSelect(user)">   
-        <td *ngFor="let col of columns">
-            {{user[col]}}
-        </td>
-        <td class="table-light">
-            <button type="button" class="btn btn-secondary btn-sm" (click)="editUser(user)">Edit</button>
-            &nbsp;
-            <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(user)">X</button>
-        </td>
+<table mat-table [dataSource]="users$" class="mat-elevation-z8">
+    <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+    </ng-container>
 
-    </tr>
+    <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fName">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.fName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lName">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.lName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef> Role </th>
+        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
 </table>
 
 <button type="button" class="btn btn-primary" (click)="addUser()">Add new</button>

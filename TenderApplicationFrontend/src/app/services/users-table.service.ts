@@ -11,7 +11,7 @@ export class UsersTableService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<Array<User>> {
-   return this.http.get<Array<User>>('https://jsonplaceholder.typicode.com/users');
+   return this.http.get<Array<User>>('http://localhost:3708/api/user');
   }
 
   getUsersByUsername(username: string, name: string): Observable<Array<User>> {
@@ -30,6 +30,6 @@ export class UsersTableService {
   }
 
   getColumns(): string[] {
-    return ['id', 'username', 'name'];
+    return ['userId', 'username', 'fName', 'lName', 'role'];
   }
 }

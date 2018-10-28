@@ -3,10 +3,11 @@ import { UsersTableService } from '../services/users-table.service';
 import { from, Observable } from 'rxjs';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+import {MatTableModule} from '@angular/material/table';
 
 
 export class User {
-    id: number;
+    userId: number;
     username: string;
     name: string;
     firstName: string;
@@ -20,6 +21,7 @@ export class User {
     templateUrl: './usersTable.component.html',
     styleUrls: ['./usersTable.component.css']
 })
+
 
 export class UsersTableComponent {
 
@@ -52,11 +54,11 @@ export class UsersTableComponent {
 
     onSelect(user: User): void {
         this.selectedUser = user;
-        console.log(this.selectedUser.id);
+        console.log(this.selectedUser.userId);
       }
 
     deleteUser(user: User) {
-        console.log('delete user with id: ' + user.id);
+        console.log('delete user with id: ' + user.userId);
     }
 
     addUser() {
@@ -78,7 +80,7 @@ export class UsersTableComponent {
     }
 
     editUser(user: User) {
-        console.log('edit user with id: ' + user.id);
+        console.log('edit user with id: ' + user.userId);
 
         this.dialogEditUser = JSON.parse(JSON.stringify(user));
 
