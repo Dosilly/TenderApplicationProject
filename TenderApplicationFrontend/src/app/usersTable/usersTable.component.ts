@@ -1,9 +1,9 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, ViewChild} from '@angular/core';
 import { UsersTableService } from '../services/users-table.service';
 import { from, Observable } from 'rxjs';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
-import {MatTableModule} from '@angular/material/table';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 
 export class User {
@@ -27,7 +27,7 @@ export class UsersTableComponent {
 
     constructor(private usersTableService: UsersTableService, public dialog: MatDialog) {}
 
-    users$: Observable<Array<User>>;
+    users$ = new Observable<Array<User>>();
     selectedUser = new User();
     emptyUser = new User();
     dialogAddUser = new User();
@@ -37,6 +37,8 @@ export class UsersTableComponent {
     searchedFirstName = '';
     searchedLastName = '';
     columns: string[];
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
@@ -80,9 +82,8 @@ export class UsersTableComponent {
     }
 
     editUser(user: User) {
-        console.log('edit user with id: ' + user.userId);
-
         this.dialogEditUser = JSON.parse(JSON.stringify(user));
+        console.log(this.dialogEditUser);
 
         const dialogConfig = new MatDialogConfig();
         dialogConfig.data = {userData: this.dialogEditUser, header: 'Edit user'};

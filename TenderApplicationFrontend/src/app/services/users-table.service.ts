@@ -30,6 +30,6 @@ export class UsersTableService {
   }
 
   getColumns(): string[] {
-    return ['userId', 'username', 'fName', 'lName', 'role'];
+    return ['userId', 'username', 'fName', 'lName', 'role', 'actions'];
   }
 }

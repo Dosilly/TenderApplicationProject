@@ -3,12 +3,12 @@
     color: white;
   }
 
-  .table{
-    text-align: center; 
-  }
-
-  table {
-    width: 100%;
-    text-align: center
-  }
+table{
+  width: 100%;
+ }
+ 
+ .usertable {
+  height: 400px;
+  overflow: auto;
+ }
   
