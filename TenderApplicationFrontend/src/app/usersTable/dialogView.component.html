@@ -1,49 +1,56 @@
 <h1 mat-dialog-title>{{data.header}}</h1>
 
-<div mat-dialog-content *ngIf="data.header === 'Edit user'"> <!--Edit user forms case-->
-    <div class="row">  
+<!--Edit user forms case-->
+<div mat-dialog-content *ngIf="data.header === 'Edit user'">
+    <div class="row">
         <div class="col">
             <input name="UsernameInput" type="text" class="form-control" placeholder="Usernameedit" [(ngModel)]="data.userData.username">
         </div>
         <div class="col">
-            <input name="Role" type="text" class="form-control" placeholder="Role" [(ngModel)]="data.userData.role" >
+            <input name="Role" type="text" class="form-control" placeholder="Role" [(ngModel)]="data.userData.role">
         </div>
     </div>
     <br>
-    <div class="row">  
+    <div class="row">
         <div class="col">
-            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.userData.fName" >
+            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.userData.fName">
         </div>
         <div class="col">
-            <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" [(ngModel)]="data.userData.lName" >
+            <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" [(ngModel)]="data.userData.lName">
         </div>
     </div>
 </div>
 
-<div mat-dialog-content *ngIf="data.header === 'Add user'"> <!--Add user forms case-->
-        <div class="row">
-            <div class="col">   
-                <input name="UsernameInput" class="form-control" placeholder="Username" [(ngModel)] = "data.userData.username">
-            </div>
-            <div class="col">
-                <input name="Role" type="text" class="form-control" placeholder="Role" [(ngModel)]="data.userData.role">
-            </div>
-        </div>
-        <br>
-        <div class="row">  
-            <div class="col">
-                <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.userData.firstName">
-            </div>
-            <div class="col">
-                <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" [(ngModel)]="data.userData.lastName">
-            </div>
-        </div>
-    </div>
-<br>
+<!--Add user forms case-->
+<div mat-dialog-content *ngIf="data.header === 'Add user'">
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.userData.username" placeholder="Username">
+    </mat-form-field>
 
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.userData.userPass" placeholder="Password">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.userData.fName" placeholder="First name">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.userData.lName" placeholder="Last name">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <select matNativeControl required placeholder="Select role" [(ngModel)]="data.userData.role">
+            <option value="ADM">Administrator</option>
+            <option value="ANAL">Analyst</option>
+            <option value="MAN">Manager</option>
+            <option value="OFF">Officer</option>
+        </select>
+    </mat-form-field>
+</div>
+<br>
 <mat-dialog-actions>
-    
-    <button class = "btn btn-sm btn-secondary" (click)="close()"> Return </button>
+    <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
     &nbsp;
-    <button [mat-dialog-close]="data.userData" class = "btn btn-sm btn-primary"> Apply </button>
+    <button [mat-dialog-close]="data.userData" class="btn btn-sm btn-primary"> Apply </button>
 </mat-dialog-actions>

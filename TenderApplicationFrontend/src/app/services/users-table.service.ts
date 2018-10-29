@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../usersTable/usersTable.component';
-import { Observable } from 'rxjs';
+import { Observable} from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +20,9 @@ export class UsersTableService {
    return this.http.get<User[]>('http://localhost:3708/api/user');
   }
 
-  addUser(user: User) {
-    console.log(JSON.stringify( user ));
+  addUser(user: User): Observable<User> {
+    console.log(user);
+    return this.http.post<User>('http://localhost:3708/api/user', user, httpOptions);
   }
 
   editUser(user: User) {
@@ -25,4 +32,5 @@ export class UsersTableService {
   getColumns(): string[] {
     return ['userId', 'username', 'fName', 'lName', 'role', 'actions'];
   }
+
 }
