@@ -10,15 +10,8 @@ export class UsersTableService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<Array<User>> {
-   return this.http.get<Array<User>>('http://localhost:3708/api/user');
-  }
-
-  getUsersByUsername(username: string, name: string): Observable<Array<User>> {
-    const parm = new HttpParams()
-    .set('username', username)
-    .set('name', name);
-    return this.http.get<Array<User>>('https://jsonplaceholder.typicode.com/users', {params: parm});
+  getUsers(): Observable<User[]> {
+   return this.http.get<User[]>('http://localhost:3708/api/user');
   }
 
   addUser(user: User) {

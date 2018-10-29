@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TenderApplicationBackend.Models;
 using TenderApplicationBackend.Models.Dtos;
@@ -10,6 +11,7 @@ using TenderApplicationBackend.Models.Modules;
 namespace TenderApplicationBackend.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("AllowAll")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {

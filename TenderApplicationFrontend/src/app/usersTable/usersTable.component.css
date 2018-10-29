@@ -4,11 +4,6 @@
   }
 
 table{
-  width: 100%;
+  width: 200%;
  }
  
- .usertable {
-  height: 400px;
-  overflow: auto;
- }
-  

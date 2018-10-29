@@ -1,22 +1,7 @@
-<form name="form1">
-    <div class="row">  
-        <div class="col">
-            <input name="UsernameInput" type="text" class="form-control" placeholder="Username" [(ngModel)]="searchedUsername" >
-        </div>
-        <div class="col">
-            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)] = "searchedFirstName" >
-        </div>
-        <div class="col">
-            <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" [(ngModel)] = "searchedLastName" >
-        </div>
-    </div>
-</form>
-<br>
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
 
-<button *ngIf="searchedUsername == '' && searchedFirstName == ''" class ="btn btn-primary btn-block" (click)="getUsers()" >Search</button> <!--Visible if forms are empty, method shows all users-->
-<button *ngIf="searchedUsername != ''" class ="btn btn-primary btn-block" (click)="getUsersByUsername()" >Search</button> <!--If any form is filled, get with conditions-->
-
-<br>
 <div class="usertable">
 <table mat-table [dataSource]="users$" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="userId">
@@ -57,6 +42,8 @@
     <tr mat-row *matRowDef="let row; columns: columns;" (click)="onSelect(row)"> </tr>
 
 </table>
+
+<mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
 
 <button type="button" class="btn btn-primary" (click)="addUser()">Add new</button>

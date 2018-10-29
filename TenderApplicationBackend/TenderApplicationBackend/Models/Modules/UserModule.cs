@@ -64,7 +64,7 @@ namespace TenderApplicationBackend.Models.Modules
             return listOfUsers;
         }
 
-        private string HashPassword(string password)
+        private static string HashPassword(string password)
         {
             // generate a 128-bit salt using a secure PRNG
             var salt = new byte[128 / 8];
@@ -83,17 +83,5 @@ namespace TenderApplicationBackend.Models.Modules
             return hashed;
         }
 
-        //public UserEmployeeRequest SelectUserByUsername(UserEmployeeRequest userRequest)
-        //{
-        //    var result = _userRepository.SelectUserByUsername(userRequest);
-        //    var user = new UserEmployeeRequest
-        //    {
-        //        Username = result.Username,
-        //        Role = result.Role,
-        //        UserID = result.Id
-        //    };
-
-        //    return user;
-        //}
     }
 }

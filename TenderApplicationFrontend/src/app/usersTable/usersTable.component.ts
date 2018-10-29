@@ -1,10 +1,9 @@
 import {Component, Inject, ViewChild} from '@angular/core';
 import { UsersTableService } from '../services/users-table.service';
 import { from, Observable } from 'rxjs';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatTab, MatSort} from '@angular/material';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
-
 
 export class User {
     userId: number;
@@ -15,6 +14,9 @@ export class User {
     role: string;
 }
 
+interface DataSource<T> {
+    connect(): Observable<T[]>;
+  }
 
 @Component({
     selector: 'app-userstable',
@@ -27,7 +29,7 @@ export class UsersTableComponent {
 
     constructor(private usersTableService: UsersTableService, public dialog: MatDialog) {}
 
-    users$ = new Observable<Array<User>>();
+    users$ = new MatTableDataSource<User>();
     selectedUser = new User();
     emptyUser = new User();
     dialogAddUser = new User();
@@ -39,19 +41,25 @@ export class UsersTableComponent {
     columns: string[];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+
+    applyFilter(filterValue: string) {
+        this.users$.filter = filterValue.trim().toLowerCase();
+      }
 
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
         this.columns = this.usersTableService.getColumns();
-        this.users$ = this.usersTableService.getUsers();
+        this.users$.paginator = this.paginator;
+        this.users$.sort = this.sort;
+        this.getUsers();
     }
 
     getUsers() {
-       this.users$ = this.usersTableService.getUsers();
-    }
-
-    getUsersByUsername() {
-        this.users$ = this.usersTableService.getUsersByUsername(this.searchedUsername, this.searchedFirstName);
+        this.usersTableService.getUsers()
+        .subscribe(users => {
+            this.users$.data = users as User[];
+        });
     }
 
     onSelect(user: User): void {
@@ -100,7 +108,7 @@ export class UsersTableComponent {
     }
 }
 
-@Component({
+@Component({ // Component for popups showed after button click
     selector: 'app-dialog-overview',
     templateUrl: 'dialogView.component.html',
   })
@@ -108,7 +116,7 @@ export class UsersTableComponent {
 
     constructor(
       public dialogRef: MatDialogRef<DialogOverviewComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: any) {}
+      @Inject(MAT_DIALOG_DATA) public data: any) {} // inject data to dialog
 
       close() {
         this.dialogRef.close('return');
