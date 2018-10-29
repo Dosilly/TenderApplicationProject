@@ -31,7 +31,6 @@ export class UsersTableComponent {
     constructor(private usersTableService: UsersTableService, public dialog: MatDialog) { }
 
     users$ = new MatTableDataSource<User>();
-    selectedUser = new User();
     emptyUser = new User();
     dialogAddUser = new User();
     dialogEditUser = new User();
@@ -59,13 +58,13 @@ export class UsersTableComponent {
             });
     }
 
-    onSelect(user: User): void {
-        this.selectedUser = user;
-        console.log(this.selectedUser.userId);
-    }
-
     deleteUser(user: User) {
         console.log('delete user with id: ' + user.userId);
+
+        this.usersTableService.deleteUser(user).subscribe(result => {
+            console.log(result);
+            this.getUsers(); // Updating table
+        });
     }
 
     addUser() {
@@ -82,11 +81,11 @@ export class UsersTableComponent {
             if (result !== 'return') {
                 this.usersTableService.addUser(result).subscribe(post => {
                     console.log(post);
+                    this.getUsers(); // Updating table
                 });
             }
         });
     }
-
 
     editUser(user: User) {
         this.dialogEditUser = JSON.parse(JSON.stringify(user));

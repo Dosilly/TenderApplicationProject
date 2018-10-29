@@ -53,6 +53,7 @@ namespace TenderApplicationBackend.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _userModule.DeleteUser(id);
         }
     }
 }

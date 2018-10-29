@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ServiceStack.OrmLite;
 using TenderApplicationBackend.Models.Dtos;
 using TenderApplicationBackend.Models.Entities;
@@ -18,7 +19,31 @@ namespace TenderApplicationBackend.Models.Repositories
         {
             using (var connection = _connectionFactory.GetConnection())
             {
-                connection.Save(user);
+                try
+                {
+                    connection.Save(user);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
+
+        public void DeleteUser(int userId)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    connection.DeleteById<User>(userId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
         }
 

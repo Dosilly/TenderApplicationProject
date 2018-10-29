@@ -40,6 +40,12 @@ namespace TenderApplicationBackend.Models.Modules
             _employeeRepository.SaveEmployee(employee);     
         }
 
+        public void DeleteUser(int userId)
+        {
+            _employeeRepository.DeleteEmployee(userId);
+            _userRepository.DeleteUser(userId);
+        }
+
         public List<UserEmployeeRequest> SelectAllUsers()
         {
             var usrResult = _userRepository.SelectAllUsers();

@@ -3,6 +3,8 @@ import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular
 import { User } from '../usersTable/usersTable.component';
 import { Observable} from 'rxjs';
 
+
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -16,13 +18,20 @@ export class UsersTableService {
 
   constructor(private http: HttpClient) { }
 
+  userUrl = 'http://localhost:3708/api/user';
+
   getUsers(): Observable<User[]> {
-   return this.http.get<User[]>('http://localhost:3708/api/user');
+   return this.http.get<User[]>(this.userUrl); // GET api/user
   }
 
   addUser(user: User): Observable<User> {
     console.log(user);
-    return this.http.post<User>('http://localhost:3708/api/user', user, httpOptions);
+    return this.http.post<User>(this.userUrl, user, httpOptions); // POST api/user
+  }
+
+  deleteUser(user: User): Observable<User> {
+    const url = `${this.userUrl}/${user.userId}`; // DELETE api/user/5
+    return this.http.delete<User>(url, httpOptions);
   }
 
   editUser(user: User) {

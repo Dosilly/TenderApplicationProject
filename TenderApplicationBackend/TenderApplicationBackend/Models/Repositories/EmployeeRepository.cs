@@ -31,6 +31,22 @@ namespace TenderApplicationBackend.Models.Repositories
                 }
             }
         }
+
+        public void DeleteEmployee(int userId)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    connection.Delete<Employee>(e => e.UserID == userId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
         public List<Employee> SelectAllEmployees()
         {
             using (var connection = _connectionFactory.GetConnection())
