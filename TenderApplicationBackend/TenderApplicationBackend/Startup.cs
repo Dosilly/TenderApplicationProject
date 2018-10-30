@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using TenderApplicationBackend.Models;
 using TenderApplicationBackend.Models.Modules;
 using TenderApplicationBackend.Models.Repositories;
@@ -42,7 +35,6 @@ namespace TenderApplicationBackend
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<EmployeeModule>();
             services.AddSingleton<EmployeeRepository>();
             services.AddSingleton<ConnectionFactory>();
             services.AddSingleton<UserModule>();
@@ -53,13 +45,9 @@ namespace TenderApplicationBackend
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseHsts();
-            }
             app.UseCors("AllowAll");
             //app.UseHttpsRedirection();
             app.UseMvc();

@@ -25,7 +25,6 @@ export class UsersTableService {
   }
 
   addUser(user: User): Observable<User> {
-    console.log(user);
     return this.http.post<User>(this.userUrl, user, httpOptions); // POST api/user
   }
 
@@ -35,7 +34,6 @@ export class UsersTableService {
   }
 
   editUser(user: User) {
-    console.log(user);
     const url = `${this.userUrl}/${user.userId}`;
     return this.http.post<User>(url, user, httpOptions); // POST api/user/5
   }

@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Data;
+using Microsoft.Extensions.Configuration;
 using ServiceStack.OrmLite;
-using System.Data;
 
 namespace TenderApplicationBackend.Models
 {
@@ -18,7 +18,8 @@ namespace TenderApplicationBackend.Models
             var database = _configuration["Configuration:Database"];
             var connectionString = _configuration.GetConnectionString(database);
 
-            var connection = new OrmLiteConnectionFactory(connectionString, SqlServerDialect.Provider).OpenDbConnection();
+            var connection =
+                new OrmLiteConnectionFactory(connectionString, SqlServerDialect.Provider).OpenDbConnection();
             connection.Open();
 
             return connection;

@@ -47,20 +47,17 @@ namespace TenderApplicationBackend.Models.Repositories
                 }
             }
         }
+
         public void EditUser(User user)
         {
             using (var connection = _connectionFactory.GetConnection())
             {
                 if (user.UserPass.IsNullOrEmpty()) // if password is empty, don't update it
-                {
-                    connection.UpdateOnly(user, 
-                        onlyFields: p => new{p.Role,p.Username}, 
-                        @where: u => u.Id == user.Id);
-                }
+                    connection.UpdateOnly(user,
+                        p => new {p.Role, p.Username},
+                        u => u.Id == user.Id);
                 else
-                {
-                    connection.Update(user, where:p => p.Id == user.Id);
-                }
+                    connection.Update(user, p => p.Id == user.Id);
             }
         }
 
@@ -79,7 +76,5 @@ namespace TenderApplicationBackend.Models.Repositories
                 return connection.Single<User>(x => x.Username == user.Username);
             }
         }
-
-
     }
 }

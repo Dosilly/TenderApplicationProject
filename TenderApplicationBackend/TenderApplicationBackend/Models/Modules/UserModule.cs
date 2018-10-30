@@ -11,8 +11,8 @@ namespace TenderApplicationBackend.Models.Modules
 {
     public class UserModule
     {
-        private readonly UserRepository _userRepository;
         private readonly EmployeeRepository _employeeRepository;
+        private readonly UserRepository _userRepository;
 
         public UserModule(UserRepository userRepository, EmployeeRepository employeeRepository)
         {
@@ -37,11 +37,11 @@ namespace TenderApplicationBackend.Models.Modules
 
             var employee = new Employee
             {
-                UserID = result.Id,
+                UserId = result.Id,
                 FName = userEmployeeAddRequest.FName,
                 LName = userEmployeeAddRequest.LName
             };
-            _employeeRepository.SaveEmployee(employee);     
+            _employeeRepository.SaveEmployee(employee);
         }
 
         public void DeleteUser(int userId)
@@ -49,20 +49,28 @@ namespace TenderApplicationBackend.Models.Modules
             _employeeRepository.DeleteEmployee(userId);
             _userRepository.DeleteUser(userId);
         }
+
         public void EditUser(int idToChange, UserEmployeeRequest userEmployeeAddRequest)
         {
             var user = new User
             {
                 Username = userEmployeeAddRequest.Username,
+                Role = userEmployeeAddRequest.Role,
                 Id = idToChange
             };
 
-            if (!userEmployeeAddRequest.UserPass.IsNullOrEmpty())
-            {
-                user.UserPass = userEmployeeAddRequest.UserPass;
-            }
+            if (!userEmployeeAddRequest.UserPass.IsNullOrEmpty()) user.UserPass = userEmployeeAddRequest.UserPass;
 
             _userRepository.EditUser(user);
+
+            var employee = new Employee
+            {
+                FName = userEmployeeAddRequest.FName,
+                LName = userEmployeeAddRequest.LName,
+                UserId = userEmployeeAddRequest.UserId
+            };
+
+            _employeeRepository.EditEmployee(employee);
         }
 
         public List<UserEmployeeRequest> SelectAllUsers()
@@ -89,7 +97,7 @@ namespace TenderApplicationBackend.Models.Modules
             return listOfUsers;
         }
 
-        private static Tuple<string,string> HashPassword(string password)
+        private static Tuple<string, string> HashPassword(string password)
         {
             // generate a 128-bit salt using a secure PRNG
             var salt = new byte[128 / 8];
@@ -99,17 +107,14 @@ namespace TenderApplicationBackend.Models.Modules
             }
 
             var hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA1,
-                iterationCount: 10000,
-                numBytesRequested: 256 / 8));
+                password,
+                salt,
+                KeyDerivationPrf.HMACSHA1,
+                10000,
+                256 / 8));
 
-          
 
-            return Tuple.Create(hashed,Convert.ToBase64String(salt));
+            return Tuple.Create(hashed, Convert.ToBase64String(salt));
         }
-
-
     }
 }

@@ -13,13 +13,12 @@ namespace TenderApplicationBackend.Models.Repositories
         {
             _connectionFactory = connectionFactory;
         }
-            
+
 
         public void SaveEmployee(Employee employee)
         {
             using (var connection = _connectionFactory.GetConnection())
             {
-                
                 try
                 {
                     connection.Save(employee);
@@ -38,7 +37,7 @@ namespace TenderApplicationBackend.Models.Repositories
             {
                 try
                 {
-                    connection.Delete<Employee>(e => e.UserID == userId);
+                    connection.Delete<Employee>(e => e.UserId == userId);
                 }
                 catch (Exception e)
                 {
@@ -47,6 +46,7 @@ namespace TenderApplicationBackend.Models.Repositories
                 }
             }
         }
+
         public List<Employee> SelectAllEmployees()
         {
             using (var connection = _connectionFactory.GetConnection())
@@ -54,6 +54,22 @@ namespace TenderApplicationBackend.Models.Repositories
                 try
                 {
                     return connection.Select<Employee>();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
+
+        public void EditEmployee(Employee employee)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    connection.Update(employee, p => p.UserId == employee.UserId);
                 }
                 catch (Exception e)
                 {

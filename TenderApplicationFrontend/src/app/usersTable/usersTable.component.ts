@@ -59,8 +59,6 @@ export class UsersTableComponent {
     }
 
     deleteUser(user: User) {
-        console.log('delete user with id: ' + user.userId);
-
         this.usersTableService.deleteUser(user).subscribe(result => {
             console.log(result);
             this.getUsers(); // Updating table
@@ -89,7 +87,6 @@ export class UsersTableComponent {
 
     editUser(user: User) {
         this.dialogEditUser = JSON.parse(JSON.stringify(user));
-        console.log(this.dialogEditUser);
 
         const dialogConfig = new MatDialogConfig();
         dialogConfig.data = { userData: this.dialogEditUser, header: 'Edit user' };
@@ -100,7 +97,10 @@ export class UsersTableComponent {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result !== 'return') {
-                this.usersTableService.editUser(result);
+                this.usersTableService.editUser(result).subscribe(result2 => {
+                    console.log(result2);
+                    this.getUsers(); // Updating table
+                });
             }
         });
     }
