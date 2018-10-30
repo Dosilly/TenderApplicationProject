@@ -36,17 +36,18 @@ namespace TenderApplicationBackend.Controllers
             return "Return user by id";
         }
 
-        // POST users/values
+        // POST users/values posting new users
         [HttpPost]
         public void Post([FromBody] UserEmployeeRequest userValue)
         {
             _userModule.AddUser(userValue);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/values/5   editing users
+        [HttpPost("{id}")]
+        public void Post(int id, [FromBody] UserEmployeeRequest userValue)
         {
+            _userModule.EditUser(id, userValue);
         }
 
         // DELETE api/values/5

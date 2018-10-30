@@ -13,5 +13,6 @@ namespace TenderApplicationBackend.Models.Dtos
         public string Role { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
+        public string Salt { get; set; }
     }
 }

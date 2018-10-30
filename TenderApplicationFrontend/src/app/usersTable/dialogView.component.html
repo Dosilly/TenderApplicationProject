@@ -2,23 +2,26 @@
 
 <!--Edit user forms case-->
 <div mat-dialog-content *ngIf="data.header === 'Edit user'">
-    <div class="row">
-        <div class="col">
-            <input name="UsernameInput" type="text" class="form-control" placeholder="Usernameedit" [(ngModel)]="data.userData.username">
-        </div>
-        <div class="col">
-            <input name="Role" type="text" class="form-control" placeholder="Role" [(ngModel)]="data.userData.role">
-        </div>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col">
-            <input name="FirstnameInput" type="text" class="form-control" placeholder="First name" [(ngModel)]="data.userData.fName">
-        </div>
-        <div class="col">
-            <input name="LastnameInput" type="text" class="form-control" placeholder="Last name" [(ngModel)]="data.userData.lName">
-        </div>
-    </div>
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.userData.username" placeholder="Username">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.userData.fName" placeholder="First name">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.userData.lName" placeholder="Last name">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <select matNativeControl required placeholder="Select role" [(ngModel)]="data.userData.role">
+            <option value="ADM">Administrator</option>
+            <option value="ANAL">Analyst</option>
+            <option value="MAN">Manager</option>
+            <option value="OFF">Officer</option>
+        </select>
+    </mat-form-field>
 </div>
 
 <!--Add user forms case-->

@@ -51,7 +51,15 @@ namespace TenderApplicationBackend.Models.Repositories
         {
             using (var connection = _connectionFactory.GetConnection())
             {
-                return connection.Select<Employee>();
+                try
+                {
+                    return connection.Select<Employee>();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
         }
     }

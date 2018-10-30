@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using ServiceStack;
 using TenderApplicationBackend.Models.Dtos;
 using TenderApplicationBackend.Models.Entities;
 using TenderApplicationBackend.Models.Repositories;
@@ -20,11 +21,14 @@ namespace TenderApplicationBackend.Models.Modules
         }
 
         public void AddUser(UserEmployeeRequest userEmployeeAddRequest)
-        {        
+        {
+            var hashnSalt = HashPassword(userEmployeeAddRequest.UserPass);
+
             var user = new User
             {
                 Username = userEmployeeAddRequest.Username,
-                UserPass = HashPassword(userEmployeeAddRequest.UserPass),
+                UserPass = hashnSalt.Item1,
+                Salt = hashnSalt.Item2,
                 Role = userEmployeeAddRequest.Role
             };
             _userRepository.SaveUser(user);
@@ -44,6 +48,21 @@ namespace TenderApplicationBackend.Models.Modules
         {
             _employeeRepository.DeleteEmployee(userId);
             _userRepository.DeleteUser(userId);
+        }
+        public void EditUser(int idToChange, UserEmployeeRequest userEmployeeAddRequest)
+        {
+            var user = new User
+            {
+                Username = userEmployeeAddRequest.Username,
+                Id = idToChange
+            };
+
+            if (!userEmployeeAddRequest.UserPass.IsNullOrEmpty())
+            {
+                user.UserPass = userEmployeeAddRequest.UserPass;
+            }
+
+            _userRepository.EditUser(user);
         }
 
         public List<UserEmployeeRequest> SelectAllUsers()
@@ -70,7 +89,7 @@ namespace TenderApplicationBackend.Models.Modules
             return listOfUsers;
         }
 
-        private static string HashPassword(string password)
+        private static Tuple<string,string> HashPassword(string password)
         {
             // generate a 128-bit salt using a secure PRNG
             var salt = new byte[128 / 8];
@@ -86,8 +105,11 @@ namespace TenderApplicationBackend.Models.Modules
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8));
 
-            return hashed;
+          
+
+            return Tuple.Create(hashed,Convert.ToBase64String(salt));
         }
+
 
     }
 }

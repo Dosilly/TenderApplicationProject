@@ -36,10 +36,10 @@ export class UsersTableComponent {
     dialogEditUser = new User();
     columns: string[];
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
+    @ViewChild(MatSort) sort: MatSort; // sorting feature by table
 
-    applyFilter(filterValue: string) {
+    applyFilter(filterValue: string) { // angular material feature to filter table by single string
         this.users$.filter = filterValue.trim().toLowerCase();
     }
 
@@ -54,7 +54,7 @@ export class UsersTableComponent {
     getUsers() {
         this.usersTableService.getUsers()
             .subscribe(users => {
-                this.users$.data = users as User[];
+                this.users$.data = users as User[]; // observable to array of users
             });
     }
 
