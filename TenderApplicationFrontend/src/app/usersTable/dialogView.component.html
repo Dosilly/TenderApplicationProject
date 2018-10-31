@@ -7,6 +7,10 @@
     </mat-form-field>
 
     <mat-form-field class="col">
+        <input matInput type="password" [(ngModel)]="data.userData.userPass" placeholder="Password (leave empty to keep it old) ">
+    </mat-form-field>
+
+    <mat-form-field class="col">
         <input matInput [(ngModel)]="data.userData.fName" placeholder="First name">
     </mat-form-field>
 
@@ -31,7 +35,7 @@
     </mat-form-field>
 
     <mat-form-field class="col">
-        <input matInput [(ngModel)]="data.userData.userPass" placeholder="Password">
+        <input matInput type="password" [(ngModel)]="data.userData.userPass" placeholder="Password">
     </mat-form-field>
 
     <mat-form-field class="col">

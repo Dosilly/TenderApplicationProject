@@ -59,10 +59,12 @@ export class UsersTableComponent {
     }
 
     deleteUser(user: User) {
-        this.usersTableService.deleteUser(user).subscribe(result => {
-            console.log(result);
-            this.getUsers(); // Updating table
-        });
+        if (confirm('Are you sure to delete this user?')) {
+            this.usersTableService.deleteUser(user).subscribe(result => {
+                console.log(result);
+                this.getUsers(); // Updating table
+            });
+        }
     }
 
     addUser() {

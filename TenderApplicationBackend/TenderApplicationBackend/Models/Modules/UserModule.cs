@@ -59,7 +59,12 @@ namespace TenderApplicationBackend.Models.Modules
                 Id = idToChange
             };
 
-            if (!userEmployeeAddRequest.UserPass.IsNullOrEmpty()) user.UserPass = userEmployeeAddRequest.UserPass;
+            if (!userEmployeeAddRequest.UserPass.IsNullOrEmpty())
+            {
+                var hashnSalt = HashPassword(userEmployeeAddRequest.UserPass);
+                user.Salt = hashnSalt.Item2;
+                user.UserPass = hashnSalt.Item1;
+            }
 
             _userRepository.EditUser(user);
 
