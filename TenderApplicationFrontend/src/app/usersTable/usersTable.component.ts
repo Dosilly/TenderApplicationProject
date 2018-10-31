@@ -1,23 +1,9 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { UsersTableService } from '../services/users-table.service';
-import { from, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig, MatTab, MatSort } from '@angular/material';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
-
-export class User {
-    userId: number;
-    username: string;
-    userPass: string;
-    name: string;
-    fName: string;
-    lName: string;
-    role: string;
-}
-
-interface DataSource<T> {
-    connect(): Observable<T[]>;
-}
+import { User } from '../_models/user';
 
 @Component({
     selector: 'app-userstable',

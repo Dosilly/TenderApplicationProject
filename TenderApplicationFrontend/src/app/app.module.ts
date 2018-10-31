@@ -12,7 +12,18 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material-module';
+import { LoginComponent } from './login/login.component';
+import { RouterModule, Routes, Router } from '@angular/router';
 
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'users', component: UsersTableComponent},
+  { path: '',
+  redirectTo: '/login',
+  pathMatch: 'full'
+},
+
+];
 
 @NgModule({
   exports: [
@@ -21,14 +32,19 @@ import { MaterialModule } from './material-module';
   declarations: [
     AppComponent,
     UsersTableComponent,
-    DialogOverviewComponent
+    DialogOverviewComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(
+      appRoutes,
+      {enableTracing: true}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent],
