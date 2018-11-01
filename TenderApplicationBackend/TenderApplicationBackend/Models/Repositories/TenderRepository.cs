@@ -45,5 +45,21 @@ namespace TenderApplicationBackend.Models.Repositories
                 }
             }
         }
+
+        public void DeleteTender(int id)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    connection.DeleteById<Tender>(id);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
     }
 }

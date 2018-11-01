@@ -46,5 +46,10 @@ namespace TenderApplicationBackend.Models.Modules
 
             _tenderRepository.AddTender(tender);
         }
+
+        public void DeleteTender(int id)
+        {
+            _tenderRepository.DeleteTender(id);
+        }
     }
 }

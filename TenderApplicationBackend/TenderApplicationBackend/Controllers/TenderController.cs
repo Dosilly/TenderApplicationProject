@@ -31,5 +31,12 @@ namespace TenderApplicationBackend.Controllers
         {
             _tenderModule.AddTender(tenderValue);
         }
+
+        // DELETE api/tender/5 delete tender with id = 5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            _tenderModule.DeleteTender(id);
+        }
     }
 }
