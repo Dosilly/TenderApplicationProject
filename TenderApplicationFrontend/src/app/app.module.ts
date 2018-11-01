@@ -7,28 +7,17 @@ import { DialogOverviewComponent } from './usersTable/usersTable.component';
 
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
-import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material-module';
 import { LoginComponent } from './login/login.component';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './appRoutes';
 
-const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersTableComponent},
-  { path: '',
-  redirectTo: '/login',
-  pathMatch: 'full'
-},
 
-];
 
 @NgModule({
-  exports: [
-    MatDialogModule
-  ],
   declarations: [
     AppComponent,
     UsersTableComponent,
