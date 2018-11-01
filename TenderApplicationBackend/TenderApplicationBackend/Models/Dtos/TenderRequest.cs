@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace TenderApplicationBackend.Models.Dtos
+﻿namespace TenderApplicationBackend.Models.Dtos
 {
     public class TenderRequest
     {

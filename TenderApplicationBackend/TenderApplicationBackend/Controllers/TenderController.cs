@@ -31,6 +31,5 @@ namespace TenderApplicationBackend.Controllers
         {
             _tenderModule.AddTender(tenderValue);
         }
-
     }
 }

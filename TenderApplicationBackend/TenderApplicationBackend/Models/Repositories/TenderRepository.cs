@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ServiceStack.OrmLite;
 using TenderApplicationBackend.Models.Entities;
 
@@ -23,6 +21,22 @@ namespace TenderApplicationBackend.Models.Repositories
                 try
                 {
                     connection.Insert(tender);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
+
+        public List<Tender> SelectAllTenders()
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    return connection.Select<Tender>();
                 }
                 catch (Exception e)
                 {
