@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TenderApplicationBackend.Models.Dtos;
+using TenderApplicationBackend.Models.Entities;
 using TenderApplicationBackend.Models.Repositories;
 
 namespace TenderApplicationBackend.Models.Modules
@@ -21,9 +22,16 @@ namespace TenderApplicationBackend.Models.Modules
             throw new NotImplementedException();
         }
 
-        public void AddTender(TenderRequest tender)
+        public void AddTender(TenderRequest tenderRequest)
         {
-            throw new NotImplementedException();
+            var tender = new Tender
+            {
+                TenderName = tenderRequest.TenderName,
+                EmployeeId = tenderRequest.EmployeeId,
+                State = tenderRequest.State
+            };
+
+            _tenderRepository.AddTender(tender);
         }
     }
 }
