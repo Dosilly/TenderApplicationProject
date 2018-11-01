@@ -18,35 +18,28 @@ namespace TenderApplicationBackend.Controllers
             _userModule = userModule;
         }
 
-        // GET api/values
+        // GET api/user get users
         [HttpGet]
         public List<UserEmployeeRequest> Get()
         {
             return _userModule.SelectAllUsers();
         }
 
-        // GET api/users/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "Return user by id";
-        }
-
-        // POST users/values posting new users
+        // POST api/user post new user
         [HttpPost]
         public void Post([FromBody] UserEmployeeRequest userValue)
         {
             _userModule.AddUser(userValue);
         }
 
-        // PUT api/values/5   editing users
+        // PUT api/user/5   edit user with id = 5
         [HttpPost("{id}")]
         public void Post(int id, [FromBody] UserEmployeeRequest userValue)
         {
             _userModule.EditUser(id, userValue);
         }
 
-        // DELETE api/values/5
+        // DELETE api/user/5 delete user with id = 5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

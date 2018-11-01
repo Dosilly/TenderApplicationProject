@@ -14,6 +14,7 @@ import { MaterialModule } from './material-module';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './appRoutes';
+import { TendersComponent } from './tenders/tenders.component';
 
 
 
@@ -22,7 +23,8 @@ import { appRoutes } from './appRoutes';
     AppComponent,
     UsersTableComponent,
     DialogOverviewComponent,
-    LoginComponent
+    LoginComponent,
+    TendersComponent
   ],
   imports: [
     BrowserModule,

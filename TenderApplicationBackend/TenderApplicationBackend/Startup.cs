@@ -35,10 +35,12 @@ namespace TenderApplicationBackend
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<EmployeeRepository>();
             services.AddSingleton<ConnectionFactory>();
             services.AddSingleton<UserModule>();
             services.AddSingleton<UserRepository>();
+            services.AddSingleton<EmployeeRepository>();
+            services.AddSingleton<TenderModule>();
+            services.AddSingleton<TenderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
