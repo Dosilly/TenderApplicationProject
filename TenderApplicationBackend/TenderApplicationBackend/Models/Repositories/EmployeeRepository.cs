@@ -63,6 +63,22 @@ namespace TenderApplicationBackend.Models.Repositories
             }
         }
 
+        public Employee SelectEmployeeById(int id)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    return connection.SingleById<Employee>(id);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
+
         public void EditEmployee(Employee employee)
         {
             using (var connection = _connectionFactory.GetConnection())

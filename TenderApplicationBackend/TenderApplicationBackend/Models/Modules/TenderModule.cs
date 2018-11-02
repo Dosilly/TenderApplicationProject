@@ -8,16 +8,19 @@ namespace TenderApplicationBackend.Models.Modules
     public class TenderModule
     {
         private readonly TenderRepository _tenderRepository;
+        private readonly EmployeeRepository _employeeRepository;  
 
-        public TenderModule(TenderRepository tenderRepositoryRepository)
+        public TenderModule(TenderRepository tenderRepository, EmployeeRepository EmployeeRepository)
         {
-            _tenderRepository = tenderRepositoryRepository;
+            _tenderRepository = tenderRepository;
+            _employeeRepository = EmployeeRepository;
         }
 
         public List<TenderRequest> SelectAllTenders()
         {
             var tenderRes = _tenderRepository.SelectAllTenders();
             var listOfTenders = new List<TenderRequest>();
+            
 
             foreach (var e in tenderRes)
             {
@@ -28,8 +31,11 @@ namespace TenderApplicationBackend.Models.Modules
                     TenderId = e.Id,
                     TenderName = e.TenderName
                 };
-
+                var employee = new Employee();
+                employee = _employeeRepository.SelectEmployeeById(tenderRequest.EmployeeId);
+                tenderRequest.Employee = employee.FName + " " + employee.LName;
                 listOfTenders.Add(tenderRequest);
+
             }
 
             return listOfTenders;
@@ -50,6 +56,19 @@ namespace TenderApplicationBackend.Models.Modules
         public void DeleteTender(int id)
         {
             _tenderRepository.DeleteTender(id);
+        }
+
+        public void EditTender(int id, TenderRequest tenderValue)
+        {
+            var tender = new Tender()
+            {
+                Id = id,
+                TenderName = tenderValue.TenderName,
+                State = tenderValue.State,
+                EmployeeId = tenderValue.EmployeeId
+            };
+
+            _tenderRepository.EditTender(tender);
         }
     }
 }

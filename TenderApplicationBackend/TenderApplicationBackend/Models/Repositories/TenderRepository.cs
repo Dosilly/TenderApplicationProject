@@ -61,5 +61,21 @@ namespace TenderApplicationBackend.Models.Repositories
                 }
             }
         }
+
+        public void EditTender(Tender tender)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    connection.Update(tender, where: p => p.Id == tender.Id);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
     }
 }

@@ -32,6 +32,13 @@ namespace TenderApplicationBackend.Controllers
             _tenderModule.AddTender(tenderValue);
         }
 
+        // PUT api/user/5   edit user with id = 5
+        [HttpPost("{id}")]
+        public void Post(int id, [FromBody] TenderRequest tenderValue)
+        {
+            _tenderModule.EditTender(id, tenderValue);
+        }
+
         // DELETE api/tender/5 delete tender with id = 5
         [HttpDelete("{id}")]
         public void Delete(int id)
