@@ -1,13 +1,13 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.selected {
-    background-color: #007afc7c !important;
-    color: white;
-  }
-
 table{
   width: 100%;
  }
+
+ .element-detail {
+  overflow: hidden;
+  display: flex;
+}
 
 body { 
   font-family: Roboto, Arial, sans-serif;
