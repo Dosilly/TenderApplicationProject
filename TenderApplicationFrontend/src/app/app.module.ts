@@ -33,8 +33,7 @@ import { TendersComponent } from './tenders/tenders.component';
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true}
+      appRoutes
     )
   ],
   providers: [],
