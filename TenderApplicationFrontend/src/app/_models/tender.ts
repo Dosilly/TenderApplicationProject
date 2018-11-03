@@ -1,7 +1,7 @@
 export class Tender {
-    TenderId: number;
-    TenderName: string;
-    EmployeeId: number;
-    Employee: string;
-    State: string;
+    tenderId: number;
+    tenderName: string;
+    employeeId: number;
+    employee: string;
+    state: string;
 }

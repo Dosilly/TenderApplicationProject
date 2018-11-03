@@ -16,6 +16,7 @@ export class TendersComponent implements OnInit {
   emptyTender = new Tender();
   dialogAddTender = new Tender();
   dialogEditTender = new Tender();
+  columns: string[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
   @ViewChild(MatSort) sort: MatSort; // sorting feature by table
@@ -25,6 +26,7 @@ export class TendersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.columns = this.tenderService.getColumns();
     this.tenders$.paginator = this.paginator;
     this.tenders$.sort = this.sort;
     this.getTenders();
@@ -33,7 +35,7 @@ export class TendersComponent implements OnInit {
     this.tenderService.getTenders()
     .subscribe(tenders => {
       this.tenders$.data = tenders as Tender[];
-      console.log(tenders);
+      console.log(this.tenders$);
     });
   }
 

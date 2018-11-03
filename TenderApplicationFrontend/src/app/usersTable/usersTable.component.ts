@@ -20,6 +20,7 @@ export class UsersTableComponent {
     emptyUser = new User();
     dialogAddUser = new User();
     dialogEditUser = new User();
+    columns: string[];
 
     @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
     @ViewChild(MatSort) sort: MatSort; // sorting feature by table
@@ -30,6 +31,7 @@ export class UsersTableComponent {
 
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
+        this.columns = this.usersTableService.getColumns();
         this.users$.paginator = this.paginator;
         this.users$.sort = this.sort;
         this.getUsers();

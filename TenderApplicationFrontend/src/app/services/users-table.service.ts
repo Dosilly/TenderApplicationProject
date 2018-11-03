@@ -37,4 +37,8 @@ export class UsersTableService {
     const url = `${this.userUrl}/${user.userId}`;
     return this.http.post<User>(url, user, httpOptions); // POST api/user/5
   }
+
+  getColumns(): string[] {
+    return ['userId', 'username', 'fName', 'lName', 'role', 'actions'];
+  }
 }

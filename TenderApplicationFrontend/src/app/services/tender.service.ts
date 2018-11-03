@@ -22,4 +22,9 @@ export class TenderService {
   getTenders(): Observable<Tender[]> {
     return this.http.get<Tender[]>(this.tenderUrl, httpOptions);
   }
+
+  getColumns(): string[] {
+    return ['tenderId', 'tenderName', 'employee', 'state', 'actions'];
+  }
+
 }
