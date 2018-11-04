@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
+import { MatDialog, MatTableDataSource, MatPaginator, MatSort, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Tender } from '../_models/tender';
 import { TenderService } from '../services/tender.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-tenders',
   templateUrl: './tenders.component.html',
   styleUrls: ['./tenders.component.css'],
-  animations: [
+  animations: [ // in collapsed state expandable row is now visible, on state change animation begins and expands row
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
@@ -21,7 +21,7 @@ export class TendersComponent implements OnInit {
   constructor(private tenderService: TenderService, public dialog: MatDialog) { }
 
   tenders$ = new MatTableDataSource<Tender>();
-  requirements$ = 'test2';
+  requirements$ = 'test2'; // TO CHANGE
   emptyTender = new Tender();
   dialogAddTender = new Tender();
   dialogEditTender = new Tender();
@@ -31,7 +31,7 @@ export class TendersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort; // sorting feature by table
 
   applyFilter(filterValue: string) { // angular material feature to filter table by single string
-      this.tenders$.filter = filterValue.trim().toLowerCase();
+    this.tenders$.filter = filterValue.trim().toLowerCase();
   }
 
   ngOnInit() {
@@ -40,12 +40,77 @@ export class TendersComponent implements OnInit {
     this.tenders$.sort = this.sort;
     this.getTenders();
   }
+
   getTenders() {
     this.tenderService.getTenders()
-    .subscribe(tenders => {
-      this.tenders$.data = tenders as Tender[];
-      console.log(this.tenders$);
+      .subscribe(tenders => {
+        this.tenders$.data = tenders as Tender[];
+      });
+  }
+
+  editTender(tender: Tender) {
+    this.dialogEditTender = JSON.parse(JSON.stringify(tender));
+    this.dialogEditTender.employeeId = 21; // TEMPORARY
+
+    const dialogRef = this.dialog.open(TenderDialogComponent, {
+      width: '500px',
+      disableClose: true,
+      data: { tenderData: this.dialogEditTender, header: 'Edit tender' }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== 'return') {
+          this.tenderService.editTender(result).subscribe(result2 => {
+              console.log(result2);
+              this.getTenders(); // Updating table
+          });
+      }
+  });
+  }
+
+  addTender() {
+    this.dialogAddTender = JSON.parse(JSON.stringify(this.emptyTender));
+    this.dialogAddTender.employeeId = 21; // TEMPORARY
+
+    const dialogRef = this.dialog.open(TenderDialogComponent, {
+      width: '500px',
+      disableClose: true,
+      data: { tenderData: this.dialogAddTender, header: 'Add tender' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== 'return') {
+          this.tenderService.addTender(result).subscribe(post => {
+              console.log(post);
+              this.getTenders(); // Updating table
+          });
+      }
+  });
+  }
+
+  deleteTender(tender: Tender) {
+    if (confirm('Are you sure to delete this tender?')) {
+      this.tenderService.deleteTender(tender).subscribe(result => {
+          console.log(result);
+          this.getTenders(); // Updating table
+      });
+  }
+  }
+
+}
+
+@Component({ // Component for popups showed after button click
+  selector: 'app-tender-dialog',
+  templateUrl: 'tenderDialog.component.html',
+})
+export class TenderDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<TenderDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { } // inject data to dialog
+
+  close() {
+    this.dialogRef.close('return');
   }
 
 }

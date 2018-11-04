@@ -22,6 +22,8 @@ export class UsersTableComponent {
     dialogEditUser = new User();
     columns: string[];
 
+    employeeId: '21';
+
     @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
     @ViewChild(MatSort) sort: MatSort; // sorting feature by table
 

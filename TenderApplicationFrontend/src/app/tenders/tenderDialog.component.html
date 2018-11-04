@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>{{data.header}}</h1>
+<!-- Edit tender case -->
+<div mat-dialog-content *ngIf="data.header === 'Edit tender'">
+        <mat-form-field class="col">
+            <input matInput [(ngModel)]="data.tenderData.tenderName" placeholder="Name">
+        </mat-form-field>
+    
+        <mat-form-field class="col">
+            <select matNativeControl required placeholder="Select state" [(ngModel)]="data.tenderData.state">
+                <option value="NEW">New</option>
+                <option value="IN PROGRESS">In progress</option>
+                <option value="DONE">Done</option>
+            </select>
+        </mat-form-field>
+    </div>
+
+<!-- Add tender case -->
+<div mat-dialog-content *ngIf="data.header === 'Add tender'">
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.tenderData.tenderName" placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <select matNativeControl required placeholder="Select state" [(ngModel)]="data.tenderData.state">
+            <option value="NEW">New</option>
+            <option value="IN PROGRESS">In progress</option>
+            <option value="DONE">Done</option>
+        </select>
+    </mat-form-field>
+</div>
+<br>
+<mat-dialog-actions>
+    <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+    &nbsp;
+    <button [mat-dialog-close]="data.tenderData" class="btn btn-sm btn-primary"> Apply </button>
+</mat-dialog-actions>
