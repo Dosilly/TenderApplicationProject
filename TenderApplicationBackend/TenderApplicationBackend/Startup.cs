@@ -41,6 +41,8 @@ namespace TenderApplicationBackend
             services.AddSingleton<EmployeeRepository>();
             services.AddSingleton<TenderModule>();
             services.AddSingleton<TenderRepository>();
+            services.AddSingleton<RequirementModule>();
+            services.AddSingleton<RequirementRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

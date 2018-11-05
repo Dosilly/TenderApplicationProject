@@ -10,10 +10,10 @@ namespace TenderApplicationBackend.Models.Modules
         private readonly TenderRepository _tenderRepository;
         private readonly EmployeeRepository _employeeRepository;  
 
-        public TenderModule(TenderRepository tenderRepository, EmployeeRepository EmployeeRepository)
+        public TenderModule(TenderRepository tenderRepository, EmployeeRepository employeeRepository)
         {
             _tenderRepository = tenderRepository;
-            _employeeRepository = EmployeeRepository;
+            _employeeRepository = employeeRepository;
         }
 
         public List<TenderRequest> SelectAllTenders()
@@ -31,8 +31,7 @@ namespace TenderApplicationBackend.Models.Modules
                     TenderId = e.Id,
                     TenderName = e.TenderName
                 };
-                var employee = new Employee();
-                employee = _employeeRepository.SelectEmployeeById(tenderRequest.EmployeeId);
+                var employee = _employeeRepository.SelectEmployeeById(tenderRequest.EmployeeId);
                 tenderRequest.Employee = employee.FName + " " + employee.LName;
                 listOfTenders.Add(tenderRequest);
 
