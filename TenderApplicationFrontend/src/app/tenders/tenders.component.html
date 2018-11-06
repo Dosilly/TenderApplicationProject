@@ -30,6 +30,8 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let row">
+                <button type="button" class="btn btn-secondary btn-sm" (click)="addRequirement(row)">Add requirement</button>
+                &nbsp;
                 <button type="button" class="btn btn-secondary btn-sm" (click)="editTender(row)">Edit</button>
                 &nbsp;
                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteTender(row)">X</button>
@@ -44,22 +46,32 @@
                             
                             <ng-container matColumnDef="reqId">
                                 <th mat-header-cell *matHeaderCellDef class="reqTableHeader"> ID </th>
-                                <td mat-cell *matCellDef="let cell"> {{cell.reqId}} </td>
+                                <td mat-cell *matCellDef="let cell" class="reqTableCell" > {{cell.reqId}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="name">
                                 <th mat-header-cell *matHeaderCellDef class="reqTableHeader"> Name </th>
-                                <td mat-cell *matCellDef="let cell"> {{cell.name}} </td>
+                                <td mat-cell *matCellDef="let cell" class="reqTableCell"> {{cell.name}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="description">
                                 <th mat-header-cell *matHeaderCellDef class="reqTableHeader"> Description </th>
-                                <td mat-cell *matCellDef="let cell"> {{cell.description}} </td>
+                                <td mat-cell *matCellDef="let cell" class="reqTableCell" ng-text-truncate="cell.description" ng-tt-words-threshold="50"> {{cell.description}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="explanation">
                                 <th mat-header-cell *matHeaderCellDef class="reqTableHeader"> Explanation </th>
-                                <td mat-cell *matCellDef="let cell"> {{cell.explanation}} </td>
+                                <td mat-cell *matCellDef="let cell" class="reqTableCell"> {{cell.explanation}} </td>
+                            </ng-container>
+
+                            <!-- Buttons in action column -->
+                            <ng-container matColumnDef="actions">
+                                <th mat-header-cell *matHeaderCellDef class="reqTableHeader"> Actions </th>
+                                <td mat-cell *matCellDef="let cell">
+                                    <button type="button" class="btn btn-secondary btn-sm" (click)="editRequirement(cell)">Edit</button>
+                                    &nbsp;
+                                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteRequirement(cell)">X</button>
+                                </td>
                             </ng-container>
 
                             <tr mat-header-row *matHeaderRowDef="reqColumns"></tr>

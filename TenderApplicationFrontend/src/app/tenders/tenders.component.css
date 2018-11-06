@@ -7,6 +7,13 @@ table {
 .reqTable {
   width: 200%;
 }
+
+.reqTableCell{
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .reqTableHeader{
   background: rgb(80, 80, 80);
   color: #efefef;

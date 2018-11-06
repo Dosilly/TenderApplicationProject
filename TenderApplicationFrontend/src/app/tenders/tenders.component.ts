@@ -28,7 +28,7 @@ export class TendersComponent implements OnInit {
   dialogAddTender = new Tender();
   dialogEditTender = new Tender();
   columns: string[];
-  reqColumns = ['reqId', 'name', 'description', 'explanation'];
+  reqColumns = ['reqId', 'name', 'description', 'explanation', 'actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
   @ViewChild(MatSort) sort: MatSort; // sorting feature by table
