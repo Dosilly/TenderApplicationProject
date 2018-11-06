@@ -3,6 +3,8 @@ import { MatDialog, MatTableDataSource, MatPaginator, MatSort, MatDialogRef, MAT
 import { Tender } from '../_models/tender';
 import { TenderService } from '../services/tender.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { RequirementService } from '../services/requirement.service';
+import { Requirement } from '../_models/requirement';
 
 @Component({
   selector: 'app-tenders',
@@ -18,14 +20,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class TendersComponent implements OnInit {
 
-  constructor(private tenderService: TenderService, public dialog: MatDialog) { }
+  constructor(private tenderService: TenderService, private requirementService: RequirementService, public dialog: MatDialog) { }
 
   tenders$ = new MatTableDataSource<Tender>();
-  requirements$ = 'test2'; // TO CHANGE
+  requirements$ = new Array<Requirement>();
   emptyTender = new Tender();
   dialogAddTender = new Tender();
   dialogEditTender = new Tender();
   columns: string[];
+  reqColumns = ['reqId', 'name', 'description', 'explanation'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
   @ViewChild(MatSort) sort: MatSort; // sorting feature by table
@@ -46,6 +49,15 @@ export class TendersComponent implements OnInit {
       .subscribe(tenders => {
         this.tenders$.data = tenders as Tender[];
       });
+  }
+
+
+  getRequirementByTenderID(tender: Tender) {
+    this.requirementService.getRequirementsByTenderID(tender)
+    .subscribe(req => {
+      this.requirements$ = req as Requirement[];
+      console.log(req);
+    });
   }
 
   editTender(tender: Tender) {

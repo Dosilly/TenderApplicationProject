@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Remotion.Linq.Clauses;
 using ServiceStack.OrmLite;
 using TenderApplicationBackend.Models.Dtos;
 using TenderApplicationBackend.Models.Entities;
@@ -73,6 +75,22 @@ namespace TenderApplicationBackend.Models.Repositories
                     connection.UpdateOnly(requirement,
                         u => new {u.Description,u.Explanation,u.Name},
                         p => p.Id == requirement.Id);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
+
+        public List<Requirement> SelectRequirementsByTenderId(int id)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    return connection.Select<Requirement>(p => p.TenderId == id);
                 }
                 catch (Exception e)
                 {

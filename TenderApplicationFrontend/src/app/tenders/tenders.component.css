@@ -4,6 +4,14 @@ table {
   width: 100%;
 }
 
+.reqTable {
+  width: 200%;
+}
+.reqTableHeader{
+  background: rgb(80, 80, 80);
+  color: #efefef;
+}
+
 tr.requirement-row {
   height: 0;
 }

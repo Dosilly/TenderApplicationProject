@@ -25,6 +25,12 @@ namespace TenderApplicationBackend.Controllers
             return _requirementModule.SelectAllRequirements();
         }
 
+        [HttpGet("{id}")]
+        public List<RequirementRequest> Get(int id)
+        {
+            return _requirementModule.SelectRequirementsByTenderId(id);
+        }
+
         // POST api/requirement posting new requirements
         [HttpPost]
         public void Post([FromBody] RequirementRequest value)

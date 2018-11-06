@@ -67,5 +67,27 @@ namespace TenderApplicationBackend.Models.Modules
 
             _requirementRepository.EditRequirement(requirement);
         }
+
+        public List<RequirementRequest> SelectRequirementsByTenderId(int id)
+        {
+            var reqRes = _requirementRepository.SelectRequirementsByTenderId(id);
+            var listReq = new List<RequirementRequest>();
+
+            foreach (var e in reqRes)
+            {
+                var requirementRequest = new RequirementRequest()
+                {
+                    ReqId = e.Id,
+                    TenderId = e.TenderId,
+                    Description = e.Description,
+                    Explanation = e.Explanation,
+                    Name = e.Name
+                };
+
+                listReq.Add(requirementRequest);
+            }
+
+            return listReq;
+        }
     }
 }
