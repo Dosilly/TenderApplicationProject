@@ -15,8 +15,6 @@ const httpOptions = {
 })
 export class TenderService {
 
-
-
   constructor(private http: HttpClient) { }
 
   tenderUrl = 'http://localhost:3708/api/tender';

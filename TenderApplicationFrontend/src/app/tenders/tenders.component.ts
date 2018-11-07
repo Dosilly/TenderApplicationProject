@@ -58,7 +58,6 @@ export class TendersComponent implements OnInit {
       });
   }
 
-
   getRequirementByTenderID(tenderId: number) {
     this.requirementService.getRequirementsByTenderID(tenderId)
       .subscribe(req => {
@@ -153,6 +152,15 @@ export class TendersComponent implements OnInit {
       this.tenderService.deleteTender(tender).subscribe(result => {
         console.log(result);
         this.getTenders(); // Updating table
+      });
+    }
+  }
+
+  deleteRequirement(requirement: Requirement) {
+    if (confirm('Are you sure to delete this requirement?')) {
+      this.requirementService.deleteRequirement(requirement).subscribe(result => {
+        console.log(result);
+        this.getRequirementByTenderID(requirement.tenderId); // Updating table
       });
     }
   }

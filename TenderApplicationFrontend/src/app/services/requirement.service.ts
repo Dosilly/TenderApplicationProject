@@ -37,4 +37,9 @@ export class RequirementService {
     const url = `${this.requirementUrl}/${requirement.reqId}`;
     return this.http.post<Requirement>(url, requirement, httpOptions);
   }
+
+  deleteRequirement(requirement: Requirement): Observable<Requirement> {
+    const url = `${this.requirementUrl}/${requirement.reqId}`;
+    return this.http.delete<Requirement>(url, httpOptions);
+  }
 }
