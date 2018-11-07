@@ -27,4 +27,9 @@ export class RequirementService {
     const url = `${this.requirementUrl}/${tender.tenderId}`;
     return this.http.get<Requirement[]>(url);
   }
+
+  addRequirement(requirement: Requirement): Observable<Requirement> {
+    console.log(requirement);
+    return this.http.post<Requirement>(this.requirementUrl, requirement, httpOptions);
+  }
 }

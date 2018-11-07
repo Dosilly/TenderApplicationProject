@@ -22,11 +22,18 @@ export class TendersComponent implements OnInit {
 
   constructor(private tenderService: TenderService, private requirementService: RequirementService, public dialog: MatDialog) { }
 
+  // Data sources
   tenders$ = new MatTableDataSource<Tender>();
   requirements$ = new Array<Requirement>();
+  // Tender objects
   emptyTender = new Tender();
-  dialogAddTender = new Tender();
   dialogEditTender = new Tender();
+  dialogAddTender = new Tender();
+  // Requirement objects
+  emptyRequirement = new Requirement;
+  dialogAddRequirement = new Requirement();
+  dialogEditRequirement = new Requirement();
+
   columns: string[];
   reqColumns = ['reqId', 'name', 'description', 'explanation', 'actions'];
 
@@ -54,10 +61,10 @@ export class TendersComponent implements OnInit {
 
   getRequirementByTenderID(tender: Tender) {
     this.requirementService.getRequirementsByTenderID(tender)
-    .subscribe(req => {
-      this.requirements$ = req as Requirement[];
-      console.log(req);
-    });
+      .subscribe(req => {
+        this.requirements$ = req as Requirement[];
+        console.log(req);
+      });
   }
 
   editTender(tender: Tender) {
@@ -72,12 +79,12 @@ export class TendersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== 'return') {
-          this.tenderService.editTender(result).subscribe(result2 => {
-              console.log(result2);
-              this.getTenders(); // Updating table
-          });
+        this.tenderService.editTender(result).subscribe(result2 => {
+          console.log(result2);
+          this.getTenders(); // Updating table
+        });
       }
-  });
+    });
   }
 
   addTender() {
@@ -92,21 +99,42 @@ export class TendersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== 'return') {
-          this.tenderService.addTender(result).subscribe(post => {
-              console.log(post);
-              this.getTenders(); // Updating table
-          });
+        this.tenderService.addTender(result).subscribe(post => {
+          console.log(post);
+          this.getTenders(); // Updating table
+        });
       }
-  });
+    });
+  }
+
+  addRequirement(tender: Tender) {
+    this.dialogAddRequirement = JSON.parse(JSON.stringify(this.emptyRequirement));
+    this.dialogAddRequirement.tenderId = tender.tenderId;
+
+    const dialogRef = this.dialog.open(TenderDialogComponent, {
+      width: '500px',
+      disableClose: true,
+      data: { requirementData: this.dialogAddRequirement, header: 'Add requirement'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== 'return') {
+        this.requirementService.addRequirement(result).subscribe(post => {
+          console.log(post);
+          this.getRequirementByTenderID(tender); // Updating table
+        });
+      }
+    });
+
   }
 
   deleteTender(tender: Tender) {
     if (confirm('Are you sure to delete this tender?')) {
       this.tenderService.deleteTender(tender).subscribe(result => {
-          console.log(result);
-          this.getTenders(); // Updating table
+        console.log(result);
+        this.getTenders(); // Updating table
       });
-  }
+    }
   }
 
 }

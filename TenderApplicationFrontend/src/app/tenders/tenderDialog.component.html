@@ -28,9 +28,30 @@
         </select>
     </mat-form-field>
 </div>
+<!-- Add requirement case -->
+<div mat-dialog-content *ngIf= "data.header == 'Add requirement'">
+    <mat-form-field class = "col">
+        <input matInput [(ngModel)]="data.requirementData.name" placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class = "col">
+        <textarea matInput [(ngModel)]="data.requirementData.description" placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class = "col">
+        <textarea matInput [(ngModel)]="data.requirementData.explanation" placeholder="Explanation"></textarea>
+    </mat-form-field>
+</div>
 <br>
-<mat-dialog-actions>
+<!-- Actions for tenders -->
+<mat-dialog-actions *ngIf="data.header === 'Edit tender' || data.header === 'Add tender'">
     <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
     &nbsp;
     <button [mat-dialog-close]="data.tenderData" class="btn btn-sm btn-primary"> Apply </button>
+</mat-dialog-actions>
+<!-- Actions for requirements -->
+<mat-dialog-actions *ngIf="data.header === 'Edit requirement' || data.header === 'Add requirement'">
+    <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+    &nbsp;
+    <button [mat-dialog-close]="data.requirementData" class="btn btn-sm btn-primary"> Apply </button>
 </mat-dialog-actions>
