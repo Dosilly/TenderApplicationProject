@@ -59,17 +59,16 @@ export class TendersComponent implements OnInit {
   }
 
 
-  getRequirementByTenderID(tender: Tender) {
-    this.requirementService.getRequirementsByTenderID(tender)
+  getRequirementByTenderID(tenderId: number) {
+    this.requirementService.getRequirementsByTenderID(tenderId)
       .subscribe(req => {
         this.requirements$ = req as Requirement[];
-        console.log(req);
       });
   }
 
   editTender(tender: Tender) {
     this.dialogEditTender = JSON.parse(JSON.stringify(tender));
-    this.dialogEditTender.employeeId = 21; // TEMPORARY
+    this.dialogEditTender.employeeId = 21; // TEMPORARY NEED TO GET ID FROM LOGGED USER !IMPORTANT
 
     const dialogRef = this.dialog.open(TenderDialogComponent, {
       width: '500px',
@@ -85,6 +84,27 @@ export class TendersComponent implements OnInit {
         });
       }
     });
+  }
+
+  editRequirement(requirement: Requirement) {
+    this.dialogEditRequirement = JSON.parse(JSON.stringify(requirement));
+    console.log(requirement);
+
+      const dialogRef = this.dialog.open(TenderDialogComponent, {
+      width: '500px',
+      disableClose: true,
+      data: { requirementData: this.dialogEditRequirement, header: 'Edit requirement' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== 'return') {
+        this.requirementService.editRequirement(result).subscribe(result2 => {
+          console.log(result2);
+          this.getRequirementByTenderID(requirement.tenderId); // Updating table
+        });
+      }
+    });
+
   }
 
   addTender() {
@@ -121,7 +141,7 @@ export class TendersComponent implements OnInit {
       if (result !== 'return') {
         this.requirementService.addRequirement(result).subscribe(post => {
           console.log(post);
-          this.getRequirementByTenderID(tender); // Updating table
+          this.getRequirementByTenderID(tender.tenderId); // Updating table
         });
       }
     });

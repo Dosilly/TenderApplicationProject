@@ -1,21 +1,6 @@
 <h1 mat-dialog-title>{{data.header}}</h1>
 <!-- Edit tender case -->
-<div mat-dialog-content *ngIf="data.header === 'Edit tender'">
-        <mat-form-field class="col">
-            <input matInput [(ngModel)]="data.tenderData.tenderName" placeholder="Name">
-        </mat-form-field>
-    
-        <mat-form-field class="col">
-            <select matNativeControl required placeholder="Select state" [(ngModel)]="data.tenderData.state">
-                <option value="NEW">New</option>
-                <option value="IN PROGRESS">In progress</option>
-                <option value="DONE">Done</option>
-            </select>
-        </mat-form-field>
-    </div>
-
-<!-- Add tender case -->
-<div mat-dialog-content *ngIf="data.header === 'Add tender'">
+<div mat-dialog-content *ngIf="data.header === 'Edit tender' || data.header === 'Add tender'">
     <mat-form-field class="col">
         <input matInput [(ngModel)]="data.tenderData.tenderName" placeholder="Name">
     </mat-form-field>
@@ -28,17 +13,18 @@
         </select>
     </mat-form-field>
 </div>
+
 <!-- Add requirement case -->
-<div mat-dialog-content *ngIf= "data.header == 'Add requirement'">
-    <mat-form-field class = "col">
+<div mat-dialog-content *ngIf="data.header == 'Add requirement' || data.header == 'Edit requirement'">
+    <mat-form-field class="col">
         <input matInput [(ngModel)]="data.requirementData.name" placeholder="Name">
     </mat-form-field>
 
-    <mat-form-field class = "col">
+    <mat-form-field class="col">
         <textarea matInput [(ngModel)]="data.requirementData.description" placeholder="Description"></textarea>
     </mat-form-field>
 
-    <mat-form-field class = "col">
+    <mat-form-field class="col">
         <textarea matInput [(ngModel)]="data.requirementData.explanation" placeholder="Explanation"></textarea>
     </mat-form-field>
 </div>

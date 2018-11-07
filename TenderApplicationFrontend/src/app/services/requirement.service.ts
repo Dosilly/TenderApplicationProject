@@ -23,13 +23,18 @@ export class RequirementService {
     return this.http.get<Requirement[]>(this.requirementUrl);
   }
 
-  getRequirementsByTenderID(tender: Tender): Observable<Requirement[]> {
-    const url = `${this.requirementUrl}/${tender.tenderId}`;
+  getRequirementsByTenderID(tenderId: number): Observable<Requirement[]> {
+    const url = `${this.requirementUrl}/` + tenderId;
     return this.http.get<Requirement[]>(url);
   }
 
   addRequirement(requirement: Requirement): Observable<Requirement> {
     console.log(requirement);
     return this.http.post<Requirement>(this.requirementUrl, requirement, httpOptions);
+  }
+
+  editRequirement(requirement: Requirement): Observable<Requirement> {
+    const url = `${this.requirementUrl}/${requirement.reqId}`;
+    return this.http.post<Requirement>(url, requirement, httpOptions);
   }
 }
