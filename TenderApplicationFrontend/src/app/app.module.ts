@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { UsersTableComponent } from './usersTable/usersTable.component';
 import { DialogOverviewComponent } from './usersTable/usersTable.component';
 import { TenderDialogComponent } from './tenders/tenders.component';
+import { WorkhourDialogComponent } from './requirement/requirement.component';
 
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
@@ -27,7 +28,9 @@ import { RequirementComponent } from './requirement/requirement.component';
     TenderDialogComponent,
     LoginComponent,
     TendersComponent,
-    RequirementComponent
+    RequirementComponent,
+    WorkhourDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,6 @@ import { RequirementComponent } from './requirement/requirement.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [UsersTableComponent, DialogOverviewComponent, TenderDialogComponent],
+  entryComponents: [UsersTableComponent, WorkhourDialogComponent, DialogOverviewComponent, TenderDialogComponent],
 })
 export class AppModule { }

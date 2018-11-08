@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{data.header}}</h1>
+<div mat-dialog-content>
+    <mat-form-field class="col">
+        <input required matInput type="number" [(ngModel)]="data.workhourData.workhours" placeholder="Workhours">
+    </mat-form-field>
+</div>
+
+<mat-dialog-actions>
+    <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+    &nbsp;
+    <button type="submit" [mat-dialog-close]="data.workhourData" class="btn btn-sm btn-primary"> Apply </button>
+</mat-dialog-actions>
