@@ -1,0 +1,10 @@
+.reqTable {
+    width: 100%;
+  }
+
+  .reqTableCell{
+    max-width: 18em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }

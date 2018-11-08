@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './appRoutes';
 import { TendersComponent } from './tenders/tenders.component';
+import { RequirementComponent } from './requirement/requirement.component';
 
 
 
@@ -25,7 +26,8 @@ import { TendersComponent } from './tenders/tenders.component';
     DialogOverviewComponent,
     TenderDialogComponent,
     LoginComponent,
-    TendersComponent
+    TendersComponent,
+    RequirementComponent
   ],
   imports: [
     BrowserModule,

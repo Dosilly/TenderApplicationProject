@@ -6,10 +6,11 @@ table {
 
 .reqTable {
   width: 130%;
+  min-width: 60em;
 }
 
 .reqTableCell{
-  max-width: 300px;
+  max-width: 18em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
