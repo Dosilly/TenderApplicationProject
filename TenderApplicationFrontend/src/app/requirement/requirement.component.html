@@ -33,7 +33,11 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef class="reqTableHeader"> Actions </th>
       <td mat-cell *matCellDef="let cell">
+
+        <button type="button" class="btn btn-primary btn-sm" (click)="requirementDetails(cell)">Details</button>
+        &nbsp;
         <button type="button" class="btn btn-secondary btn-sm" (click)="assignWorkhours(cell)">Assign workhours</button>
+
       </td>
     </ng-container>
 
@@ -61,9 +65,9 @@
                 <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef class="whTableHeader"> Actions </th>
                     <td mat-cell *matCellDef="let cell">
-                        <button type="button" class="btn btn-secondary btn-sm" (click)="editRequirement(cell)" *ngIf="employeeId == cell.employeeId">Edit</button>
+                        <button type="button" class="btn btn-secondary btn-sm" (click)="editWorkhour(cell)" *ngIf="employeeId == cell.employeeId">Edit</button>
                         &nbsp;
-                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteRequirement(cell)" *ngIf="employeeId == cell.employeeId">X</button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteWorkhour(cell)" *ngIf="employeeId == cell.employeeId">X</button>
                     </td>
                 </ng-container>
 

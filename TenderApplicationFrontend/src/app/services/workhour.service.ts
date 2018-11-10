@@ -29,5 +29,15 @@ export class WorkhourService {
     console.log(result);
     return this.http.post<Workhour>(this.workhourUrl, result, httpOptions);
   }
+
+  editWorkhour(workhour: Workhour) {
+    const url = `${this.workhourUrl}/` + workhour.whId;
+    return this.http.post<Workhour>(url, workhour, httpOptions);
+  }
+
+  deleteWorkhour(workhour: Workhour) {
+    const url = `${this.workhourUrl}/` + workhour.whId;
+    return this.http.delete(url, httpOptions);
+  }
 }
 

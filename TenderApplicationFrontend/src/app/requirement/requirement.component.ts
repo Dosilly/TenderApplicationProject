@@ -27,8 +27,10 @@ export class RequirementComponent implements OnInit {
   workhours$ = new Array<Workhour>();
   // Req objects
   emptyWorkhour = new Workhour();
+  emptyRequirement = new Requirement();
   dialogAddMeasureWH = new Workhour();
   dialogEditMeasureWH = new Workhour();
+  dialogRequirementDetail = new Requirement();
 
   // temp
   employeeId = 21;
@@ -63,6 +65,16 @@ export class RequirementComponent implements OnInit {
       });
   }
 
+  requirementDetails(requirement: Requirement) {
+    this.dialogRequirementDetail = JSON.parse(JSON.stringify(requirement));
+
+    const dialogRef = this.dialog.open(WorkhourDialogComponent, {
+      width: '800px',
+      disableClose: true,
+      data: { requirementData: this.dialogRequirementDetail, header: 'Requirement details'}
+    });
+  }
+
   assignWorkhours(requirement: Requirement) {
 
     this.dialogAddMeasureWH = JSON.parse(JSON.stringify(this.emptyWorkhour));
@@ -83,6 +95,35 @@ export class RequirementComponent implements OnInit {
         });
       }
     });
+  }
+
+  deleteWorkhour(workhour: Workhour) {
+    if (confirm('Are you sure to delete this workhour?')) {
+      this.workhourService.deleteWorkhour(workhour).subscribe(result => {
+        console.log(result);
+        this.getWorkhoursByRequirementID(workhour.reqId); // Updating table
+      });
+    }
+  }
+
+  editWorkhour(workhour: Workhour) {
+    this.dialogEditMeasureWH = JSON.parse(JSON.stringify(workhour));
+
+    const dialogRef = this.dialog.open(WorkhourDialogComponent, {
+      width: '500px',
+      disableClose: true,
+      data: { workhourData: this.dialogEditMeasureWH, header: 'Edit workhours'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== 'return') {
+        this.workhourService.editWorkhour(result).subscribe(result2 => {
+          console.log(result2);
+          this.getWorkhoursByRequirementID(workhour.reqId); // Updating table
+        });
+      }
+    });
+
   }
 
 }

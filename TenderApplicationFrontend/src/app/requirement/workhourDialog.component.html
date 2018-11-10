@@ -1,12 +1,27 @@
 <h1 mat-dialog-title>{{data.header}}</h1>
-<div mat-dialog-content>
+<div mat-dialog-content *ngIf="data.header == 'Add workhours' || data.header == 'Edit workhours'">
     <mat-form-field class="col">
         <input required matInput type="number" [(ngModel)]="data.workhourData.workhours" placeholder="Workhours">
+    </mat-form-field>
+</div>
+
+<div mat-dialog-content *ngIf="data.header == 'Requirement details'">
+    <mat-form-field class="col">
+        <input readonly matInput [(ngModel)]="data.requirementData.name" placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <textarea readonly matInput [(ngModel)]="data.requirementData.description" placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <textarea readonly matInput [(ngModel)]="data.requirementData.explanation" placeholder="Explanation"></textarea>
     </mat-form-field>
 </div>
 
 <mat-dialog-actions>
     <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
     &nbsp;
-    <button type="submit" [mat-dialog-close]="data.workhourData" class="btn btn-sm btn-primary"> Apply </button>
+    <button type="submit" [mat-dialog-close]="data.workhourData" class="btn btn-sm btn-primary" *ngIf="data.header != 'Requirement details'">
+        Apply </button>
 </mat-dialog-actions>
