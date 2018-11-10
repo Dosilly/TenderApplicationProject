@@ -45,7 +45,7 @@ namespace TenderApplicationBackend.Controllers
             _requirementModule.EditRequirement(id, tenderValue);
         }
 
-        // DELETE api/tender/5 delete requirement with id = 5
+        // DELETE api/requirement/5 delete requirement with id = 5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
