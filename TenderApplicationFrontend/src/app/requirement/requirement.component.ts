@@ -57,6 +57,7 @@ export class RequirementComponent implements OnInit {
     this.workhourService.getWorkhoursByRequirementID(reqId)
       .subscribe(req => {
         this.workhours$ = req as Workhour[];
+        console.log(this.workhours$);
       });
   }
 

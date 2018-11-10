@@ -20,12 +20,14 @@ export class WorkhourService {
 
   workhourUrl = 'http://localhost:3708/api/workhour';
 
-  getWorkhoursByRequirementID(reqId: number): any {
-    throw new Error('Method not implemented.');
+  getWorkhoursByRequirementID(reqId: number): Observable<Workhour[]> {
+    const url = `${this.workhourUrl}/` + reqId;
+    return this.http.get<Workhour[]>(url);
   }
 
   assignWorkhours(result: Workhour): any {
     console.log(result);
-    throw new Error('Method not implemented.');
+    return this.http.post<Workhour>(this.workhourUrl, result, httpOptions);
   }
 }
+
