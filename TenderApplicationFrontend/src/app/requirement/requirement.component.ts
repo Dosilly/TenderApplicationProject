@@ -5,7 +5,6 @@ import { MatPaginator, MatSort, MatTableDataSource, MAT_DIALOG_DATA, MatDialogRe
 import { Workhour } from '../_models/workhour';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 import { WorkhourService } from '../services/workhour.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-requirement',
@@ -31,7 +30,11 @@ export class RequirementComponent implements OnInit {
   dialogAddMeasureWH = new Workhour();
   dialogEditMeasureWH = new Workhour();
 
+  // temp
+  employeeId = 21;
+
   reqColumns = ['reqId', 'name', 'description', 'explanation', 'actions'];
+  whColumns = ['whId', 'employee', 'workhours', 'actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
   @ViewChild(MatSort) sort: MatSort; // sorting feature by table
@@ -57,14 +60,14 @@ export class RequirementComponent implements OnInit {
     this.workhourService.getWorkhoursByRequirementID(reqId)
       .subscribe(req => {
         this.workhours$ = req as Workhour[];
-        console.log(this.workhours$);
       });
   }
 
   assignWorkhours(requirement: Requirement) {
+
     this.dialogAddMeasureWH = JSON.parse(JSON.stringify(this.emptyWorkhour));
-    this.emptyWorkhour.reqId = requirement.reqId;
-    this.emptyWorkhour.employeeId = 21; // TEMPORARY
+    this.dialogAddMeasureWH.reqId = requirement.reqId;
+    this.dialogAddMeasureWH.employeeId = 23; // TEMPORARY
 
     const dialogRef = this.dialog.open(WorkhourDialogComponent, {
       width: '500px',
