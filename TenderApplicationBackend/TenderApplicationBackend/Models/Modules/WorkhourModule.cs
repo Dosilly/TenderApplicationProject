@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TenderApplicationBackend.Models.Dtos;
+using TenderApplicationBackend.Models.Entities;
 using TenderApplicationBackend.Models.Repositories;
 
 namespace TenderApplicationBackend.Models.Modules
@@ -39,22 +40,55 @@ namespace TenderApplicationBackend.Models.Modules
 
         public List<WorkhourRequest> SelectWorkhoursByRequirementId(int id)
         {
-            throw new NotImplementedException();
+            var whRes = _workhourRepository.SelectWorkhoursByRequirementId(id);
+            var listWh = new List<WorkhourRequest>();
+
+            foreach (var e in whRes)
+            {
+                var workhourRequest = new WorkhourRequest
+                {
+                    EmployeeId = e.EmployeeId,
+                    ReqId = e.ReqId,
+                    WhId = e.Id,
+                    Workhours = e.Workhours
+                };
+                var employee = _employeeRepository.SelectEmployeeById(workhourRequest.EmployeeId);
+                workhourRequest.Employee = employee.FName + " " + employee.LName;
+                listWh.Add(workhourRequest);
+            }
+
+            return listWh;
         }
 
         public void AddWorkhour(WorkhourRequest value)
         {
-            throw new NotImplementedException();
+            var workhour = new Workhour
+            {
+                EmployeeId = value.EmployeeId,
+                ReqId = value.ReqId,
+                Workhours = value.Workhours
+            };
+
+            _workhourRepository.AddWorkhour(workhour);
+
         }
 
         public void EditWorkhour(int id, WorkhourRequest value)
         {
-            throw new NotImplementedException();
+            var workhour = new Workhour
+            {
+                Id = id,
+                EmployeeId = value.EmployeeId,
+                ReqId = value.ReqId,
+                Workhours = value.Workhours
+            };
+
+            _workhourRepository.EditWorkhour(workhour);
         }
 
         public void DeleteWorkhour(int id)
         {
-            throw new NotImplementedException();
+            _workhourRepository.DeleteWorkhour(id);
         }
     }
 }
