@@ -13,6 +13,5 @@ namespace TenderApplicationBackend.Models.Entities
         public int ReqGroupId { get; set; }
         public int ReqId { get; set; }
         public int GroupId { get; set; }
-        public string Name { get; set; }
     }
 }

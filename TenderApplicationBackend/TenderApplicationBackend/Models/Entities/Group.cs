@@ -11,6 +11,7 @@ namespace TenderApplicationBackend.Models.Entities
     {
         public int EmployeeId { get; set; }
         public int Workhours { get; set; }
+        public string Name { get; set; }
         [Alias("GroupID")] [AutoIncrement] public int Id { get; set; }
     }
 }

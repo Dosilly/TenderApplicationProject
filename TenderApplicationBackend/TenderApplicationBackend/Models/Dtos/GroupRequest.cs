@@ -11,5 +11,6 @@ namespace TenderApplicationBackend.Models.Dtos
         public string Employee { get; set; }
         public int Workhours { get; set; }
         public int GroupId { get; set; }
+        public string Name { get; set; }
     }
 }

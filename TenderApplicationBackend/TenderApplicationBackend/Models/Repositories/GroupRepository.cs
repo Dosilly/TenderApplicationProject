@@ -1,25 +1,29 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using ServiceStack.OrmLite;
 using TenderApplicationBackend.Models.Entities;
 
 namespace TenderApplicationBackend.Models.Repositories
 {
-    public class RequirementRepository
+    public class GroupRepository
     {
+
         private readonly ConnectionFactory _connectionFactory;
 
-        public RequirementRepository(ConnectionFactory connectionFactory)
+        public GroupRepository(ConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
-        public List<Requirement> SelectAllRequirements()
+        public List<Group> SelectAllGroups()
         {
             using (var connection = _connectionFactory.GetConnection())
             {
                 try
                 {
-                    return connection.Select<Requirement>();
+                    return connection.Select<Group>();
                 }
                 catch (Exception e)
                 {
@@ -29,13 +33,22 @@ namespace TenderApplicationBackend.Models.Repositories
             }
         }
 
-        public void AddRequirement(Requirement requirement)
+        public List<Group> SelectGroupsByRequirementId(int id)
         {
             using (var connection = _connectionFactory.GetConnection())
             {
+                var idList = new List<int>();
+                var res = connection.Select<Requirement_group>(x => x.ReqId == id);
+
+                foreach (var e in res)
+                {
+                    var i = e.GroupId;
+                    idList.Add(i);
+                }
+
                 try
                 {
-                    connection.Insert(requirement);
+                    return connection.Select<Group>(x => Sql.In(x.Id,idList));
                 }
                 catch (Exception e)
                 {
@@ -45,13 +58,13 @@ namespace TenderApplicationBackend.Models.Repositories
             }
         }
 
-        public void DeleteRequirement(int id)
+        public void AddGroup(Group group)
         {
             using (var connection = _connectionFactory.GetConnection())
             {
                 try
                 {
-                    connection.DeleteById<Requirement>(id);
+                    connection.Insert(group);
                 }
                 catch (Exception e)
                 {
@@ -61,15 +74,15 @@ namespace TenderApplicationBackend.Models.Repositories
             }
         }
 
-        public void EditRequirement(Requirement requirement)
+        public void EditGroup(Group group)
         {
             using (var connection = _connectionFactory.GetConnection())
             {
                 try
                 {
-                    connection.UpdateOnly(requirement,
-                        u => new {u.Description,u.Explanation,u.Name},
-                        p => p.Id == requirement.Id);
+                    connection.UpdateOnly(group,
+                        u => new {u.Name,u.Workhours},
+                        p => p.Id == group.Id);
                 }
                 catch (Exception e)
                 {
@@ -79,13 +92,13 @@ namespace TenderApplicationBackend.Models.Repositories
             }
         }
 
-        public List<Requirement> SelectRequirementsByTenderId(int id)
+        public void DeleteGroup(int id)
         {
             using (var connection = _connectionFactory.GetConnection())
             {
                 try
                 {
-                    return connection.Select<Requirement>(p => p.TenderId == id);
+                    connection.DeleteById<Group>(id);
                 }
                 catch (Exception e)
                 {
