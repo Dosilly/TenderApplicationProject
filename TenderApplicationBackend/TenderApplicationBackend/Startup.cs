@@ -47,6 +47,8 @@ namespace TenderApplicationBackend
             services.AddSingleton<WorkhourRepository>();
             services.AddSingleton<GroupModule>();
             services.AddSingleton<GroupRepository>();
+            services.AddSingleton<ReqgroupModule>();
+            services.AddSingleton<ReqgroupRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

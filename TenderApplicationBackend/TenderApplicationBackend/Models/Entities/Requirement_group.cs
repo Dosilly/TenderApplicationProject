@@ -1,17 +1,15 @@
-﻿ using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
- using ServiceStack.DataAnnotations;
- using ServiceStack.Model;
+﻿using ServiceStack.DataAnnotations;
+using ServiceStack.Model;
+
 
 namespace TenderApplicationBackend.Models.Entities
 {
     // ReSharper disable once InconsistentNaming
-    public class Requirement_group
+    public class Requirement_group : IHasId<int>
     {
-        public int ReqGroupId { get; set; }
         public int ReqId { get; set; }
         public int GroupId { get; set; }
+
+        [Alias("ReqGroupId")] [AutoIncrement] public int Id { get; set; }
     }
 }
