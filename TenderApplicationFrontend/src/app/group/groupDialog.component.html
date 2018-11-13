@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{data.header}}</h1>
+
+<div mat-dialog-content *ngIf="data.header == 'Requirement details'">
+    <mat-form-field class="col">
+        <input readonly matInput [(ngModel)]="data.requirementData.name" placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <textarea readonly matInput [(ngModel)]="data.requirementData.description" placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <textarea readonly matInput [(ngModel)]="data.requirementData.explanation" placeholder="Explanation"></textarea>
+    </mat-form-field>
+</div>
+
+<mat-dialog-actions>
+    <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+</mat-dialog-actions>

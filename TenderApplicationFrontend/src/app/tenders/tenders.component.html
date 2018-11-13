@@ -42,7 +42,7 @@
             <td mat-cell *matCellDef="let element" colspan="5"> <!-- colspan 5 makes expandable row same size as table (5 columns) -->
                 <div class="tender-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"> <!--[@detailExpand]= it's an animation feature  -->
                     <div class="tender-description">
-                        <table mat-table [dataSource]="requirements$" class="reqTable" *ngIf="requirements$.length > 0">
+                        <table mat-table [dataSource]="requirements$" class="reqTable" *ngIf="requirements$.length > 0 && !loading">
                             <!-- Content of table in expandable row -->
                             <ng-container matColumnDef="reqId">
                                 <th mat-header-cell *matHeaderCellDef class="reqTableHeader"> ID </th>
@@ -77,6 +77,9 @@
                             <tr mat-header-row *matHeaderRowDef="reqColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: reqColumns;"></tr>
                         </table>
+                        <div class="col" *ngIf="loading">
+                            <mat-spinner [diameter] = 50> </mat-spinner>
+                        </div>
                     </div>
                 </div>
             </td>

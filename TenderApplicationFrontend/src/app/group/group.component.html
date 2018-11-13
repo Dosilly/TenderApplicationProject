@@ -1,4 +1,4 @@
-<h2>Workhours menagement</h2>
+<h2>Groups menagement</h2>
 
 <div class='col'>
   <!-- Filter -->
@@ -7,6 +7,19 @@
   </mat-form-field>
   <!-- Table -->
   <table mat-table [dataSource]="requirements$" multiTemplateDataRows class="reqTable">
+
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
     <!-- Content of table in expandable row -->
     <ng-container matColumnDef="reqId">
       <th mat-header-cell *matHeaderCellDef class="reqTableHeader"> ID </th>
@@ -35,8 +48,6 @@
       <td mat-cell *matCellDef="let cell">
 
         <button type="button" class="btn btn-primary btn-sm" (click)="requirementDetails(cell)">Details</button>
-        &nbsp;
-        <button type="button" class="btn btn-secondary btn-sm" (click)="assignWorkhours(cell)">Assign workhours</button>
 
       </td>
     </ng-container>
@@ -45,11 +56,16 @@
       <td mat-cell *matCellDef="let element" colspan="4"><!-- colspan makes expandable row same size as table (5 columns) -->
         <div class="requirement-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
           <div class = "requirement-description">
-            <table mat-table [dataSource]="workhours$" class="whtable" *ngIf="workhours$.length > 0 && !loading">
+            <table mat-table [dataSource]="groups$" class="whtable" *ngIf="groups$.length > 0 && !loading">
 
-                <ng-container matColumnDef="whId">
+                <ng-container matColumnDef="groupId">
                     <th mat-header-cell *matHeaderCellDef class="whTableHeader"> ID </th>
-                    <td mat-cell *matCellDef="let cell" class="whTableCell" > {{cell.whId}} </td>
+                    <td mat-cell *matCellDef="let cell" class="whTableCell" > {{cell.groupId}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef class="whTableHeader"> Name </th>
+                  <td mat-cell *matCellDef="let cell" class="whTableCell" > {{cell.name}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="employee">
@@ -71,8 +87,8 @@
                     </td>
                 </ng-container>
 
-              <tr mat-header-row *matHeaderRowDef="whColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: whColumns;"></tr>
+              <tr mat-header-row *matHeaderRowDef="groupColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: groupColumns;"></tr>
             </table>
             <div class="col" *ngIf="loading">
               <mat-spinner [diameter] = 50> </mat-spinner>
@@ -84,9 +100,11 @@
 
     <tr mat-header-row *matHeaderRowDef="reqColumns"></tr>
     <tr mat-row *matRowDef="let element; columns: reqColumns;" class="req-row" [class.expanded-row]="expandedElement === element"
-            (click)="expandedElement = element" (click)="getWorkhoursByRequirementID(element.reqId)"> 
+            (click)="expandedElement = element" (click)="getGroupsByRequirementID(element.reqId)"> 
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="wh-row"></tr>
   </table>
   <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  <button type="button" class="btn btn-primary" (click)="addTender()">Add to group</button>
 </div>

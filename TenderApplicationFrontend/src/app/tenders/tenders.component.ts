@@ -34,6 +34,7 @@ export class TendersComponent implements OnInit {
   dialogAddRequirement = new Requirement();
   dialogEditRequirement = new Requirement();
 
+  loading = false;
   columns: string[];
   reqColumns = ['reqId', 'name', 'description', 'explanation', 'actions'];
 
@@ -59,9 +60,11 @@ export class TendersComponent implements OnInit {
   }
 
   getRequirementByTenderID(tenderId: number) {
+    this.loading = true;
     this.requirementService.getRequirementsByTenderID(tenderId)
       .subscribe(req => {
         this.requirements$ = req as Requirement[];
+        this.loading = false;
       });
   }
 

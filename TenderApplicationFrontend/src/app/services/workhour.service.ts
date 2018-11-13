@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Tender } from '../_models/tender';
 import { Observable } from 'rxjs';
 import { Workhour } from '../_models/workhour';
 
@@ -26,7 +25,6 @@ export class WorkhourService {
   }
 
   assignWorkhours(result: Workhour): any {
-    console.log(result);
     return this.http.post<Workhour>(this.workhourUrl, result, httpOptions);
   }
 

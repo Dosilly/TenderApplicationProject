@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './appRoutes';
 import { TendersComponent } from './tenders/tenders.component';
 import { RequirementComponent } from './requirement/requirement.component';
+import { GroupComponent, GroupDialogComponent } from './group/group.component';
 
 
 
@@ -29,7 +30,9 @@ import { RequirementComponent } from './requirement/requirement.component';
     LoginComponent,
     TendersComponent,
     RequirementComponent,
-    WorkhourDialogComponent
+    WorkhourDialogComponent,
+    GroupDialogComponent,
+    GroupComponent
 
   ],
   imports: [
@@ -44,6 +47,6 @@ import { RequirementComponent } from './requirement/requirement.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [UsersTableComponent, WorkhourDialogComponent, DialogOverviewComponent, TenderDialogComponent],
+  entryComponents: [UsersTableComponent, GroupDialogComponent, WorkhourDialogComponent, DialogOverviewComponent, TenderDialogComponent],
 })
 export class AppModule { }

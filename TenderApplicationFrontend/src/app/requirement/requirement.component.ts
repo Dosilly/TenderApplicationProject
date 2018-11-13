@@ -35,6 +35,7 @@ export class RequirementComponent implements OnInit {
   // temp
   employeeId = 21;
 
+  loading = false;
   reqColumns = ['reqId', 'name', 'description', 'explanation', 'actions'];
   whColumns = ['whId', 'employee', 'workhours', 'actions'];
 
@@ -59,16 +60,18 @@ export class RequirementComponent implements OnInit {
   }
 
   getWorkhoursByRequirementID(reqId: number) {
+    this.loading = true;
     this.workhourService.getWorkhoursByRequirementID(reqId)
       .subscribe(req => {
         this.workhours$ = req as Workhour[];
+        this.loading = false;
       });
   }
 
   requirementDetails(requirement: Requirement) {
     this.dialogRequirementDetail = JSON.parse(JSON.stringify(requirement));
 
-    const dialogRef = this.dialog.open(WorkhourDialogComponent, {
+    this.dialog.open(WorkhourDialogComponent, {
       width: '800px',
       disableClose: true,
       data: { requirementData: this.dialogRequirementDetail, header: 'Requirement details'}
