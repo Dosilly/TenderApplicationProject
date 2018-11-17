@@ -14,6 +14,19 @@
     </mat-form-field>
 </div>
 
+<div mat-dialog-content *ngIf="data.header == 'Select group'">
+    <mat-form-field>
+        <mat-select placeholder="Group" [(ngModel)]="data.groupData.groupId">
+            <mat-option *ngFor="let group of data.groups" [value]="group.groupId">
+              {{group.name}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+
 <mat-dialog-actions>
     <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+    &nbsp;
+    <button type="submit" [mat-dialog-close]="data.groupData" class="btn btn-sm btn-primary" *ngIf="data.header == 'Select group'">
+        Apply </button>
 </mat-dialog-actions>

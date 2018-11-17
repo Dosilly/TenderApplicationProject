@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using TenderApplicationBackend.Models;
 using TenderApplicationBackend.Models.Modules;
 using TenderApplicationBackend.Models.Repositories;
@@ -24,15 +28,28 @@ namespace TenderApplicationBackend
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder
-                            .AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            .AllowCredentials();
-                    });
+                    corsBuilder => corsBuilder.AllowAnyOrigin()
+                        .AllowCredentials()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .Build());
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "Issuer",
+                        ValidAudience = "Audience",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("keykeykeykeykeykeykeykeykeykey")),
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<ConnectionFactory>();
@@ -49,6 +66,7 @@ namespace TenderApplicationBackend
             services.AddSingleton<GroupRepository>();
             services.AddSingleton<ReqgroupModule>();
             services.AddSingleton<ReqgroupRepository>();
+            services.AddSingleton<AuthenticationModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +77,7 @@ namespace TenderApplicationBackend
             else
                 app.UseHsts();
             app.UseCors("AllowAll");
+            app.UseAuthentication();
             //app.UseHttpsRedirection();
             app.UseMvc();
         }

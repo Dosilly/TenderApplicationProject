@@ -30,8 +30,11 @@ export class GroupService {
     return this.http.get<Group[]>(url);
   }
 
-  assignReqToGroup(reqList: Requirement[], groupId: number) {
+  assignReqToGroup(reqList: Requirement[], groupId: number): Observable<Requirement[]> {
     const url = `${this.reqGroupUrl}/` + groupId;
-    return this.http.post(url, reqList, httpOptions);
+    console.log(JSON.stringify(reqList[0]));
+    console.log(url);
+
+    return this.http.post<Requirement[]>(url, JSON.stringify(reqList), httpOptions);
   }
 }

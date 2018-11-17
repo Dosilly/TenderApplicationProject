@@ -1,25 +1,34 @@
 import { Injectable } from '@angular/core';
-import { LoginRequest } from '../_models/loginRequest';
-import { Observable } from 'rxjs';
-import {LoginResultModel} from '../_models/loginResult';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { LoginResponse } from '../_models/loginResponse';
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
+const address = 'http://localhost:3708';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LoginService {
+@Injectable()
+export class AuthenticationService {
+    constructor(
+        private http: HttpClient
+    ) { }
 
-  loginUrl = 'http://localhost:3708/api/login';
+    private authenticationStateChangeSource = new Subject<boolean>();
+    public authenticationStateChange = this.authenticationStateChangeSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+    login(username: string, password: string) {
+        return this.http.post<LoginResponse>(address + '/api/login', { username: username, password: password })
+            .pipe(map(user => {
+                if (user && user.token) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.authenticationStateChangeSource.next(true);
+                }
 
-  login(loginRequest: LoginRequest): Observable<LoginResultModel> {
-    return this.http.post<LoginResultModel>(this.loginUrl, loginRequest, httpOptions);
-  }
+                return user;
+            }));
+    }
+
+    logout() {
+        localStorage.removeItem('currentUser');
+        this.authenticationStateChangeSource.next(false);
+    }
 }

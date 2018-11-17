@@ -69,11 +69,11 @@ namespace TenderApplicationBackend.Models.Repositories
             }
         }
 
-        public User SelectUserByUsername(UserEmployeeRequest user)
+        public User SelectUserByUsername(string username)
         {
             using (var connection = _connectionFactory.GetConnection())
             {
-                return connection.Single<User>(x => x.Username == user.Username);
+                return connection.Single<User>(x => x.Username == username);
             }
         }
     }

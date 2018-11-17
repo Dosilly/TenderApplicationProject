@@ -33,7 +33,7 @@ namespace TenderApplicationBackend.Models.Modules
             };
             _userRepository.SaveUser(user);
 
-            var result = _userRepository.SelectUserByUsername(userEmployeeAddRequest);
+            var result = _userRepository.SelectUserByUsername(userEmployeeAddRequest.Username);
 
             var employee = new Employee
             {

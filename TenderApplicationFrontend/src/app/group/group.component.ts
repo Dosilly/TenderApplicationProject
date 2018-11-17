@@ -27,8 +27,11 @@ export class GroupComponent implements OnInit {
   // Data sources
   requirements$ = new MatTableDataSource<Requirement>();
   groups$ = new Array<Group>();
+  groupsDialog$ = new Array<Group>();
 
   // Objects
+  emptyGroup = new Group();
+  dialogChooseGroup = new Group();
   dialogRequirementDetail = new Requirement();
   selection = new SelectionModel<Requirement>(true, []);
 
@@ -49,6 +52,14 @@ export class GroupComponent implements OnInit {
     this.requirements$.paginator = this.paginator;
     this.requirements$.sort = this.sort;
     this.getRequirements();
+    this.getGroups();
+  }
+
+  getGroups() {
+    this.groupService.getGroups()
+    .subscribe(res => {
+      this.groupsDialog$ = res as Group[];
+    });
   }
 
   getRequirements() {
@@ -87,6 +98,25 @@ export class GroupComponent implements OnInit {
     this.isAllSelected() ?
         this.selection.clear() :
         this.requirements$.data.forEach(row => this.selection.select(row));
+  }
+
+  addToGroup() {
+    this.dialogChooseGroup = JSON.parse(JSON.stringify(this.emptyGroup));
+
+    const dialogRef = this.dialog.open(GroupDialogComponent, {
+      width: '500px',
+      disableClose: true,
+      data: { groupData: this.dialogChooseGroup, header: 'Select group', groups: this.groupsDialog$}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== 'return') {
+        console.log(result.groupId);
+        this.groupService.assignReqToGroup(this.selection.selected, result.groupId).subscribe(post => {
+            console.log(post);
+        });
+      }
+    });
   }
 
 

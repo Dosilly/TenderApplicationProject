@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TenderApplicationBackend.Models.Dtos;
@@ -7,7 +8,7 @@ using TenderApplicationBackend.Models.Modules;
 namespace TenderApplicationBackend.Controllers
 {
     [Route("api/[controller]")]
-    [EnableCors("AllowAll")]
+    //[EnableCors("AllowAll")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -19,7 +20,7 @@ namespace TenderApplicationBackend.Controllers
         }
 
         // GET api/user get users
-        [HttpGet]
+        [HttpGet, Authorize]
         public List<UserEmployeeRequest> Get()
         {
             return _userModule.SelectAllUsers();
