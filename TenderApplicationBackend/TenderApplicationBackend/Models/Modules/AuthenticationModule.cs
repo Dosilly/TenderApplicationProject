@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.IdentityModel.Tokens;
+using ServiceStack.DataAnnotations;
 using TenderApplicationBackend.Models.Dtos;
 using TenderApplicationBackend.Models.Entities;
 using TenderApplicationBackend.Models.Repositories;
@@ -47,7 +50,7 @@ namespace TenderApplicationBackend.Models.Modules
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Username = user.Username,
                 ExpirationDate = token.ValidTo,
-                Role = null
+                Role = user.Role,
             };
 
             return response;
@@ -59,10 +62,26 @@ namespace TenderApplicationBackend.Models.Modules
             if (potentialUser == null)
                 throw new UnauthorizedAccessException();
 
-            if (request.Password == "123qwe")
+            if (IsPasswordValid(request.Password,potentialUser.UserPass,potentialUser.Salt))
                 return potentialUser;
 
             throw new UnauthorizedAccessException();
+        }
+
+        private bool IsPasswordValid(string passwordEntered, string password, string salt)
+        {
+           var saltToByte = new byte[128 / 8];
+           saltToByte = Convert.FromBase64String(salt);
+
+            var hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                passwordEntered,
+                saltToByte,
+                KeyDerivationPrf.HMACSHA1,
+                10000,
+                256 / 8));
+
+            return hashed == password;
+
         }
     }
 }

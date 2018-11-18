@@ -16,7 +16,6 @@ namespace TenderApplicationBackend.Controllers
         public LoginController(AuthenticationModule authenticationModule)
         {
             _authenticationModule = authenticationModule;
-            //_authe = groupModule;
         }
 
         [HttpPost]

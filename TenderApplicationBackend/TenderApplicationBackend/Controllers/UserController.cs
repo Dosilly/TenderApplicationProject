@@ -20,7 +20,7 @@ namespace TenderApplicationBackend.Controllers
         }
 
         // GET api/user get users
-        [HttpGet, Authorize]
+        [HttpGet]
         public List<UserEmployeeRequest> Get()
         {
             return _userModule.SelectAllUsers();

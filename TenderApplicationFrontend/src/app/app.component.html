@@ -9,7 +9,7 @@
         <li class="nav-item">
           <a class="nav-link" href="login">Login </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="expression">
           <a class="nav-link" href="users">Users</a>
         </li>
         <li class="nav-item">
@@ -22,6 +22,9 @@
           <a class="nav-link" href="groups">Group requirements</a>
         </li>
       </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-danger my-2 my-sm-0" type="button" (click)="logout()">Logout</button>
+      </form>
     </div>
   </nav>
 
