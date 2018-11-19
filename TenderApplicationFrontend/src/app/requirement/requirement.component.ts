@@ -36,7 +36,7 @@ export class RequirementComponent implements OnInit {
   dialogEditMeasureWH = new Workhour();
   dialogRequirementDetail = new Requirement();
 
-  // temp
+  // Id that is inserted when posting objects
   employeeId = this.authenticationService.currentUser.employeeId;
 
   loading = false;

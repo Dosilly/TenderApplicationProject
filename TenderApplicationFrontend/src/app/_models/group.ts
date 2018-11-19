@@ -3,4 +3,5 @@ export class Group {
     workhours: number;
     employee: string;
     groupId: number;
+    employeeId: number;
 }

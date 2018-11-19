@@ -7,6 +7,7 @@ import { GroupService } from '../services/group.service';
 import { Group } from '../_models/group';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SelectionModel } from '@angular/cdk/collections';
+import { AuthenticationService } from '../services/login.service';
 
 @Component({
   selector: 'app-group',
@@ -22,7 +23,10 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class GroupComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private groupService: GroupService, private requirementService: RequirementService) { }
+  constructor(public dialog: MatDialog,
+    private groupService: GroupService,
+    private requirementService: RequirementService,
+    private authenticationService: AuthenticationService) { }
 
   // Data sources
   requirements$ = new MatTableDataSource<Requirement>();
@@ -31,6 +35,7 @@ export class GroupComponent implements OnInit {
 
   // Objects
   emptyGroup = new Group();
+  dialogAddGroup = new Group();
   dialogChooseGroup = new Group();
   dialogRequirementDetail = new Requirement();
   selection = new SelectionModel<Requirement>(true, []);
@@ -39,7 +44,7 @@ export class GroupComponent implements OnInit {
   groupColumns = ['groupId', 'name', 'employee', 'workhours', 'actions'];
 
   loading = false;
-  employeeId = 21;
+  employeeId = this.authenticationService.currentUser.employeeId;
 
   @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
   @ViewChild(MatSort) sort: MatSort; // sorting feature by table
@@ -52,14 +57,6 @@ export class GroupComponent implements OnInit {
     this.requirements$.paginator = this.paginator;
     this.requirements$.sort = this.sort;
     this.getRequirements();
-    this.getGroups();
-  }
-
-  getGroups() {
-    this.groupService.getGroups()
-    .subscribe(res => {
-      this.groupsDialog$ = res as Group[];
-    });
   }
 
   getRequirements() {
@@ -102,21 +99,44 @@ export class GroupComponent implements OnInit {
 
   addToGroup() {
     this.dialogChooseGroup = JSON.parse(JSON.stringify(this.emptyGroup));
+    this.groupService.getGroups()
+    .subscribe(res => {
+      this.groupsDialog$ = res as Group[];
+
+      const dialogRef = this.dialog.open(GroupDialogComponent, {
+        width: '500px',
+        disableClose: true,
+        data: { groupData: this.dialogChooseGroup, header: 'Select group', groups: this.groupsDialog$}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result !== 'return') {
+          this.groupService.assignReqToGroup(this.selection.selected, result.groupId).subscribe(post => {
+              console.log(post);
+          });
+        }
+      });
+    });
+  }
+
+  createGroup() {
+    this.dialogAddGroup = JSON.parse(JSON.stringify(this.emptyGroup));
+    this.dialogAddGroup.employeeId = this.authenticationService.currentUser.employeeId;
 
     const dialogRef = this.dialog.open(GroupDialogComponent, {
       width: '500px',
       disableClose: true,
-      data: { groupData: this.dialogChooseGroup, header: 'Select group', groups: this.groupsDialog$}
+      data: { groupData: this.dialogAddGroup, header: 'Add group'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== 'return') {
-        console.log(result.groupId);
-        this.groupService.assignReqToGroup(this.selection.selected, result.groupId).subscribe(post => {
+        this.groupService.createGroup(result).subscribe(post => {
             console.log(post);
         });
       }
     });
+
   }
 
 

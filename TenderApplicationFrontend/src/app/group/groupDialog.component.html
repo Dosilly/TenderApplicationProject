@@ -24,9 +24,19 @@
       </mat-form-field>
 </div>
 
+<div mat-dialog-content *ngIf="data.header == 'Add group'">
+    <mat-form-field class="col">
+        <input matInput [(ngModel)]="data.groupData.name" placeholder="Name">
+    </mat-form-field>
+
+    <mat-form-field class="col">
+        <input matInput type="number" [(ngModel)]="data.groupData.workhours" placeholder="Workhours">
+    </mat-form-field>
+
+</div>
+
 <mat-dialog-actions>
     <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
     &nbsp;
-    <button type="submit" [mat-dialog-close]="data.groupData" class="btn btn-sm btn-primary" *ngIf="data.header == 'Select group'">
-        Apply </button>
+    <button type="submit" [mat-dialog-close]="data.groupData" class="btn btn-sm btn-primary" *ngIf="data.header == 'Select group' || data.header == 'Add group'"> Apply </button>
 </mat-dialog-actions>

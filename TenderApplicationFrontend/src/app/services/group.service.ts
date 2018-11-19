@@ -25,6 +25,10 @@ export class GroupService {
     return this.http.get<Group[]>(this.groupUrl);
   }
 
+  createGroup(group: Group): Observable<Group> {
+    return this.http.post<Group>(this.groupUrl, group, httpOptions);
+  }
+
   getGroupsByRequirementID(reqId: number): Observable<Group[]> {
     const url = `${this.groupUrl}/` + reqId;
     return this.http.get<Group[]>(url);
