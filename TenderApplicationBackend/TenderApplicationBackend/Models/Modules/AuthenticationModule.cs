@@ -16,19 +16,22 @@ namespace TenderApplicationBackend.Models.Modules
     public class AuthenticationModule
     {
         private readonly UserRepository _userRepository;
+        private readonly EmployeeRepository _employeeRepository;
 
-        public AuthenticationModule(UserRepository userRepository)
+        public AuthenticationModule(UserRepository userRepository, EmployeeRepository employeeRepository)
         {
             _userRepository = userRepository;
+            _employeeRepository = employeeRepository;
         }
 
         public LoginResponse Login(LoginRequest request)
         {
             var user = Authenticate(request);
-            return BuildToken(user);
+            var employee = _employeeRepository.SelectEmployeeByUserId(user.Id);
+            return BuildToken(user, employee);
         }
 
-        private LoginResponse BuildToken(User user)
+        private LoginResponse BuildToken(User user, Employee employee)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("keykeykeykeykeykeykeykeykeykey"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -40,8 +43,9 @@ namespace TenderApplicationBackend.Models.Modules
                 expires: DateTime.Now.AddMinutes(expirationTime),
                 claims: new List<Claim>
                 {
-                    new Claim("UserId", user.Id.ToString()),
-                    new Claim("UserName", user.Username)
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Role, user.Role),
                 },
                 signingCredentials: creds);
 
@@ -51,6 +55,7 @@ namespace TenderApplicationBackend.Models.Modules
                 Username = user.Username,
                 ExpirationDate = token.ValidTo,
                 Role = user.Role,
+                EmployeeId = employee.Id
             };
 
             return response;

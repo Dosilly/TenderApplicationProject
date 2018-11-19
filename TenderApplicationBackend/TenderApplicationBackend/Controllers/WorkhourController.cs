@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TenderApplicationBackend.Models.Dtos;
@@ -8,6 +9,7 @@ namespace TenderApplicationBackend.Controllers
 {
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
+    [Authorize(Roles = "MAN, ANAL")]
     [ApiController]
     public class WorkhourController: ControllerBase
     {

@@ -3,4 +3,5 @@ export interface LoginResponse {
   username: string;
   expirationDate: number;
   role: string;
+  employeeId: number;
 }

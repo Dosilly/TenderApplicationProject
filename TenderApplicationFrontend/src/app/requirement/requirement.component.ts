@@ -5,6 +5,7 @@ import { MatPaginator, MatSort, MatTableDataSource, MAT_DIALOG_DATA, MatDialogRe
 import { Workhour } from '../_models/workhour';
 import { trigger, state, transition, animate, style } from '@angular/animations';
 import { WorkhourService } from '../services/workhour.service';
+import { AuthenticationService } from '../services/login.service';
 
 @Component({
   selector: 'app-requirement',
@@ -20,7 +21,10 @@ import { WorkhourService } from '../services/workhour.service';
 })
 export class RequirementComponent implements OnInit {
 
-  constructor(private requirementService: RequirementService, private workhourService: WorkhourService, public dialog: MatDialog) { }
+  constructor(private requirementService: RequirementService,
+    private workhourService: WorkhourService,
+    public dialog: MatDialog,
+    private authenticationService: AuthenticationService) { }
 
   // Data sources
   requirements$ = new MatTableDataSource<Requirement>();
@@ -33,7 +37,7 @@ export class RequirementComponent implements OnInit {
   dialogRequirementDetail = new Requirement();
 
   // temp
-  employeeId = 21;
+  employeeId = this.authenticationService.currentUser.employeeId;
 
   loading = false;
   reqColumns = ['reqId', 'name', 'description', 'explanation', 'actions'];
@@ -82,7 +86,7 @@ export class RequirementComponent implements OnInit {
 
     this.dialogAddMeasureWH = JSON.parse(JSON.stringify(this.emptyWorkhour));
     this.dialogAddMeasureWH.reqId = requirement.reqId;
-    this.dialogAddMeasureWH.employeeId = 23; // TEMPORARY
+    this.dialogAddMeasureWH.employeeId = this.authenticationService.currentUser.employeeId;
 
     const dialogRef = this.dialog.open(WorkhourDialogComponent, {
       width: '500px',

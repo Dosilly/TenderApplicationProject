@@ -14,7 +14,7 @@ export class AuthenticationService {
 
     private authenticationStateChangeSource = new Subject<boolean>();
     public authenticationStateChange = this.authenticationStateChangeSource.asObservable();
-    public currentUser: Observable<LoginResponse> = JSON.parse(localStorage.getItem('currentUser'));
+    public currentUser: LoginResponse = JSON.parse(localStorage.getItem('currentUser'));
 
     login(username: string, password: string) {
         return this.http.post<LoginResponse>(address + '/api/login', { username: username, password: password })

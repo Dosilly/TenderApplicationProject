@@ -21,7 +21,22 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.userInput.username, this.userInput.password)
       .subscribe(
         data => {
-          this.router.navigateByUrl('/users');
+          switch (data.role) {
+            case 'ADM':
+            this.router.navigateByUrl('/users');
+              break;
+            case 'ANAL':
+            this.router.navigateByUrl('/requirements');
+             break;
+            case 'MAN':
+            this.router.navigateByUrl('/tenders');
+             break;
+            case 'OFF':
+            this.router.navigateByUrl('/tenders');
+            break;
+            default:
+              break;
+          }
         },
         error => {
         });

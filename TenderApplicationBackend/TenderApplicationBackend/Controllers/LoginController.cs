@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TenderApplicationBackend.Models.Dtos;
@@ -19,6 +20,7 @@ namespace TenderApplicationBackend.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Login([FromBody] LoginRequest request)
         {
             return Ok(_authenticationModule.Login(request));

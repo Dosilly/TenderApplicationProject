@@ -12,5 +12,6 @@ namespace TenderApplicationBackend.Models.Dtos
         public string Username { get; set; }
         public DateTime ExpirationDate { get; set; }
         public object Role { get; set; }
+        public int EmployeeId { get; set; }
     }
 }

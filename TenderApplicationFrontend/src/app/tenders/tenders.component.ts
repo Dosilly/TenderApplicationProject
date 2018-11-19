@@ -5,6 +5,7 @@ import { TenderService } from '../services/tender.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { RequirementService } from '../services/requirement.service';
 import { Requirement } from '../_models/requirement';
+import { AuthenticationService } from '../services/login.service';
 
 @Component({
   selector: 'app-tenders',
@@ -20,7 +21,10 @@ import { Requirement } from '../_models/requirement';
 })
 export class TendersComponent implements OnInit {
 
-  constructor(private tenderService: TenderService, private requirementService: RequirementService, public dialog: MatDialog) { }
+  constructor(private tenderService: TenderService,
+    private requirementService: RequirementService,
+    public dialog: MatDialog,
+    private authenticationService: AuthenticationService) { }
 
   // Data sources
   tenders$ = new MatTableDataSource<Tender>();
@@ -70,7 +74,7 @@ export class TendersComponent implements OnInit {
 
   editTender(tender: Tender) {
     this.dialogEditTender = JSON.parse(JSON.stringify(tender));
-    this.dialogEditTender.employeeId = 21; // TEMPORARY NEED TO GET ID FROM LOGGED USER !IMPORTANT
+    this.dialogEditTender.employeeId = this.authenticationService.currentUser.employeeId;
 
     const dialogRef = this.dialog.open(TenderDialogComponent, {
       width: '500px',
@@ -111,7 +115,7 @@ export class TendersComponent implements OnInit {
 
   addTender() {
     this.dialogAddTender = JSON.parse(JSON.stringify(this.emptyTender));
-    this.dialogAddTender.employeeId = 21; // TEMPORARY
+    this.dialogAddTender.employeeId = this.authenticationService.currentUser.employeeId;
 
     const dialogRef = this.dialog.open(TenderDialogComponent, {
       width: '500px',
