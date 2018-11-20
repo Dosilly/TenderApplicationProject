@@ -34,6 +34,11 @@ export class GroupService {
     return this.http.get<Group[]>(url);
   }
 
+  removeFromGroup(groupId: number, reqId: number): Observable<Group> {
+    const url = `${this.reqGroupUrl}/` + `${reqId}/` + groupId;
+    return this.http.delete<Group>(url, httpOptions);
+  }
+
   assignReqToGroup(reqList: Requirement[], groupId: number): Observable<Requirement[]> {
     const url = `${this.reqGroupUrl}/` + groupId;
     console.log(JSON.stringify(reqList[0]));

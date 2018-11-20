@@ -32,5 +32,21 @@ namespace TenderApplicationBackend.Models.Repositories
                 }
             }
         }
+
+        public void DeleteFromGroup(int reqId, int groupId)
+        {
+            using (var connection = _connectionFactory.GetConnection())
+            {
+                try
+                {
+                    connection.Delete<Requirement_group>(p => p.ReqId == reqId && p.GroupId == groupId);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+        }
     }
 }

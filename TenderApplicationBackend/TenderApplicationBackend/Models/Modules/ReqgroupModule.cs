@@ -35,7 +35,7 @@ namespace TenderApplicationBackend.Models.Modules
 
         public void DeleteFromGroup(int reqId, int groupId)
         {
-            throw new NotImplementedException();
+            _reqgroupRepository.DeleteFromGroup(reqId, groupId);
         }
     }
 }

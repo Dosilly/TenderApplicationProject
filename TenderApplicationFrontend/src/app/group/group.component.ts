@@ -105,6 +105,7 @@ export class GroupComponent implements OnInit {
 
       const dialogRef = this.dialog.open(GroupDialogComponent, {
         width: '500px',
+        height: 'auto',
         disableClose: true,
         data: { groupData: this.dialogChooseGroup, header: 'Select group', groups: this.groupsDialog$}
       });
@@ -139,12 +140,21 @@ export class GroupComponent implements OnInit {
 
   }
 
+  removeFromGroup(group: Group, requirement: Requirement) {
+    if (confirm('Are you sure to remove this requirement from group?')) {
+      this.groupService.removeFromGroup(group.groupId, requirement.reqId).subscribe(result => {
+        this.getGroupsByRequirementID(requirement.reqId); // Updating table
+      });
+    }
+  }
+
 
 }
 
 @Component({ // Component for popups showed after button click
   selector: 'app-group-dialog',
   templateUrl: 'groupDialog.component.html',
+  styleUrls: ['./group.component.css'],
 })
 export class GroupDialogComponent {
 

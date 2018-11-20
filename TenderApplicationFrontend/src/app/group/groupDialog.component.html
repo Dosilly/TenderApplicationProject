@@ -16,27 +16,47 @@
 
 <div mat-dialog-content *ngIf="data.header == 'Select group'">
     <mat-form-field>
-        <mat-select placeholder="Group" [(ngModel)]="data.groupData.groupId">
+        <mat-select name="groupId" required #groupId="ngModel" placeholder="Group" [(ngModel)]="data.groupData.groupId">
             <mat-option *ngFor="let group of data.groups" [value]="group.groupId">
               {{group.name}}
             </mat-option>
         </mat-select>
       </mat-form-field>
+
+    <div [hidden]="groupId.valid"
+        class="alert alert-danger">
+        Name is required
+    </div>
+
+    <mat-dialog-actions>
+        <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+        &nbsp;
+        <button [disabled]="groupId.invalid" type="submit" [mat-dialog-close]="data.groupData" class="btn btn-sm btn-primary"> Apply </button>
+    </mat-dialog-actions>
+
 </div>
 
 <div mat-dialog-content *ngIf="data.header == 'Add group'">
     <mat-form-field class="col">
-        <input matInput [(ngModel)]="data.groupData.name" placeholder="Name">
+        <input matInput name="name" required #name="ngModel" [(ngModel)]="data.groupData.name" placeholder="Name">
     </mat-form-field>
 
     <mat-form-field class="col">
         <input matInput type="number" [(ngModel)]="data.groupData.workhours" placeholder="Workhours">
     </mat-form-field>
 
+    <div [hidden]="name.valid"
+        class="alert alert-danger">
+        Name is required
+    </div>
+
+    <mat-dialog-actions>
+        <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+        &nbsp;
+        <button [disabled]="name.invalid" type="submit" [mat-dialog-close]="data.groupData" class="btn btn-sm btn-primary"> Apply </button>
+    </mat-dialog-actions>
+
 </div>
 
-<mat-dialog-actions>
-    <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
-    &nbsp;
-    <button type="submit" [mat-dialog-close]="data.groupData" class="btn btn-sm btn-primary" *ngIf="data.header == 'Select group' || data.header == 'Add group'"> Apply </button>
-</mat-dialog-actions>
+
+
