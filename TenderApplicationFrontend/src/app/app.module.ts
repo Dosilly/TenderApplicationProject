@@ -21,6 +21,11 @@ import { GroupComponent, GroupDialogComponent } from './group/group.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationService } from './services/login.service';
 import { JwtInterceptor } from './helpers/jwt-interceptor';
+import { GroupService } from './services/group.service';
+import { RequirementService } from './services/requirement.service';
+import { TenderService } from './services/tender.service';
+import { UsersTableService } from './services/users-table.service';
+import { WorkhourService } from './services/workhour.service';
 
 
 
@@ -50,6 +55,11 @@ import { JwtInterceptor } from './helpers/jwt-interceptor';
   ],
   providers: [
     AuthGuard,
+    GroupService,
+    RequirementService,
+    TenderService,
+    UsersTableService,
+    WorkhourService,
     AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,

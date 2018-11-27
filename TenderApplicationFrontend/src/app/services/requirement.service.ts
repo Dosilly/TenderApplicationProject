@@ -17,7 +17,7 @@ export class RequirementService {
 
   constructor(private http: HttpClient) { }
 
-  requirementUrl = 'http://localhost:3708/api/requirement';
+  requirementUrl = 'http://localhost:5000/api/requirement';
 
   getRequirements(): Observable<Requirement[]> {
     return this.http.get<Requirement[]>(this.requirementUrl);

@@ -9,6 +9,7 @@ namespace TenderApplicationBackend.Controllers
 {
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
+    [AllowAnonymous]
     [ApiController]
     public class LoginController : ControllerBase
     {
@@ -20,7 +21,6 @@ namespace TenderApplicationBackend.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public IActionResult Login([FromBody] LoginRequest request)
         {
             return Ok(_authenticationModule.Login(request));

@@ -8,7 +8,9 @@ using TenderApplicationBackend.Models.Modules;
 namespace TenderApplicationBackend.Controllers
 {
     [Route("api/[controller]")]
-    //[EnableCors("AllowAll")]
+    [EnableCors("AllowAll")]
+    //[Authorize(Roles = "ADM")]
+    [AllowAnonymous]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -21,7 +23,6 @@ namespace TenderApplicationBackend.Controllers
 
         // GET api/user get users
         [HttpGet]
-        [Authorize(Roles = "ADM")]
         public List<UserEmployeeRequest> Get()
         {
             return _userModule.SelectAllUsers();
@@ -29,7 +30,6 @@ namespace TenderApplicationBackend.Controllers
 
         // POST api/user post new user
         [HttpPost]
-        [Authorize(Roles = "ADM")]
         public void Post([FromBody] UserEmployeeRequest userValue)
         {
             _userModule.AddUser(userValue);
@@ -37,7 +37,6 @@ namespace TenderApplicationBackend.Controllers
 
         // PUT api/user/5   edit user with id = 5
         [HttpPost("{id}")]
-        [Authorize(Roles = "ADM")]
         public void Post(int id, [FromBody] UserEmployeeRequest userValue)
         {
             _userModule.EditUser(id, userValue);
@@ -45,7 +44,6 @@ namespace TenderApplicationBackend.Controllers
 
         // DELETE api/user/5 delete user with id = 5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "ADM")]
         public void Delete(int id)
         {
             _userModule.DeleteUser(id);

@@ -18,8 +18,8 @@ export class GroupService {
 
   constructor(private http: HttpClient) { }
 
-  groupUrl = 'http://localhost:3708/api/group';
-  reqGroupUrl = 'http://localhost:3708/api/reqgroup';
+  groupUrl = 'http://localhost:5000/api/group';
+  reqGroupUrl = 'http://localhost:5000/api/reqgroup';
 
   getGroups(): Observable<Group[]> {
     return this.http.get<Group[]>(this.groupUrl);

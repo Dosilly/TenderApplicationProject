@@ -18,6 +18,7 @@ namespace TenderApplicationBackend
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -76,6 +77,7 @@ namespace TenderApplicationBackend
                 app.UseDeveloperExceptionPage();
             else
                 app.UseHsts();
+
             app.UseCors("AllowAll");
             app.UseAuthentication();
             //app.UseHttpsRedirection();

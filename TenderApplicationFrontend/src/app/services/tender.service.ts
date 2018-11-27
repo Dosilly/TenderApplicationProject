@@ -17,7 +17,7 @@ export class TenderService {
 
   constructor(private http: HttpClient) { }
 
-  tenderUrl = 'http://localhost:3708/api/tender';
+  tenderUrl = 'http://localhost:5000/api/tender';
 
   getTenders(): Observable<Tender[]> {
     return this.http.get<Tender[]>(this.tenderUrl, httpOptions);

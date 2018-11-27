@@ -28,6 +28,10 @@
                                                   || authenticationService.currentUser.role === 'MAN')">Group requirements</a>
         </li>
       </ul>
+      <div>
+        <h5 *ngIf="production">We are running in production!</h5>
+        <h5 *ngIf="!production">We are running in dev version</h5>
+      </div>
       <form class="form-inline my-2 my-lg-0" *ngIf="authenticationService.currentUser">
         <button class="btn btn-danger my-2 my-sm-0" type="button" (click)="logout()">Logout</button>
       </form>

@@ -18,7 +18,7 @@ export class UsersTableService {
 
   constructor(private http: HttpClient) { }
 
-  userUrl = 'http://localhost:3708/api/user';
+  userUrl = 'http://localhost:5000/api/user';
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl); // GET api/user

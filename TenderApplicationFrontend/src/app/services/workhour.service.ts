@@ -17,7 +17,7 @@ export class WorkhourService {
 
   constructor(private http: HttpClient) { }
 
-  workhourUrl = 'http://localhost:3708/api/workhour';
+  workhourUrl = 'http://localhost:5000/api/workhour';
 
   getWorkhoursByRequirementID(reqId: number): Observable<Workhour[]> {
     const url = `${this.workhourUrl}/` + reqId;
