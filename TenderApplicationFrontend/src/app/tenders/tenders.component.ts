@@ -85,7 +85,6 @@ export class TendersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== 'return') {
         this.tenderService.editTender(result).subscribe(result2 => {
-          console.log(result2);
           this.getTenders(); // Updating table
         });
       }
@@ -94,7 +93,6 @@ export class TendersComponent implements OnInit {
 
   editRequirement(requirement: Requirement) {
     this.dialogEditRequirement = JSON.parse(JSON.stringify(requirement));
-    console.log(requirement);
 
       const dialogRef = this.dialog.open(TenderDialogComponent, {
       width: '500px',
@@ -105,7 +103,6 @@ export class TendersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== 'return') {
         this.requirementService.editRequirement(result).subscribe(result2 => {
-          console.log(result2);
           this.getRequirementByTenderID(requirement.tenderId); // Updating table
         });
       }
@@ -126,7 +123,6 @@ export class TendersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== 'return') {
         this.tenderService.addTender(result).subscribe(post => {
-          console.log(post);
           this.getTenders(); // Updating table
         });
       }
@@ -146,7 +142,6 @@ export class TendersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== 'return') {
         this.requirementService.addRequirement(result).subscribe(post => {
-          console.log(post);
           this.getRequirementByTenderID(tender.tenderId); // Updating table
         });
       }
@@ -157,7 +152,6 @@ export class TendersComponent implements OnInit {
   deleteTender(tender: Tender) {
     if (confirm('Are you sure to delete this tender?')) {
       this.tenderService.deleteTender(tender).subscribe(result => {
-        console.log(result);
         this.getTenders(); // Updating table
       });
     }
@@ -166,7 +160,6 @@ export class TendersComponent implements OnInit {
   deleteRequirement(requirement: Requirement) {
     if (confirm('Are you sure to delete this requirement?')) {
       this.requirementService.deleteRequirement(requirement).subscribe(result => {
-        console.log(result);
         this.getRequirementByTenderID(requirement.tenderId); // Updating table
       });
     }
@@ -177,6 +170,7 @@ export class TendersComponent implements OnInit {
 @Component({ // Component for popups showed after button click
   selector: 'app-tender-dialog',
   templateUrl: 'tenderDialog.component.html',
+  styleUrls: ['./tenders.component.css'],
 })
 export class TenderDialogComponent {
 

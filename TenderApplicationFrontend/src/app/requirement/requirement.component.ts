@@ -77,6 +77,7 @@ export class RequirementComponent implements OnInit {
 
     this.dialog.open(WorkhourDialogComponent, {
       width: '800px',
+      height: 'auto',
       disableClose: true,
       data: { requirementData: this.dialogRequirementDetail, header: 'Requirement details'}
     });
@@ -90,6 +91,7 @@ export class RequirementComponent implements OnInit {
 
     const dialogRef = this.dialog.open(WorkhourDialogComponent, {
       width: '500px',
+      height: 'auto',
       disableClose: true,
       data: { workhourData: this.dialogAddMeasureWH, header: 'Add workhours'}
     });
@@ -118,6 +120,7 @@ export class RequirementComponent implements OnInit {
 
     const dialogRef = this.dialog.open(WorkhourDialogComponent, {
       width: '500px',
+      height: 'auto',
       disableClose: true,
       data: { workhourData: this.dialogEditMeasureWH, header: 'Edit workhours'}
     });
@@ -138,6 +141,7 @@ export class RequirementComponent implements OnInit {
 @Component({ // Component for popups showed after button click
   selector: 'app-tender-dialog',
   templateUrl: 'workhourDialog.component.html',
+  styleUrls: ['./requirement.component.css'],
 })
 export class WorkhourDialogComponent {
 

@@ -12,6 +12,10 @@
     <mat-form-field class="col">
         <textarea readonly matInput [(ngModel)]="data.requirementData.explanation" placeholder="Explanation"></textarea>
     </mat-form-field>
+
+    <mat-dialog-actions>
+        <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+    </mat-dialog-actions>
 </div>
 
 <div mat-dialog-content *ngIf="data.header == 'Select group'">
@@ -25,7 +29,7 @@
 
     <div [hidden]="groupId.valid"
         class="alert alert-danger">
-        Name is required
+        Group is required
     </div>
 
     <mat-dialog-actions>

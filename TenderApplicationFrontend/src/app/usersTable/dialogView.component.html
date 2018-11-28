@@ -3,7 +3,7 @@
 <!--Edit user forms case-->
 <div mat-dialog-content *ngIf="data.header === 'Edit user'">
     <mat-form-field class="col">
-        <input matInput [(ngModel)]="data.userData.username" placeholder="Username">
+        <input matInput required #username="ngModel" [(ngModel)]="data.userData.username" placeholder="Username">
     </mat-form-field>
 
     <mat-form-field class="col">
@@ -11,53 +11,59 @@
     </mat-form-field>
 
     <mat-form-field class="col">
-        <input matInput [(ngModel)]="data.userData.fName" placeholder="First name">
+        <input matInput required #fname="ngModel" [(ngModel)]="data.userData.fName" placeholder="First name">
     </mat-form-field>
 
     <mat-form-field class="col">
-        <input matInput [(ngModel)]="data.userData.lName" placeholder="Last name">
+        <input matInput required #lname="ngModel" [(ngModel)]="data.userData.lName" placeholder="Last name">
     </mat-form-field>
 
     <mat-form-field class="col">
-        <select matNativeControl required placeholder="Select role" [(ngModel)]="data.userData.role">
+        <select matNativeControl required #role="ngModel" placeholder="Select role" [(ngModel)]="data.userData.role">
             <option value="ADM">Administrator</option>
             <option value="ANAL">Analyst</option>
             <option value="MAN">Manager</option>
             <option value="OFF">Officer</option>
         </select>
     </mat-form-field>
+
+    <mat-dialog-actions>
+        <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+        &nbsp;
+        <button [disabled]='role.invalid || fname.invalid || lname.invalid || username.invalid' [mat-dialog-close]="data.userData" class="btn btn-sm btn-primary"> Apply </button>
+    </mat-dialog-actions>
 </div>
 
 <!--Add user forms case-->
 <div mat-dialog-content *ngIf="data.header === 'Add user'">
     <mat-form-field class="col">
-        <input matInput [(ngModel)]="data.userData.username" placeholder="Username">
+        <input matInput required #username="ngModel" [(ngModel)]="data.userData.username" placeholder="Username">
     </mat-form-field>
 
     <mat-form-field class="col">
-        <input matInput type="password" [(ngModel)]="data.userData.userPass" placeholder="Password">
+        <input matInput required #password="ngModel" type="password" name="password" required #password="ngModel" [(ngModel)]="data.userData.userPass" placeholder="Password">
     </mat-form-field>
 
     <mat-form-field class="col">
-        <input matInput [(ngModel)]="data.userData.fName" placeholder="First name">
+        <input matInput required #fname="ngModel" [(ngModel)]="data.userData.fName" placeholder="First name">
     </mat-form-field>
 
     <mat-form-field class="col">
-        <input matInput [(ngModel)]="data.userData.lName" placeholder="Last name">
+        <input matInput required #lname="ngModel" [(ngModel)]="data.userData.lName" placeholder="Last name">
     </mat-form-field>
 
     <mat-form-field class="col">
-        <select matNativeControl required placeholder="Select role" [(ngModel)]="data.userData.role">
+        <select matNativeControl required  placeholder="Select role" [(ngModel)]="data.userData.role" #role="ngModel">
             <option value="ADM">Administrator</option>
             <option value="ANAL">Analyst</option>
             <option value="MAN">Manager</option>
             <option value="OFF">Officer</option>
         </select>
     </mat-form-field>
+
+    <mat-dialog-actions>
+        <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
+        &nbsp;
+        <button [disabled]='password.invalid || role.invalid || fname.invalid || lname.invalid || username.invalid' [mat-dialog-close]="data.userData" class="btn btn-sm btn-primary"> Apply </button>
+    </mat-dialog-actions>
 </div>
-<br>
-<mat-dialog-actions>
-    <button class="btn btn-sm btn-secondary" (click)="close()"> Return </button>
-    &nbsp;
-    <button [mat-dialog-close]="data.userData" class="btn btn-sm btn-primary"> Apply </button>
-</mat-dialog-actions>

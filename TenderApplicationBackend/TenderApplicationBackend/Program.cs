@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using TenderApplicationBackend.https;
 
 namespace TenderApplicationBackend
 {
@@ -15,11 +16,12 @@ namespace TenderApplicationBackend
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
-                .UseKestrel()
+                .UseKestrel(options => options.ConfigureEndpoints())
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls("http://*:3708")
                 .UseUrls("http://*:5000")
                 .UseIISIntegration()
+               // .UseSetting("https_port", "8080")
                 .UseStartup<Startup>();
 
         }

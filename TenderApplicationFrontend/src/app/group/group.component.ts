@@ -80,6 +80,7 @@ export class GroupComponent implements OnInit {
 
     this.dialog.open(GroupDialogComponent, {
       width: '800px',
+      height: 'auto',
       disableClose: true,
       data: { requirementData: this.dialogRequirementDetail, header: 'Requirement details'}
     });
@@ -126,6 +127,7 @@ export class GroupComponent implements OnInit {
 
     const dialogRef = this.dialog.open(GroupDialogComponent, {
       width: '500px',
+      height: 'auto',
       disableClose: true,
       data: { groupData: this.dialogAddGroup, header: 'Add group'}
     });

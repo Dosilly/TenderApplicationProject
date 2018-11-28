@@ -48,3 +48,8 @@ tr.tender-row:not(.expanded-row):active {
 .tender-description-attribution {
   opacity: 0.5;
 }
+
+.mat-dialog-content {
+  display: contents;
+}
+

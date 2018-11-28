@@ -50,3 +50,7 @@
   .requirement-description{
     padding: 16px;
   }
+
+  .mat-dialog-content {
+    display: contents;
+  }
