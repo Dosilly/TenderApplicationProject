@@ -16,7 +16,8 @@ namespace TenderApplicationBackend
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
-                .UseKestrel(options => options.ConfigureEndpoints())
+                .UseKestrel()
+           //     .UseKestrel(options => options.ConfigureEndpoints())
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls("http://*:3708")
                 .UseUrls("http://*:5000")

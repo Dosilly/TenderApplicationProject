@@ -85,20 +85,20 @@ namespace TenderApplicationBackend
             else
                 app.UseHsts();
 
-            int? httpsPort = null;
-            var httpsSection = Configuration.GetSection("HttpServer:Endpoints:Https");
-            if (httpsSection.Exists())
-            {
-                var httpsEndpoint = new EndpointConfiguration();
-                httpsSection.Bind(httpsEndpoint);
-                httpsPort = httpsEndpoint.Port;
-            }
-            var statusCode = env.IsDevelopment() ? StatusCodes.Status302Found : StatusCodes.Status301MovedPermanently;
-            app.UseRewriter(new RewriteOptions().AddRedirectToHttps(statusCode, httpsPort));
+            //int? httpsPort = null;
+            //var httpsSection = Configuration.GetSection("HttpServer:Endpoints:Https");
+            //if (httpsSection.Exists())
+            //{
+            //    var httpsEndpoint = new EndpointConfiguration();
+            //    httpsSection.Bind(httpsEndpoint);
+            //    httpsPort = httpsEndpoint.Port;
+            //}
+            //var statusCode = env.IsDevelopment() ? StatusCodes.Status302Found : StatusCodes.Status301MovedPermanently;
+            //app.UseRewriter(new RewriteOptions().AddRedirectToHttps(statusCode, httpsPort));
 
             app.UseCors("AllowAll");
             app.UseAuthentication();
-            app.UseHttpsRedirection();
+           //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
