@@ -9,7 +9,6 @@ namespace TenderApplicationBackend.Models
     public class ConnectionFactory
     {
         private readonly IConfiguration _configuration;
-        public static string DockerHostMachineIpAddress => Dns.GetHostAddresses(new Uri("http://docker.for.win.localhost").Host)[0].ToString();
 
         public ConnectionFactory(IConfiguration configuration)
         {

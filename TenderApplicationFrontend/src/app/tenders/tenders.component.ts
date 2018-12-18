@@ -40,7 +40,7 @@ export class TendersComponent implements OnInit {
 
   loading = false;
   columns: string[];
-  reqColumns = ['reqId', 'name', 'description', 'explanation', 'actions'];
+  reqColumns = ['reqId', 'name', 'description', 'explanation', 'totalwh' , 'actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
   @ViewChild(MatSort) sort: MatSort; // sorting feature by table

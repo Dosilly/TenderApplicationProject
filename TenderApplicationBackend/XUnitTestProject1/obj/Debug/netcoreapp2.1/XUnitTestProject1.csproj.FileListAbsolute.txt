@@ -1,0 +1,14 @@
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.deps.json
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.runtimeconfig.json
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.runtimeconfig.dev.json
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.dll
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\XUnitTestProject1.pdb
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.csprojAssemblyReference.cache
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.csproj.CoreCompileInputs.cache
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.AssemblyInfoInputs.cache
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.AssemblyInfo.cs
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.dll
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.pdb
