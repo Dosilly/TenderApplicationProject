@@ -1,4 +1,13 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/RunConfigs/Active/@EntryValue">76CAAD55B329AF448B3BC2FFC28DFE78</s:String>
+	<s:Boolean x:Key="/Default/RunConfigs/Config/=76CAAD55B329AF448B3BC2FFC28DFE78/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/RunConfigs/Config/=76CAAD55B329AF448B3BC2FFC28DFE78/Name/@EntryValue">XUnitTestProject1</s:String>
+	<s:String x:Key="/Default/RunConfigs/Config/=76CAAD55B329AF448B3BC2FFC28DFE78/ProjectGuid/@EntryValue">F394FA3AB715BB48AF37B8084923AAB0</s:String>
+	<s:String x:Key="/Default/RunConfigs/Config/=76CAAD55B329AF448B3BC2FFC28DFE78/Type/@EntryValue">project</s:String>
+	<s:Boolean x:Key="/Default/RunConfigs/Config/=BEE369DBB570894A8FEB0A8E74131ED6/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/RunConfigs/Config/=BEE369DBB570894A8FEB0A8E74131ED6/Name/@EntryValue">XUnitTestProject1</s:String>
+	<s:String x:Key="/Default/RunConfigs/Config/=BEE369DBB570894A8FEB0A8E74131ED6/ProjectGuid/@EntryValue">F394FA3AB715BB48AF37B8084923AAB0</s:String>
+	<s:String x:Key="/Default/RunConfigs/Config/=BEE369DBB570894A8FEB0A8E74131ED6/Type/@EntryValue">project</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Dtos/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Emlopyee/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=hashn/@EntryIndexedValue">True</s:Boolean>

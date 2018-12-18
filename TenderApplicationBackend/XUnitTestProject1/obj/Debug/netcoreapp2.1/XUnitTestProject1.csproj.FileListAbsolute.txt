@@ -12,3 +12,6 @@ C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend
 C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.AssemblyInfo.cs
 C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.dll
 C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.pdb
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\TenderApplicationBackend.dll
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\bin\Debug\netcoreapp2.1\TenderApplicationBackend.pdb
+C:\Users\Dosilly\Documents\Git\TenderApplicationProject\TenderApplicationBackend\XUnitTestProject1\obj\Debug\netcoreapp2.1\XUnitTestProject1.csproj.CopyComplete

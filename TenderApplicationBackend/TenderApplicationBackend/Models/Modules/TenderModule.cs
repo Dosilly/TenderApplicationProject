@@ -8,12 +8,16 @@ namespace TenderApplicationBackend.Models.Modules
     public class TenderModule
     {
         private readonly TenderRepository _tenderRepository;
-        private readonly EmployeeRepository _employeeRepository;  
+        private readonly EmployeeRepository _employeeRepository;
+        private readonly RequirementRepository _requirementRepository;
+        private readonly WorkhourRepository _workhourRepository;
 
-        public TenderModule(TenderRepository tenderRepository, EmployeeRepository employeeRepository)
+        public TenderModule(TenderRepository tenderRepository, EmployeeRepository employeeRepository, RequirementRepository requirementRepository, WorkhourRepository workhourRepository)
         {
             _tenderRepository = tenderRepository;
             _employeeRepository = employeeRepository;
+            _requirementRepository = requirementRepository;
+            _workhourRepository = workhourRepository;
         }
 
         public List<TenderRequest> SelectAllTenders()
@@ -33,6 +37,8 @@ namespace TenderApplicationBackend.Models.Modules
                 };
                 var employee = _employeeRepository.SelectEmployeeById(tenderRequest.EmployeeId);
                 tenderRequest.Employee = employee.FName + " " + employee.LName;
+
+                tenderRequest.TotalWh = EstimateTotalWorkhours(tenderRequest.TenderId);
                 listOfTenders.Add(tenderRequest);
 
             }
@@ -68,6 +74,36 @@ namespace TenderApplicationBackend.Models.Modules
             };
 
             _tenderRepository.EditTender(tender);
+        }
+
+        public int EstimateTotalWorkhours(int tenderId)
+        {
+            var totalwh = 0;
+
+            var requirements = _requirementRepository.SelectRequirementsByTenderId(tenderId);
+
+
+            foreach (var r in requirements)
+            {
+                var workhours = _workhourRepository.SelectWorkhoursByRequirementId(r.Id);
+                var total = 0;
+                var average = 0;
+
+                foreach (var w in workhours)
+                {
+                    total += w.Workhours;
+                }
+
+                if (total != 0)
+                {
+                    average = total / workhours.Count;
+                    totalwh += average;
+                }
+
+
+            }
+
+            return totalwh;
         }
     }
 }

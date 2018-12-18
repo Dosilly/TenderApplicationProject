@@ -38,7 +38,7 @@ export class TenderService {
   }
 
   getColumns(): string[] {
-    return ['tenderId', 'tenderName', 'employee', 'state', 'actions'];
+    return ['tenderId', 'tenderName', 'employee', 'totalWh', 'state', 'actions'];
   }
 
 }

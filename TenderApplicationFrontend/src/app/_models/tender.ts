@@ -3,5 +3,6 @@ export class Tender {
     tenderName: string;
     employeeId: number;
     employee: string;
+    totalWh: number;
     state: string;
 }

@@ -40,7 +40,7 @@ export class TendersComponent implements OnInit {
 
   loading = false;
   columns: string[];
-  reqColumns = ['reqId', 'name', 'description', 'explanation', 'totalwh' , 'actions'];
+  reqColumns = ['reqId', 'name', 'description', 'explanation', 'actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator; // paginator for table
   @ViewChild(MatSort) sort: MatSort; // sorting feature by table
@@ -69,6 +69,14 @@ export class TendersComponent implements OnInit {
       .subscribe(req => {
         this.requirements$ = req as Requirement[];
         this.loading = false;
+      });
+  }
+
+  getRequirementsByTenderID(tenderId: number): any {
+    this.loading = true;
+    this.requirementService.getRequirementsByTenderID(tenderId)
+      .subscribe(req => {
+        return req as Requirement[];
       });
   }
 
