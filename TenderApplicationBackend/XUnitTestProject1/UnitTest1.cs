@@ -1,44 +1,47 @@
-using System;
-using Microsoft.Extensions.Configuration;
-using TenderApplicationBackend.Models;
+using System.Collections.Generic;
+using FluentAssertions;
+using Moq;
+using TenderApplicationBackend.Models.Entities;
 using TenderApplicationBackend.Models.Modules;
 using TenderApplicationBackend.Models.Repositories;
 using Xunit;
+using Xunit.Sdk;
 
 namespace XUnitTestProject1
 {
-    public class TenderModule_IsWorkhoursEqual
+
+    public class TenderModuleTest
     {
-        private readonly TenderModule _tenderModule;
-        private readonly TenderRepository _tenderRepository;
-        private readonly EmployeeRepository _employeeRepository;
-        private readonly RequirementRepository _requirementRepository;
-        private readonly WorkhourRepository _workhourRepository;
-        private ConnectionFactory _connectionFactory;
-        private readonly IConfiguration _configuration;
-
-        public TenderModule_IsWorkhoursEqual(IConfiguration configuration)
-        {
-            _configuration = configuration;  
-            _connectionFactory = new ConnectionFactory(_configuration);
-            _tenderRepository = new TenderRepository(_connectionFactory);
-            _employeeRepository = new EmployeeRepository(_connectionFactory);
-            _requirementRepository = new RequirementRepository(_connectionFactory);
-            _workhourRepository = new WorkhourRepository(_connectionFactory);
-            _tenderModule = new TenderModule(_tenderRepository, _employeeRepository, _requirementRepository, _workhourRepository);
-        }
-
         [Fact]
-        public void PassingTest()
+        public void IsWorkhoursEqual()
         {
-            Assert.Equal(30, _tenderModule.EstimateTotalWorkhours(2));
-        }
+            
+            //Arrange
+            var reqMock = new Mock<IRequirementRepository>();
+            var tenderMock = new Mock<ITenderRepository>();
+            var empMock = new Mock<IEmployeeRepository>();
+            var whMock = new Mock<IWorkhourRepository>();
 
+            reqMock.Setup(x => x.SelectRequirementsByTenderId(1)).Returns(() => new List<Requirement>
+            {
+                new Requirement{Description = "abc",Explanation = "abc", Id = 1, Name = "abc", TenderId = 1}
+            });
 
+            whMock.Setup(x => x.SelectWorkhoursByRequirementId(1)).Returns(() => new List<Workhour>
+            {
+                new Workhour{EmployeeId = 1,Id = 1,ReqId = 1,Workhours = 30},
+                new Workhour{EmployeeId = 1,Id = 2,ReqId = 1,Workhours = 70}
+            });
 
-        private static int Add(int x, int y)
-        {
-            return x + y;
+            var tenderModule = new TenderModule(tenderMock.Object, empMock.Object, reqMock.Object, whMock.Object);
+
+            // Act
+            var result =  tenderModule.EstimateTotalWorkhours(1);
+
+            //Assert
+            result.Should().BeOfType(typeof(int));
+            result.Should().Be(50);
+            result.Should().NotBe(null);
         }
     }
 }

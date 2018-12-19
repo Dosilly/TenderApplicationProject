@@ -56,6 +56,7 @@ namespace TenderApplicationBackend
                     };
                 });
 
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<ConnectionFactory>();
             services.AddSingleton<UserModule>();
@@ -73,6 +74,13 @@ namespace TenderApplicationBackend
             services.AddSingleton<ReqgroupRepository>();
             services.AddSingleton<AuthenticationModule>();
 
+            services.AddTransient<IRequirementRepository, RequirementRepository>();
+
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddTransient<ITenderRepository, TenderRepository>();
+
+            services.AddTransient<IWorkhourRepository, WorkhourRepository>();
 
 
         }

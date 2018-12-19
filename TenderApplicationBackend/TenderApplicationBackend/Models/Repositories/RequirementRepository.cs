@@ -5,7 +5,7 @@ using TenderApplicationBackend.Models.Entities;
 
 namespace TenderApplicationBackend.Models.Repositories
 {
-    public class RequirementRepository
+    public class RequirementRepository: IRequirementRepository
     {
         private readonly ConnectionFactory _connectionFactory;
 

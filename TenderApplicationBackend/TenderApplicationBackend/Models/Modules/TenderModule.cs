@@ -7,12 +7,12 @@ namespace TenderApplicationBackend.Models.Modules
 {
     public class TenderModule
     {
-        private readonly TenderRepository _tenderRepository;
-        private readonly EmployeeRepository _employeeRepository;
-        private readonly RequirementRepository _requirementRepository;
-        private readonly WorkhourRepository _workhourRepository;
+        private readonly ITenderRepository _tenderRepository;
+        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IRequirementRepository _requirementRepository;
+        private readonly IWorkhourRepository _workhourRepository;
 
-        public TenderModule(TenderRepository tenderRepository, EmployeeRepository employeeRepository, RequirementRepository requirementRepository, WorkhourRepository workhourRepository)
+        public TenderModule(ITenderRepository tenderRepository, IEmployeeRepository employeeRepository, IRequirementRepository requirementRepository, IWorkhourRepository workhourRepository)
         {
             _tenderRepository = tenderRepository;
             _employeeRepository = employeeRepository;
@@ -87,18 +87,15 @@ namespace TenderApplicationBackend.Models.Modules
             {
                 var workhours = _workhourRepository.SelectWorkhoursByRequirementId(r.Id);
                 var total = 0;
-                var average = 0;
 
                 foreach (var w in workhours)
                 {
                     total += w.Workhours;
                 }
 
-                if (total != 0)
-                {
-                    average = total / workhours.Count;
-                    totalwh += average;
-                }
+                if (total == 0) continue;
+                var average = total / workhours.Count;
+                totalwh += average;
 
 
             }
@@ -106,4 +103,6 @@ namespace TenderApplicationBackend.Models.Modules
             return totalwh;
         }
     }
+
+
 }

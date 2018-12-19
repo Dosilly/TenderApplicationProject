@@ -5,7 +5,7 @@ using TenderApplicationBackend.Models.Entities;
 
 namespace TenderApplicationBackend.Models.Repositories
 {
-    public class WorkhourRepository
+    public class WorkhourRepository: IWorkhourRepository
     {
         private readonly ConnectionFactory _connectionFactory;
 
