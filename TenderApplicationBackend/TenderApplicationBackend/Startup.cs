@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using TenderApplicationBackend.https;
 using TenderApplicationBackend.Models;
+using TenderApplicationBackend.Models.Interfaces;
 using TenderApplicationBackend.Models.Modules;
 using TenderApplicationBackend.Models.Repositories;
 
@@ -75,12 +76,11 @@ namespace TenderApplicationBackend
             services.AddSingleton<AuthenticationModule>();
 
             services.AddTransient<IRequirementRepository, RequirementRepository>();
-
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
-
             services.AddTransient<ITenderRepository, TenderRepository>();
-
             services.AddTransient<IWorkhourRepository, WorkhourRepository>();
+            services.AddTransient<IGroupRepository, GroupRepository>();
+            services.AddTransient<IReqgroupRepository, ReqgroupRepository>();
 
 
         }

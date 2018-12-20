@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TenderApplicationBackend.Models.Dtos;
 using TenderApplicationBackend.Models.Entities;
+using TenderApplicationBackend.Models.Interfaces;
 using TenderApplicationBackend.Models.Repositories;
 
 namespace TenderApplicationBackend.Models.Modules
@@ -11,13 +13,15 @@ namespace TenderApplicationBackend.Models.Modules
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IRequirementRepository _requirementRepository;
         private readonly IWorkhourRepository _workhourRepository;
+        private readonly IGroupRepository _groupRepository;
 
-        public TenderModule(ITenderRepository tenderRepository, IEmployeeRepository employeeRepository, IRequirementRepository requirementRepository, IWorkhourRepository workhourRepository)
+        public TenderModule(ITenderRepository tenderRepository, IEmployeeRepository employeeRepository, IRequirementRepository requirementRepository, IWorkhourRepository workhourRepository, IGroupRepository groupRepository)
         {
             _tenderRepository = tenderRepository;
             _employeeRepository = employeeRepository;
             _requirementRepository = requirementRepository;
             _workhourRepository = workhourRepository;
+            _groupRepository = groupRepository;
         }
 
         public List<TenderRequest> SelectAllTenders()
@@ -79,14 +83,20 @@ namespace TenderApplicationBackend.Models.Modules
         public int EstimateTotalWorkhours(int tenderId)
         {
             var totalwh = 0;
-
             var requirements = _requirementRepository.SelectRequirementsByTenderId(tenderId);
-
 
             foreach (var r in requirements)
             {
-                var workhours = _workhourRepository.SelectWorkhoursByRequirementId(r.Id);
                 var total = 0;
+                var reqgroups = _groupRepository.SelectGroupsByRequirementId(r.Id);
+
+                if (reqgroups != null && reqgroups.Count > 0)
+                {
+                    totalwh += reqgroups[0].Workhours;
+                    continue;
+                }
+
+                var workhours = _workhourRepository.SelectWorkhoursByRequirementId(r.Id);
 
                 foreach (var w in workhours)
                 {
@@ -96,8 +106,6 @@ namespace TenderApplicationBackend.Models.Modules
                 if (total == 0) continue;
                 var average = total / workhours.Count;
                 totalwh += average;
-
-
             }
 
             return totalwh;

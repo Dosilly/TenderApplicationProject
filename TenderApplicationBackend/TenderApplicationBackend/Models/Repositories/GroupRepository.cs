@@ -5,7 +5,7 @@ using TenderApplicationBackend.Models.Entities;
 
 namespace TenderApplicationBackend.Models.Repositories
 {
-    public class GroupRepository
+    public class GroupRepository : IGroupRepository
     {
         private readonly ConnectionFactory _connectionFactory;
 
