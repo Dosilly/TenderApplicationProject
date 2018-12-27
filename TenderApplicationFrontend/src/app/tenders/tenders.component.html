@@ -97,6 +97,6 @@
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="requirement-row"></tr>
     </table>
 
-    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="onPaginateChange($event)"></mat-paginator>
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     <button type="button" class="btn btn-primary" (click)="addTender()">Add new</button>
 </div>

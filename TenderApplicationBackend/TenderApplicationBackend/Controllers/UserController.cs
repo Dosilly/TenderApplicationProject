@@ -9,8 +9,7 @@ namespace TenderApplicationBackend.Controllers
 {
     [Route("api/[controller]")]
     [EnableCors("AllowAll")]
-    //[Authorize(Roles = "ADM")]
-    [AllowAnonymous]
+    [Authorize(Roles = "ADM")]
     [ApiController]
     public class UserController : ControllerBase
     {

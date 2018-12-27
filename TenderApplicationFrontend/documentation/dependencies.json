@@ -1,0 +1,919 @@
+[
+  {
+    "name": "AppModule",
+    "file": "src/app/app.module.ts",
+    "providers": [
+      {
+        "name": "AuthGuard"
+      },
+      {
+        "name": "GroupService"
+      },
+      {
+        "name": "RequirementService"
+      },
+      {
+        "name": "TenderService"
+      },
+      {
+        "name": "UsersTableService"
+      },
+      {
+        "name": "WorkhourService"
+      },
+      {
+        "name": "AuthenticationService"
+      },
+      {
+        "name": "{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi:  }"
+      }
+    ],
+    "declarations": [
+      {
+        "name": "AppComponent",
+        "file": "src/app/app.component.ts",
+        "selector": "app-root",
+        "providers": [],
+        "templateUrl": [
+          "app.component.html"
+        ],
+        "styleUrls": [
+          "app.component.css"
+        ],
+        "__raw": [
+          {
+            "pos": 336,
+            "end": 360,
+            "flags": 0,
+            "kind": 269,
+            "name": {
+              "pos": 336,
+              "end": 348,
+              "flags": 0,
+              "escapedText": "selector"
+            },
+            "initializer": {
+              "pos": 349,
+              "end": 360,
+              "flags": 0,
+              "kind": 9,
+              "text": "app-root"
+            }
+          },
+          {
+            "pos": 361,
+            "end": 400,
+            "flags": 0,
+            "kind": 269,
+            "name": {
+              "pos": 361,
+              "end": 376,
+              "flags": 0,
+              "escapedText": "templateUrl"
+            },
+            "initializer": {
+              "pos": 377,
+              "end": 400,
+              "flags": 0,
+              "kind": 9,
+              "text": "./app.component.html"
+            }
+          },
+          {
+            "pos": 401,
+            "end": 439,
+            "flags": 0,
+            "kind": 269,
+            "name": {
+              "pos": 401,
+              "end": 414,
+              "flags": 0,
+              "escapedText": "styleUrls"
+            },
+            "initializer": {
+              "pos": 415,
+              "end": 439,
+              "flags": 0,
+              "kind": 182,
+              "elements": [
+                {
+                  "pos": 417,
+                  "end": 438,
+                  "flags": 0,
+                  "kind": 9,
+                  "text": "./app.component.css"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "UsersTableComponent"
+      },
+      {
+        "name": "DialogOverviewComponent"
+      },
+      {
+        "name": "TenderDialogComponent"
+      },
+      {
+        "name": "LoginComponent"
+      },
+      {
+        "name": "TendersComponent"
+      },
+      {
+        "name": "RequirementComponent"
+      },
+      {
+        "name": "WorkhourDialogComponent"
+      },
+      {
+        "name": "GroupDialogComponent"
+      },
+      {
+        "name": "GroupComponent"
+      }
+    ],
+    "imports": [
+      {
+        "name": "BrowserModule"
+      },
+      {
+        "name": "FormsModule"
+      },
+      {
+        "name": "HttpClientModule"
+      },
+      {
+        "name": "BrowserAnimationsModule"
+      },
+      {
+        "name": "MaterialModule"
+      },
+      {
+        "ns": "RouterModule",
+        "name": "RouterModule.forRoot(args)"
+      }
+    ],
+    "exports": [],
+    "bootstrap": [
+      {
+        "name": "AppComponent"
+      }
+    ],
+    "__raw": [
+      {
+        "pos": 1631,
+        "end": 1908,
+        "flags": 0,
+        "kind": 269,
+        "name": {
+          "pos": 1631,
+          "end": 1647,
+          "flags": 0,
+          "escapedText": "declarations"
+        },
+        "initializer": {
+          "pos": 1648,
+          "end": 1908,
+          "flags": 0,
+          "kind": 182,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 1650,
+              "end": 1668,
+              "flags": 0,
+              "escapedText": "AppComponent"
+            },
+            {
+              "pos": 1669,
+              "end": 1694,
+              "flags": 0,
+              "escapedText": "UsersTableComponent"
+            },
+            {
+              "pos": 1695,
+              "end": 1724,
+              "flags": 0,
+              "escapedText": "DialogOverviewComponent"
+            },
+            {
+              "pos": 1725,
+              "end": 1752,
+              "flags": 0,
+              "escapedText": "TenderDialogComponent"
+            },
+            {
+              "pos": 1753,
+              "end": 1773,
+              "flags": 0,
+              "escapedText": "LoginComponent"
+            },
+            {
+              "pos": 1774,
+              "end": 1796,
+              "flags": 0,
+              "escapedText": "TendersComponent"
+            },
+            {
+              "pos": 1797,
+              "end": 1823,
+              "flags": 0,
+              "escapedText": "RequirementComponent"
+            },
+            {
+              "pos": 1824,
+              "end": 1853,
+              "flags": 0,
+              "escapedText": "WorkhourDialogComponent"
+            },
+            {
+              "pos": 1854,
+              "end": 1880,
+              "flags": 0,
+              "escapedText": "GroupDialogComponent"
+            },
+            {
+              "pos": 1881,
+              "end": 1901,
+              "flags": 0,
+              "escapedText": "GroupComponent"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 1909,
+        "end": 2091,
+        "flags": 0,
+        "kind": 269,
+        "name": {
+          "pos": 1909,
+          "end": 1920,
+          "flags": 0,
+          "escapedText": "imports"
+        },
+        "initializer": {
+          "pos": 1921,
+          "end": 2091,
+          "flags": 0,
+          "kind": 182,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 1923,
+              "end": 1942,
+              "flags": 0,
+              "escapedText": "BrowserModule"
+            },
+            {
+              "pos": 1943,
+              "end": 1960,
+              "flags": 0,
+              "escapedText": "FormsModule"
+            },
+            {
+              "pos": 1961,
+              "end": 1983,
+              "flags": 0,
+              "escapedText": "HttpClientModule"
+            },
+            {
+              "pos": 1984,
+              "end": 2013,
+              "flags": 0,
+              "escapedText": "BrowserAnimationsModule"
+            },
+            {
+              "pos": 2014,
+              "end": 2034,
+              "flags": 0,
+              "escapedText": "MaterialModule"
+            },
+            {
+              "pos": 2035,
+              "end": 2086,
+              "flags": 0,
+              "kind": 186,
+              "expression": {
+                "pos": 2035,
+                "end": 2061,
+                "flags": 0,
+                "kind": 184,
+                "expression": {
+                  "pos": 2035,
+                  "end": 2053,
+                  "flags": 0,
+                  "escapedText": "RouterModule"
+                },
+                "name": {
+                  "pos": 2054,
+                  "end": 2061,
+                  "flags": 0,
+                  "escapedText": "forRoot"
+                }
+              },
+              "arguments": [
+                {
+                  "pos": 2062,
+                  "end": 2079,
+                  "flags": 0,
+                  "escapedText": "appRoutes"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "pos": 2092,
+        "end": 2369,
+        "flags": 0,
+        "kind": 269,
+        "name": {
+          "pos": 2092,
+          "end": 2105,
+          "flags": 0,
+          "escapedText": "providers"
+        },
+        "initializer": {
+          "pos": 2106,
+          "end": 2369,
+          "flags": 0,
+          "kind": 182,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 2108,
+              "end": 2123,
+              "flags": 0,
+              "escapedText": "AuthGuard"
+            },
+            {
+              "pos": 2124,
+              "end": 2142,
+              "flags": 0,
+              "escapedText": "GroupService"
+            },
+            {
+              "pos": 2143,
+              "end": 2167,
+              "flags": 0,
+              "escapedText": "RequirementService"
+            },
+            {
+              "pos": 2168,
+              "end": 2187,
+              "flags": 0,
+              "escapedText": "TenderService"
+            },
+            {
+              "pos": 2188,
+              "end": 2211,
+              "flags": 0,
+              "escapedText": "UsersTableService"
+            },
+            {
+              "pos": 2212,
+              "end": 2233,
+              "flags": 0,
+              "escapedText": "WorkhourService"
+            },
+            {
+              "pos": 2234,
+              "end": 2261,
+              "flags": 0,
+              "escapedText": "AuthenticationService"
+            },
+            {
+              "pos": 2262,
+              "end": 2363,
+              "flags": 0,
+              "kind": 183,
+              "multiLine": true,
+              "properties": [
+                {
+                  "pos": 2269,
+                  "end": 2303,
+                  "flags": 0,
+                  "kind": 269,
+                  "name": {
+                    "pos": 2269,
+                    "end": 2284,
+                    "flags": 0,
+                    "escapedText": "provide"
+                  },
+                  "initializer": {
+                    "pos": 2285,
+                    "end": 2303,
+                    "flags": 0,
+                    "escapedText": "HTTP_INTERCEPTORS"
+                  }
+                },
+                {
+                  "pos": 2304,
+                  "end": 2336,
+                  "flags": 0,
+                  "kind": 269,
+                  "name": {
+                    "pos": 2304,
+                    "end": 2320,
+                    "flags": 0,
+                    "escapedText": "useClass"
+                  },
+                  "initializer": {
+                    "pos": 2321,
+                    "end": 2336,
+                    "flags": 0,
+                    "escapedText": "JwtInterceptor"
+                  }
+                },
+                {
+                  "pos": 2337,
+                  "end": 2356,
+                  "flags": 0,
+                  "kind": 269,
+                  "name": {
+                    "pos": 2337,
+                    "end": 2350,
+                    "flags": 0,
+                    "escapedText": "multi"
+                  },
+                  "initializer": {
+                    "pos": 2351,
+                    "end": 2356,
+                    "flags": 0,
+                    "kind": 101
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "pos": 2370,
+        "end": 2399,
+        "flags": 0,
+        "kind": 269,
+        "name": {
+          "pos": 2370,
+          "end": 2383,
+          "flags": 0,
+          "escapedText": "bootstrap"
+        },
+        "initializer": {
+          "pos": 2384,
+          "end": 2399,
+          "flags": 0,
+          "kind": 182,
+          "elements": [
+            {
+              "pos": 2386,
+              "end": 2398,
+              "flags": 0,
+              "escapedText": "AppComponent"
+            }
+          ]
+        }
+      },
+      {
+        "pos": 2400,
+        "end": 2537,
+        "flags": 0,
+        "kind": 269,
+        "name": {
+          "pos": 2400,
+          "end": 2419,
+          "flags": 0,
+          "escapedText": "entryComponents"
+        },
+        "initializer": {
+          "pos": 2420,
+          "end": 2537,
+          "flags": 0,
+          "kind": 182,
+          "elements": [
+            {
+              "pos": 2422,
+              "end": 2441,
+              "flags": 0,
+              "escapedText": "UsersTableComponent"
+            },
+            {
+              "pos": 2442,
+              "end": 2463,
+              "flags": 0,
+              "escapedText": "GroupDialogComponent"
+            },
+            {
+              "pos": 2464,
+              "end": 2488,
+              "flags": 0,
+              "escapedText": "WorkhourDialogComponent"
+            },
+            {
+              "pos": 2489,
+              "end": 2513,
+              "flags": 0,
+              "escapedText": "DialogOverviewComponent"
+            },
+            {
+              "pos": 2514,
+              "end": 2536,
+              "flags": 0,
+              "escapedText": "TenderDialogComponent"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "MaterialModule",
+    "file": "src/app/material-module.ts",
+    "providers": [],
+    "declarations": [],
+    "imports": [],
+    "exports": [
+      {
+        "name": "CdkTableModule"
+      },
+      {
+        "name": "CdkTreeModule"
+      },
+      {
+        "name": "DragDropModule"
+      },
+      {
+        "name": "MatAutocompleteModule"
+      },
+      {
+        "name": "MatBadgeModule"
+      },
+      {
+        "name": "MatBottomSheetModule"
+      },
+      {
+        "name": "MatButtonModule"
+      },
+      {
+        "name": "MatButtonToggleModule"
+      },
+      {
+        "name": "MatCardModule"
+      },
+      {
+        "name": "MatCheckboxModule"
+      },
+      {
+        "name": "MatChipsModule"
+      },
+      {
+        "name": "MatStepperModule"
+      },
+      {
+        "name": "MatDatepickerModule"
+      },
+      {
+        "name": "MatDialogModule"
+      },
+      {
+        "name": "MatDividerModule"
+      },
+      {
+        "name": "MatExpansionModule"
+      },
+      {
+        "name": "MatGridListModule"
+      },
+      {
+        "name": "MatIconModule"
+      },
+      {
+        "name": "MatInputModule"
+      },
+      {
+        "name": "MatListModule"
+      },
+      {
+        "name": "MatMenuModule"
+      },
+      {
+        "name": "MatNativeDateModule"
+      },
+      {
+        "name": "MatPaginatorModule"
+      },
+      {
+        "name": "MatProgressBarModule"
+      },
+      {
+        "name": "MatProgressSpinnerModule"
+      },
+      {
+        "name": "MatRadioModule"
+      },
+      {
+        "name": "MatRippleModule"
+      },
+      {
+        "name": "MatSelectModule"
+      },
+      {
+        "name": "MatSidenavModule"
+      },
+      {
+        "name": "MatSliderModule"
+      },
+      {
+        "name": "MatSlideToggleModule"
+      },
+      {
+        "name": "MatSnackBarModule"
+      },
+      {
+        "name": "MatSortModule"
+      },
+      {
+        "name": "MatTableModule"
+      },
+      {
+        "name": "MatTabsModule"
+      },
+      {
+        "name": "MatToolbarModule"
+      },
+      {
+        "name": "MatTooltipModule"
+      },
+      {
+        "name": "MatTreeModule"
+      },
+      {
+        "name": "ScrollingModule"
+      }
+    ],
+    "bootstrap": [],
+    "__raw": [
+      {
+        "pos": 1050,
+        "end": 1965,
+        "flags": 0,
+        "kind": 269,
+        "name": {
+          "pos": 1050,
+          "end": 1061,
+          "flags": 0,
+          "escapedText": "exports"
+        },
+        "initializer": {
+          "pos": 1062,
+          "end": 1965,
+          "flags": 0,
+          "kind": 182,
+          "multiLine": true,
+          "elements": [
+            {
+              "pos": 1064,
+              "end": 1084,
+              "flags": 0,
+              "escapedText": "CdkTableModule"
+            },
+            {
+              "pos": 1085,
+              "end": 1104,
+              "flags": 0,
+              "escapedText": "CdkTreeModule"
+            },
+            {
+              "pos": 1105,
+              "end": 1125,
+              "flags": 0,
+              "escapedText": "DragDropModule"
+            },
+            {
+              "pos": 1126,
+              "end": 1153,
+              "flags": 0,
+              "escapedText": "MatAutocompleteModule"
+            },
+            {
+              "pos": 1154,
+              "end": 1174,
+              "flags": 0,
+              "escapedText": "MatBadgeModule"
+            },
+            {
+              "pos": 1175,
+              "end": 1201,
+              "flags": 0,
+              "escapedText": "MatBottomSheetModule"
+            },
+            {
+              "pos": 1202,
+              "end": 1223,
+              "flags": 0,
+              "escapedText": "MatButtonModule"
+            },
+            {
+              "pos": 1224,
+              "end": 1251,
+              "flags": 0,
+              "escapedText": "MatButtonToggleModule"
+            },
+            {
+              "pos": 1252,
+              "end": 1271,
+              "flags": 0,
+              "escapedText": "MatCardModule"
+            },
+            {
+              "pos": 1272,
+              "end": 1295,
+              "flags": 0,
+              "escapedText": "MatCheckboxModule"
+            },
+            {
+              "pos": 1296,
+              "end": 1316,
+              "flags": 0,
+              "escapedText": "MatChipsModule"
+            },
+            {
+              "pos": 1317,
+              "end": 1339,
+              "flags": 0,
+              "escapedText": "MatStepperModule"
+            },
+            {
+              "pos": 1340,
+              "end": 1365,
+              "flags": 0,
+              "escapedText": "MatDatepickerModule"
+            },
+            {
+              "pos": 1366,
+              "end": 1387,
+              "flags": 0,
+              "escapedText": "MatDialogModule"
+            },
+            {
+              "pos": 1388,
+              "end": 1410,
+              "flags": 0,
+              "escapedText": "MatDividerModule"
+            },
+            {
+              "pos": 1411,
+              "end": 1435,
+              "flags": 0,
+              "escapedText": "MatExpansionModule"
+            },
+            {
+              "pos": 1436,
+              "end": 1459,
+              "flags": 0,
+              "escapedText": "MatGridListModule"
+            },
+            {
+              "pos": 1460,
+              "end": 1479,
+              "flags": 0,
+              "escapedText": "MatIconModule"
+            },
+            {
+              "pos": 1480,
+              "end": 1500,
+              "flags": 0,
+              "escapedText": "MatInputModule"
+            },
+            {
+              "pos": 1501,
+              "end": 1520,
+              "flags": 0,
+              "escapedText": "MatListModule"
+            },
+            {
+              "pos": 1521,
+              "end": 1540,
+              "flags": 0,
+              "escapedText": "MatMenuModule"
+            },
+            {
+              "pos": 1541,
+              "end": 1566,
+              "flags": 0,
+              "escapedText": "MatNativeDateModule"
+            },
+            {
+              "pos": 1567,
+              "end": 1591,
+              "flags": 0,
+              "escapedText": "MatPaginatorModule"
+            },
+            {
+              "pos": 1592,
+              "end": 1618,
+              "flags": 0,
+              "escapedText": "MatProgressBarModule"
+            },
+            {
+              "pos": 1619,
+              "end": 1649,
+              "flags": 0,
+              "escapedText": "MatProgressSpinnerModule"
+            },
+            {
+              "pos": 1650,
+              "end": 1670,
+              "flags": 0,
+              "escapedText": "MatRadioModule"
+            },
+            {
+              "pos": 1671,
+              "end": 1692,
+              "flags": 0,
+              "escapedText": "MatRippleModule"
+            },
+            {
+              "pos": 1693,
+              "end": 1714,
+              "flags": 0,
+              "escapedText": "MatSelectModule"
+            },
+            {
+              "pos": 1715,
+              "end": 1737,
+              "flags": 0,
+              "escapedText": "MatSidenavModule"
+            },
+            {
+              "pos": 1738,
+              "end": 1759,
+              "flags": 0,
+              "escapedText": "MatSliderModule"
+            },
+            {
+              "pos": 1760,
+              "end": 1786,
+              "flags": 0,
+              "escapedText": "MatSlideToggleModule"
+            },
+            {
+              "pos": 1787,
+              "end": 1810,
+              "flags": 0,
+              "escapedText": "MatSnackBarModule"
+            },
+            {
+              "pos": 1811,
+              "end": 1830,
+              "flags": 0,
+              "escapedText": "MatSortModule"
+            },
+            {
+              "pos": 1831,
+              "end": 1851,
+              "flags": 0,
+              "escapedText": "MatTableModule"
+            },
+            {
+              "pos": 1852,
+              "end": 1871,
+              "flags": 0,
+              "escapedText": "MatTabsModule"
+            },
+            {
+              "pos": 1872,
+              "end": 1894,
+              "flags": 0,
+              "escapedText": "MatToolbarModule"
+            },
+            {
+              "pos": 1895,
+              "end": 1917,
+              "flags": 0,
+              "escapedText": "MatTooltipModule"
+            },
+            {
+              "pos": 1918,
+              "end": 1937,
+              "flags": 0,
+              "escapedText": "MatTreeModule"
+            },
+            {
+              "pos": 1938,
+              "end": 1959,
+              "flags": 0,
+              "escapedText": "ScrollingModule"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
